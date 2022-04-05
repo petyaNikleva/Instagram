@@ -11,30 +11,7 @@ form.addEventListener('submit', e => {
     validateInputs();
 });
 
-const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success')
-}
-
-const setSuccess = element => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
-};
-
-const isValidEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-
-const validateInputs = () => {
+function validateInputs() {
     const emailValue = email.value;
     const firstNameValue = firstName.value;
     const lastNameValue = lastName.value;
@@ -65,8 +42,15 @@ const validateInputs = () => {
         setError(password, 'Password is required');
     } else if (passwordValue.length < 8) {
         setError(password, 'Password must be at least 8 character.');
-        // TO DO Lower case and upper case
-    } else {
+    } else if (!isDigitInPassword(passwordValue)) {
+        setError(password, 'Password shoud contain at least one digit.')
+    } else if(!isLowerCaseLeterInPassword(passwordValue)) {
+        setError(password, 'Password shoud contain at least one lower case letter')
+    } else if(!isUpperCaseLeterInPassword(passwordValue)) {
+        setError(password, 'Password shoud contain at least one upper case letter')
+    }
+    
+    else {
         setSuccess(password);
     }
 
@@ -79,3 +63,41 @@ const validateInputs = () => {
     }
 
 };
+
+function setError(element, message) {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success')
+}
+
+function setSuccess(element) {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+};
+
+function isValidEmail(email) {
+    let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(String(email).toLowerCase());
+}
+
+function isDigitInPassword(password) {
+    let regex = /[0-9]/;
+    return regex.test(password);
+}
+
+function isLowerCaseLeterInPassword(password) {
+    let regex = /[a-z]/;
+    return regex.test(password)
+}
+
+function isUpperCaseLeterInPassword(password) {
+    let regex = /[A-Z]/;
+    return regex.test(password)
+}
