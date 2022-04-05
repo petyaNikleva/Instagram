@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+  text-align: center;
+}
+
+.logo-container img {
+  width: 15%;
+}
+
+form {
+  width: 40%;
+  max-width: 520px;
+  margin: auto;
+  border: 1px solid grey;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.container {
+  padding: 16px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 5px 0;
+  display: flex;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 0.5rem;
+}
+
+input:focus {
+  background-color: #ddd;
+  outline: none; 
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.registerbtn {
+  background-color: blueviolet;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 90%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+a {
+  color: dodgerblue;
+}
+
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.input-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-control input {
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  display: block;
+  font-size: 12px;
+  padding: 10px;
+  width: 90%;
+}
+
+.input-control.success input {
+  border-color: #09c372;
+}
+
+.input-control.error input {
+  border-color: #ff3860;
+}
+
+.input-control .error {
+  color: #ff3860;
+  font-size: 12px;
+  font-weight: bold;
+  height: 13px;
+}
