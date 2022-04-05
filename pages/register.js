@@ -5,11 +5,13 @@ const lastName = document.getElementById('lastName');
 const password = document.getElementById('password');
 const repeatPassword = document.getElementById('repeat-password');
 
+let errorOccured = false;
+
 form.addEventListener('submit', e => {
     e.preventDefault();
 
     validateInputs();
-});
+}); 
 
 function validateInputs() {
     const emailValue = email.value;
@@ -49,7 +51,6 @@ function validateInputs() {
     } else if(!isUpperCaseLeterInPassword(passwordValue)) {
         setError(password, 'Password shoud contain at least one upper case letter')
     }
-    
     else {
         setSuccess(password);
     }
@@ -62,9 +63,13 @@ function validateInputs() {
         setSuccess(repeatPassword);
     }
 
-};
+    if (!errorOccured) {
+        alert('Successful registration.')
+    }
+}
 
 function setError(element, message) {
+    errorOccured = true; 
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
 
