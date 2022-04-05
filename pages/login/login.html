@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./login.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-container">
+            <a href="#">
+                <img src="../../images/instagram_letters.png" alt="">
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <form id="form" action="/">
+        
+            <h1>Login</h1>
+
+            <div class="input-control">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Enter Email" name="email" id="email">
+                <div class="error"></div>
+            </div>
+
+            <div class="input-control">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter Password" name="password" id="password">
+                <div class="error"></div>
+            </div>
+            <hr>
+
+            <button type="submit" class="loginbtn">Log In</button>
+
+        <div class="container signin">
+            <p>Don't have an account? <a href="#">Sign up</a>.</p>
+        </div>
+        </form>
+    </div>
+
+
+    <script src="./login.js"></script>
+
+</body>
+
+</html>

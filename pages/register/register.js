@@ -5,7 +5,7 @@ const lastName = document.getElementById('lastName');
 const password = document.getElementById('password');
 const repeatPassword = document.getElementById('repeat-password');
 
-let errorOccured = false;
+let errorOccured;
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -14,6 +14,9 @@ form.addEventListener('submit', e => {
 }); 
 
 function validateInputs() {
+
+    errorOccured = false;
+
     const emailValue = email.value;
     const firstNameValue = firstName.value;
     const lastNameValue = lastName.value;
@@ -64,6 +67,13 @@ function validateInputs() {
     }
 
     if (!errorOccured) {
+        
+        localStorage.clear();
+        localStorage.setItem('email', emailValue)
+        localStorage.setItem('firstName', firstNameValue)
+        localStorage.setItem('lastName',lastNameValue)
+        localStorage.setItem('password', passwordValue)
+    
         alert('Successful registration.')
     }
 }
