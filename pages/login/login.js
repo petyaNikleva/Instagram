@@ -23,7 +23,7 @@ function validateLoginCredentials() {
     if (emailValue !== localStorage.getItem('email')) {
         setError(email, 'Incorrect username or password');
     } else if (passwordValue !== localStorage.getItem('password')) {
-        setError(passwordValue, 'Incorrect username or password');
+        setError(password, 'Incorrect username or password');
     } else {
         setSuccess(email);
     }
