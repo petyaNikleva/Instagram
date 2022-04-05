@@ -1,0 +1,161 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wrapper {
+    flex: 1 0 auto;
+  }
+
+  .three-column-wrapper {
+      display: flex;
+  }
+
+/* ------------ Header ---------------- */
+
+header .header-container {
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.header-container a {
+    width: 30%;
+}
+
+.header-container a img {
+    width: 16rem;
+    padding-left: 4rem;
+}
+
+.small-card {
+    width: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.small-card img {
+    border-radius: 50%; 
+    object-fit: cover;
+    width: 6rem;
+    height: 6rem;
+}
+
+.following-people {
+    display: flex;
+    gap: 3rem;
+    align-content: space-around;
+    justify-content: center;
+    /* background-color: lightseagreen; */
+    padding: 1rem;
+}
+
+.name {
+    margin-top: 0.3rem;
+}
+
+/* ----------- Navigation ---------------- */
+
+nav {
+    background-color: lightgrey;
+    padding: 0.01rem;
+    border-radius: 10px;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    list-style-type: none;
+    font-size: 1.75rem;
+}
+
+.nav-item {
+    margin-bottom: 2.5rem;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: rgb(70, 67, 67);
+    margin-right: 2rem;
+}
+
+.nav-item a:hover {
+    color: lightseagreen;
+}
+
+.nav-list .logo-img{
+    width: 5rem;
+    padding: 0.75rem;
+}
+
+/* ------------ Main Content ------------- */
+
+.news-feed {
+/* background-color: aquamarine; */
+height: 100%;
+}
+
+.news-feed .img-container {
+    width: 31%;
+}
+
+.news-feed .img-container img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+section.news-feed {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; 
+}
+
+/* -------- Advertisement --------- */
+
+/* .advertisement {
+    background-color: burlywood;
+} */
+ 
+.advertisement-card {
+    width: 20vw;
+    border-radius: 10px;
+    border: 1px solid grey;
+    margin-bottom: 0.75rem;
+}
+
+.advertisement-card h3,
+.advertisement-card p {
+    text-align: center;
+    color: grey;
+}
+
+.advertisement-card img {
+    width: calc(20vw - 2px);
+}
+
+/* ------- Footer -------- */
+
+footer {
+    background-color: black;
+    color: antiquewhite;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
