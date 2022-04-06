@@ -66,7 +66,7 @@ function validateInputs() {
         setSuccess(repeatPassword);
     }
 
-    if (!errorOccured) {   
+    if (!errorOccured) {
         
         let userData  = {
             firstName: firstNameValue,
@@ -77,9 +77,7 @@ function validateInputs() {
        
   localStorage.setItem(emailValue, JSON.stringify(userData));
     
-       setTimeout(() => {
-           alert('Successful registration.')
-        }, 500);
+        alert('Successful registration.')
     }
 
     let testObj = localStorage.getItem(emailValue);

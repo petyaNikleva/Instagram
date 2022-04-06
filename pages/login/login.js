@@ -11,36 +11,42 @@ form.addEventListener('submit', e => {
     e.preventDefault();
 
     validateLoginCredentials();
-}); 
+});
 
 function validateLoginCredentials() {
 
     errorOccured = false;
+    let currentUserData;
 
     const emailValue = email.value;
     const passwordValue = password.value;
 
-    let currentUser = localStorage.getItem(emailValue);
-    let currentUserData = JSON.parse(currentUser); 
-    console.log(currentUserData.password)
-
-    if (passwordValue !== currentUserData.password) {
-        setError(password, 'Incorrect username or password');
+    let isRegistered = localStorage.getItem(emailValue);
+    if (isRegistered) {
+        currentUserData = JSON.parse(isRegistered);
+        if (passwordValue !== currentUserData.password) {
+            setError(password, 'Incorrect email or password');
+        } else {
+            setSuccess(email);
+            setSuccess(password);
+        }
     } else {
-        setSuccess(email);
-        setSuccess(password);
+        errorOccured = true;
+        setError(email, 'Incorrect email or password');
     }
-   
-    if (!errorOccured) {  
+
+    if (!errorOccured) {
         const firstName = currentUserData.firstName;
         const lastName = currentUserData.lastName;
-    
-        alert(`Welcome, ${firstName} ${lastName}!`)
-    }
+
+        setTimeout( () => {
+            alert(`Welcome, ${firstName} ${lastName}!`)
+        }, 500);
+    } 
 }
 
 function setError(element, message) {
-    errorOccured = true; 
+    errorOccured = true;
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
 
