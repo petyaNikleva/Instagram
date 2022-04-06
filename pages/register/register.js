@@ -69,10 +69,10 @@ function validateInputs() {
     if (!errorOccured) {
         
         let userData  = {
-            email: emailValue,
             firstName: firstNameValue,
             lastName: lastNameValue,
-            password: passwordValue
+            password: passwordValue,
+            // email: emailValue
         }
        
   localStorage.setItem(emailValue, JSON.stringify(userData));
@@ -81,12 +81,9 @@ function validateInputs() {
     }
 
     let testObj = localStorage.getItem(emailValue);
-    let myObj=(JSON.parse(testObj))
-    console.log(myObj.email);
-    console.log(testObj);
-    console.log(testObj[emailValue]);
-    console.log(testObj.emailValue);
-    console.log(testObj[password]);
+    let currentUser=(JSON.parse(testObj))
+    console.log(currentUser.email);
+  
 }
 
 function setError(element, message) {

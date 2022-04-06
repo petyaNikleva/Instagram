@@ -20,24 +20,20 @@ function validateLoginCredentials() {
     const emailValue = email.value;
     const passwordValue = password.value;
 
-    if (emailValue !== localStorage.getItem('email')) {
-        setError(email, 'Incorrect username or password');
-    } else if (passwordValue !== localStorage.getItem('password')) {
+    let currentUser = localStorage.getItem(emailValue);
+    let currentUserData = JSON.parse(currentUser); 
+    console.log(currentUserData.password)
+
+    if (passwordValue !== currentUserData.password) {
         setError(password, 'Incorrect username or password');
     } else {
         setSuccess(email);
-    }
-   
-    if (passwordValue !== localStorage.getItem('password')) {
-        setError(password, 'Incorrect username or password');
-    }
-    else {
         setSuccess(password);
     }
-
+   
     if (!errorOccured) {  
-        let firstName = localStorage.getItem('firstName');
-        let lastName = localStorage.getItem('lastName');
+        const firstName = currentUserData.firstName;
+        const lastName = currentUserData.lastName;
     
         alert(`Welcome, ${firstName} ${lastName}!`)
     }
