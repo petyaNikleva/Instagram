@@ -79,6 +79,7 @@ function validateInputs() {
     
        setTimeout(() => {
            alert('Successful registration.')
+            location.href="/pages/login/login.html";
         }, 500);
     }
 

@@ -41,7 +41,9 @@ function validateLoginCredentials() {
 
         setTimeout( () => {
             alert(`Welcome, ${firstName} ${lastName}!`)
+            location.href='/index.html';
         }, 500);
+        
     } 
 }
 
