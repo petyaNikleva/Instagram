@@ -68,14 +68,25 @@ function validateInputs() {
 
     if (!errorOccured) {
         
-        localStorage.clear();
-        localStorage.setItem('email', emailValue)
-        localStorage.setItem('firstName', firstNameValue)
-        localStorage.setItem('lastName',lastNameValue)
-        localStorage.setItem('password', passwordValue)
+        let userData  = {
+            email: emailValue,
+            firstName: firstNameValue,
+            lastName: lastNameValue,
+            password: passwordValue
+        }
+       
+  localStorage.setItem(emailValue, JSON.stringify(userData));
     
         alert('Successful registration.')
     }
+
+    let testObj = localStorage.getItem(emailValue);
+    let myObj=(JSON.parse(testObj))
+    console.log(myObj.email);
+    console.log(testObj);
+    console.log(testObj[emailValue]);
+    console.log(testObj.emailValue);
+    console.log(testObj[password]);
 }
 
 function setError(element, message) {
