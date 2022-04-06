@@ -38,10 +38,12 @@ function validateLoginCredentials() {
     if (!errorOccured) {
         const firstName = currentUserData.firstName;
         const lastName = currentUserData.lastName;
+        localStorage.setItem('isLogged', true);
 
         setTimeout( () => {
             alert(`Welcome, ${firstName} ${lastName}!`)
             location.href='/index.html';
+            console.log(localStorage.getItem('isLogged'))
         }, 500);
         
     } 
