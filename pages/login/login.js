@@ -43,7 +43,6 @@ function validateLoginCredentials() {
         setTimeout( () => {
             alert(`Welcome, ${firstName} ${lastName}!`)
             location.href='/index.html';
-            console.log(localStorage.getItem('isLogged'))
         }, 500);
         
     } 
