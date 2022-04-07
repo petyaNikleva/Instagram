@@ -25,13 +25,12 @@ function validateLoginCredentials() {
     if (isRegistered) {
         currentUserData = JSON.parse(isRegistered);
         if (passwordValue !== currentUserData.password) {
-            setError(password, 'Incorrect email or password');
+            setError(password, 'Incorrect email or password');  
         } else {
             setSuccess(email);
             setSuccess(password);
         }
     } else {
-        errorOccured = true;
         setError(email, 'Incorrect email or password');
     }
 
