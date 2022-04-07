@@ -1,4 +1,4 @@
-import {isValidEmail, isDigitInPassword, isLowerCaseLeterInPassword, isUpperCaseLeterInPassword} from '../../services/validateInput.js';
+import {isValidEmail, isDigitInPassword, isLowerCaseLeterInPassword, isUpperCaseLeterInPassword} from '../../helpers/isValid.js';
 
 const form = document.getElementById('form');
 const email = document.getElementById('email');
