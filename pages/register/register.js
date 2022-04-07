@@ -1,7 +1,9 @@
+import {isValidEmail, isDigitInPassword, isLowerCaseLeterInPassword, isUpperCaseLeterInPassword} from '../../services/validateInput.js';
+
 const form = document.getElementById('form');
 const email = document.getElementById('email');
 const firstName = document.getElementById('firstName');
-const lastName = document.getElementById('lastName');
+const lastName = document.getElementById('lastName');``
 const password = document.getElementById('password');
 const repeatPassword = document.getElementById('repeat-password');
 
@@ -108,22 +110,3 @@ function setSuccess(element) {
     inputControl.classList.remove('error');
 };
 
-function isValidEmail(email) {
-    let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regex.test(String(email).toLowerCase());
-}
-
-function isDigitInPassword(password) {
-    let regex = /[0-9]/;
-    return regex.test(password);
-}
-
-function isLowerCaseLeterInPassword(password) {
-    let regex = /[a-z]/;
-    return regex.test(password)
-}
-
-function isUpperCaseLeterInPassword(password) {
-    let regex = /[A-Z]/;
-    return regex.test(password)
-}
