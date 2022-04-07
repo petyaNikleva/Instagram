@@ -1,4 +1,4 @@
-import {isValidEmail, isDigitInPassword, isLowerCaseLeterInPassword, isUpperCaseLeterInPassword} from '../../helpers/isValid.js';
+import {isValidEmail, isDigitInPassword, isLowerCaseLeterInPassword, isUpperCaseLeterInPassword, isEmailAlreadyRegistered} from '../../helpers/isValid.js';
 
 const form = document.getElementById('form');
 const email = document.getElementById('email');
@@ -28,7 +28,9 @@ function validateInputs() {
     if (emailValue === '') {
         setError(email, 'Email is required');
     } else if (!isValidEmail(emailValue)) {
-        setError(email, 'Provide a valid email address');
+        setError(email, 'Provide a valid email address'); 
+    } else if(isEmailAlreadyRegistered(emailValue)) {
+        setError(email, 'This email has already been registered.');
     } else {
         setSuccess(email);
     }
@@ -84,10 +86,6 @@ function validateInputs() {
             location.href="/pages/login/login.html";
         }, 500);
     }
-
-    let testObj = localStorage.getItem(emailValue);
-    let currentUser=(JSON.parse(testObj))
-    console.log(currentUser.email);
   
 }
 
