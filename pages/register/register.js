@@ -86,7 +86,6 @@ function validateInputs() {
             location.href="/pages/login/login.html";
         }, 500);
     }
-  
 }
 
 function setError(element, message) {
@@ -96,7 +95,7 @@ function setError(element, message) {
 
     errorDisplay.innerText = message;
     inputControl.classList.add('error');
-    inputControl.classList.remove('success')
+    inputControl.classList.remove('success');
 }
 
 function setSuccess(element) {

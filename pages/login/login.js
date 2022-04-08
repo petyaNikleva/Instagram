@@ -1,9 +1,8 @@
+import { checkIsRegistered, getUserData, setLoggedUser } from "../../services/authService.js";
+
 const form = document.getElementById('form');
 const email = document.getElementById('email');
-const firstName = document.getElementById('firstName');
-const lastName = document.getElementById('lastName');
 const password = document.getElementById('password');
-const repeatPassword = document.getElementById('repeat-password');
 
 let errorOccured;
 
@@ -21,9 +20,11 @@ function validateLoginCredentials() {
     const emailValue = email.value;
     const passwordValue = password.value;
 
-    let isRegistered = localStorage.getItem(emailValue);
-    if (isRegistered) {
-        currentUserData = JSON.parse(isRegistered);
+    const isRegisteredData = checkIsRegistered(emailValue);
+
+    if (isRegisteredData) {
+        currentUserData = getUserData(isRegisteredData);
+
         if (passwordValue !== currentUserData.password) {
             setError(password, 'Incorrect email or password');  
         } else {
@@ -37,11 +38,9 @@ function validateLoginCredentials() {
     if (!errorOccured) {
         const firstName = currentUserData.firstName;
         const lastName = currentUserData.lastName;
-
-        const userData = {
-            email: emailValue
-        }
-        localStorage.setItem('loggedUser', JSON.stringify(userData))
+        
+        setLoggedUser(emailValue);
+        //localStorage.setItem('loggedUser', emailValue)
 
         setTimeout( () => {
             alert(`Welcome, ${firstName} ${lastName}!`)
@@ -57,7 +56,7 @@ function setError(element, message) {
 
     errorDisplay.innerText = message;
     inputControl.classList.add('error');
-    inputControl.classList.remove('success')
+    inputControl.classList.remove('success');
 }
 
 function setSuccess(element) {
