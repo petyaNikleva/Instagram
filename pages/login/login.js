@@ -38,7 +38,6 @@ function validateLoginCredentials() {
         const firstName = currentUserData.firstName;
         const lastName = currentUserData.lastName;
 
-        //
         const userData = {
             email: emailValue
         }
@@ -48,7 +47,6 @@ function validateLoginCredentials() {
             alert(`Welcome, ${firstName} ${lastName}!`)
             location.href='/index.html';
         }, 500);
-        
     } 
 }
 

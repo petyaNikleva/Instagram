@@ -1,5 +1,7 @@
+import { checkIsLoggedUser, logOut } from './services/authService.js';
+
 function showNavigation () {
-    const loggedUser = localStorage.getItem('loggedUser');
+    const loggedUser = checkIsLoggedUser();
 
     const registerLinkElement = document.getElementsByClassName('register')[0];
     const loginLinkElement = document.getElementsByClassName('login')[0];
@@ -15,7 +17,7 @@ function showNavigation () {
     }
 
     logOutLinkElement.addEventListener("click", function (e) {
-        localStorage.setItem('loggedUser', 'noUser');
+        logOut();
         showNavigation();
     })
 }
