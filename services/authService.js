@@ -8,16 +8,11 @@ export function checkIsRegistered(email) {
     return isRegisteredUser;
 }
 
-export function getUserData(data) {
-    const currentUserData = JSON.parse(data);
-    return currentUserData;
-}
-
-export function setLoggedUser(email) {
+export function logIn(email) {
     localStorage.setItem('loggedUser', email);
 }
 
-export function registerUser (email, userData) {
+export function register (email, userData) {
     localStorage.setItem(email, JSON.stringify(userData));
 }
 

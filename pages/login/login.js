@@ -1,4 +1,4 @@
-import { checkIsRegistered, getUserData, setLoggedUser } from "../../services/authService.js";
+import { checkIsRegistered, logIn } from "../../services/authService.js";
 
 const form = document.getElementById('form');
 const email = document.getElementById('email');
@@ -23,8 +23,7 @@ function validateLoginCredentials() {
     const isRegisteredData = checkIsRegistered(emailValue);
 
     if (isRegisteredData) {
-        currentUserData = getUserData(isRegisteredData);
-
+        currentUserData = JSON.parse(isRegisteredData);
         if (passwordValue !== currentUserData.password) {
             setError(password, 'Incorrect email or password');  
         } else {
@@ -39,7 +38,7 @@ function validateLoginCredentials() {
         const firstName = currentUserData.firstName;
         const lastName = currentUserData.lastName;
         
-        setLoggedUser(emailValue);
+        logIn(emailValue);
 
         setTimeout( () => {
             alert(`Welcome, ${firstName} ${lastName}!`)

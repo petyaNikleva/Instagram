@@ -3,7 +3,7 @@ import {isValidEmail,
     isLowerCaseLeterInPassword, 
     isUpperCaseLeterInPassword, 
     isEmailAlreadyRegistered} from '../../helpers/isValid.js';
-import { registerUser } from '../../services/authService.js';
+import { register } from '../../services/authService.js';
 
 const form = document.getElementById('form');
 const email = document.getElementById('email');
@@ -84,9 +84,7 @@ function validateInputs() {
             email: emailValue
         }
     
-    registerUser(emailValue, userData);    
-       
-  //localStorage.setItem(emailValue, JSON.stringify(userData));
+    register(emailValue, userData);    
     
        setTimeout(() => {
            alert('Successful registration.')
