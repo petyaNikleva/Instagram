@@ -76,7 +76,7 @@ function validateInputs() {
             firstName: firstNameValue,
             lastName: lastNameValue,
             password: passwordValue,
-            // email: emailValue
+            email: emailValue
         }
        
   localStorage.setItem(emailValue, JSON.stringify(userData));

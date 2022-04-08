@@ -37,7 +37,12 @@ function validateLoginCredentials() {
     if (!errorOccured) {
         const firstName = currentUserData.firstName;
         const lastName = currentUserData.lastName;
-        localStorage.setItem('isLogged', true);
+
+        //
+        const userData = {
+            email: emailValue
+        }
+        localStorage.setItem('loggedUser', JSON.stringify(userData))
 
         setTimeout( () => {
             alert(`Welcome, ${firstName} ${lastName}!`)

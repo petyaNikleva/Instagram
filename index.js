@@ -1,10 +1,10 @@
 function showNavigation () {
-    const isLogged = localStorage.getItem('isLogged');
+    const loggedUser = localStorage.getItem('loggedUser');
 
     const registerLinkElement = document.getElementsByClassName('register')[0];
     const loginLinkElement = document.getElementsByClassName('login')[0];
     const logOutLinkElement = document.getElementsByClassName('logout')[0];
-    if (isLogged !== "false") {
+    if (loggedUser !== "noUser") {
         registerLinkElement.style.display = 'none';
         loginLinkElement.style.display = 'none';
     }
@@ -15,7 +15,7 @@ function showNavigation () {
     }
 
     logOutLinkElement.addEventListener("click", function (e) {
-        localStorage.setItem('isLogged', false);
+        localStorage.setItem('loggedUser', 'noUser');
         showNavigation();
     })
 }
