@@ -1,4 +1,9 @@
-import {isValidEmail, isDigitInPassword, isLowerCaseLeterInPassword, isUpperCaseLeterInPassword, isEmailAlreadyRegistered} from '../../helpers/isValid.js';
+import {isValidEmail, 
+    isDigitInPassword, 
+    isLowerCaseLeterInPassword, 
+    isUpperCaseLeterInPassword, 
+    isEmailAlreadyRegistered} from '../../helpers/isValid.js';
+import { registerUser } from '../../services/authService.js';
 
 const form = document.getElementById('form');
 const email = document.getElementById('email');
@@ -78,8 +83,10 @@ function validateInputs() {
             password: passwordValue,
             email: emailValue
         }
+    
+    registerUser(emailValue, userData);    
        
-  localStorage.setItem(emailValue, JSON.stringify(userData));
+  //localStorage.setItem(emailValue, JSON.stringify(userData));
     
        setTimeout(() => {
            alert('Successful registration.')
