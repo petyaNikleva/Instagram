@@ -1,4 +1,4 @@
-export function checkIsLoggedUser () {
+export function checkIsLoggedUser() {
     let loggedUser = localStorage.getItem('loggedUser');
     return loggedUser;
 }
@@ -12,11 +12,30 @@ export function logIn(email) {
     localStorage.setItem('loggedUser', email);
 }
 
-export function register (email, userData) {
+export function registerOld(email, userData) {
     localStorage.setItem(email, JSON.stringify(userData));
 }
+
+
+export function register(email, userData) {
+    let isEmptyRegister = !!(localStorage.getItem('users'));
+    if (!isEmptyRegister) {
+        let users = {};
+        users[email] = userData;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+    else {
+        let users = JSON.parse(localStorage.users);
+        users[email] = userData;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+   
+}
+
 
 export function logOut() {
     localStorage.setItem('loggedUser', 'noUser');
 }
+
+
 

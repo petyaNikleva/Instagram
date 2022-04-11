@@ -76,6 +76,7 @@ function validateInputs() {
     }
 
     if (!errorOccured) {   
+
         
         let userData  = {
             firstName: firstNameValue,
