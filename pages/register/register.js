@@ -1,8 +1,10 @@
-import {isValidEmail, 
-    isDigitInPassword, 
-    isLowerCaseLeterInPassword, 
-    isUpperCaseLeterInPassword, 
-    isEmailAlreadyRegistered} from '../../helpers/isValid.js';
+import {
+    isValidEmail,
+    isDigitInPassword,
+    isLowerCaseLeterInPassword,
+    isUpperCaseLeterInPassword,
+    isEmailAlreadyRegistered
+} from '../../helpers/isValid.js';
 import { register } from '../../services/authService.js';
 
 const form = document.getElementById('form');
@@ -18,20 +20,61 @@ form.addEventListener('submit', e => {
     e.preventDefault();
 
     validateInputs();
-}); 
+});
 
 email.addEventListener('blur', () => {
     const emailValue = email.value;
     if (emailValue === '') {
         setError(email, 'Email is required');
     } else if (!isValidEmail(emailValue)) {
-        setError(email, 'Provide a valid email address'); 
-    } else if(isEmailAlreadyRegistered(emailValue)) {
+        setError(email, 'Provide a valid email address');
+    } else if (isEmailAlreadyRegistered(emailValue)) {
         setError(email, 'This email has already been registered.');
     } else {
         setSuccess(email);
     }
 });
+
+firstName.addEventListener('blur', () => {
+    const firstNameValue = firstName.value;
+    if (firstNameValue === '') {
+        setError(firstName, 'First name is required');
+    } else {
+        setSuccess(firstName);
+    }
+});
+
+lastName.addEventListener('blur', () => {
+    const lastNameValue = lastName.value;
+    if (lastNameValue === '') {
+        setError(lastName, 'First name is required');
+    } else {
+        setSuccess(lastName);
+    }
+});
+
+
+password.addEventListener('blur', () => {
+    const passwordValue = password.value;
+    if (passwordValue === '') {
+        setError(password, 'Password is required');
+    } else if (passwordValue.length < 8) {
+        setError(password, 'Password must be at least 8 character.');
+    } else if (!isDigitInPassword(passwordValue)) {
+        setError(password, 'Password shoud contain at least one digit.')
+    } else if (!isLowerCaseLeterInPassword(passwordValue)) {
+        setError(password, 'Password shoud contain at least one lower case letter')
+    } else if (!isUpperCaseLeterInPassword(passwordValue)) {
+        setError(password, 'Password shoud contain at least one upper case letter')
+    }
+    else {
+        setSuccess(password);
+    }
+})
+
+
+
+
 
 
 function validateInputs() {
@@ -47,8 +90,8 @@ function validateInputs() {
     if (emailValue === '') {
         setError(email, 'Email is required');
     } else if (!isValidEmail(emailValue)) {
-        setError(email, 'Provide a valid email address'); 
-    } else if(isEmailAlreadyRegistered(emailValue)) {
+        setError(email, 'Provide a valid email address');
+    } else if (isEmailAlreadyRegistered(emailValue)) {
         setError(email, 'This email has already been registered.');
     } else {
         setSuccess(email);
@@ -72,9 +115,9 @@ function validateInputs() {
         setError(password, 'Password must be at least 8 character.');
     } else if (!isDigitInPassword(passwordValue)) {
         setError(password, 'Password shoud contain at least one digit.')
-    } else if(!isLowerCaseLeterInPassword(passwordValue)) {
+    } else if (!isLowerCaseLeterInPassword(passwordValue)) {
         setError(password, 'Password shoud contain at least one lower case letter')
-    } else if(!isUpperCaseLeterInPassword(passwordValue)) {
+    } else if (!isUpperCaseLeterInPassword(passwordValue)) {
         setError(password, 'Password shoud contain at least one upper case letter')
     }
     else {
@@ -89,26 +132,26 @@ function validateInputs() {
         setSuccess(repeatPassword);
     }
 
-    if (!errorOccured) {   
+    if (!errorOccured) {
 
-        let userData  = {
+        let userData = {
             firstName: firstNameValue,
             lastName: lastNameValue,
             password: passwordValue,
             email: emailValue
         }
-    
-    register(emailValue, userData);    
-    
-       setTimeout(() => {
-           alert('Successful registration.')
-            location.href="/pages/login/login.html";
+
+        register(emailValue, userData);
+
+        setTimeout(() => {
+            alert('Successful registration.')
+            location.href = "/pages/login/login.html";
         }, 500);
     }
 }
 
 function setError(element, message) {
-    errorOccured = true; 
+    errorOccured = true;
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
 
