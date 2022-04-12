@@ -18,18 +18,13 @@ export function registerOld(email, userData) {
 
 
 export function register(email, userData) {
-    let isEmptyRegister = !!(localStorage.getItem('users'));
-    if (!isEmptyRegister) {
-        let users = {};
-        users[email] = userData;
-        localStorage.setItem('users', JSON.stringify(users));
+    let users = {};
+    let areRegisteredUsers = !!(localStorage.getItem('users'));
+    if (areRegisteredUsers) {
+        users = JSON.parse(localStorage.users);
     }
-    else {
-        let users = JSON.parse(localStorage.users);
-        users[email] = userData;
-        localStorage.setItem('users', JSON.stringify(users));
-    }
-   
+    users[email] = userData;
+    localStorage.setItem('users', JSON.stringify(users));
 }
 
 
