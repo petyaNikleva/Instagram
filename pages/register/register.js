@@ -8,7 +8,7 @@ import { register } from '../../services/authService.js';
 const form = document.getElementById('form');
 const email = document.getElementById('email');
 const firstName = document.getElementById('firstName');
-const lastName = document.getElementById('lastName');``
+const lastName = document.getElementById('lastName');
 const password = document.getElementById('password');
 const repeatPassword = document.getElementById('repeat-password');
 
@@ -19,6 +19,20 @@ form.addEventListener('submit', e => {
 
     validateInputs();
 }); 
+
+email.addEventListener('blur', () => {
+    const emailValue = email.value;
+    if (emailValue === '') {
+        setError(email, 'Email is required');
+    } else if (!isValidEmail(emailValue)) {
+        setError(email, 'Provide a valid email address'); 
+    } else if(isEmailAlreadyRegistered(emailValue)) {
+        setError(email, 'This email has already been registered.');
+    } else {
+        setSuccess(email);
+    }
+});
+
 
 function validateInputs() {
 

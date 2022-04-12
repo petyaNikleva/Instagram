@@ -1,11 +1,12 @@
+import { getAllUsers } from "../services/authService.js";
+
 export function isValidEmail(email) {
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regex.test(String(email).toLowerCase());
 }
 
 export function isEmailAlreadyRegistered(email) {
-    const isRegistered = localStorage.getItem(email);
-    return isRegistered;
+    return getAllUsers().hasOwnProperty(email);
 }
 
 export function isDigitInPassword(password) {
