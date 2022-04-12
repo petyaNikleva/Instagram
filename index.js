@@ -7,7 +7,7 @@ function showNavigation () {
     const loginLinkElement = document.getElementsByClassName('login')[0];
     const logOutLinkElement = document.getElementsByClassName('logout')[0];
     
-    if (loggedUser !== "noUser") {
+    if (loggedUser !== "noUser" && loggedUser != null) {
         registerLinkElement.style.display = 'none';
         loginLinkElement.style.display = 'none';
     }
