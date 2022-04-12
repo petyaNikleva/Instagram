@@ -1,4 +1,4 @@
-import { checkIsRegistered, logIn } from "../../services/authService.js";
+import { checkIsRegistered, logIn, getUser } from "../../services/authService.js";
 
 const form = document.getElementById('form');
 const email = document.getElementById('email');
@@ -20,10 +20,10 @@ function validateLoginCredentials() {
     const emailValue = email.value;
     const passwordValue = password.value;
 
-    const isRegisteredData = checkIsRegistered(emailValue);
+    const isRegisteredEmail = checkIsRegistered(emailValue);
 
-    if (isRegisteredData) {
-        currentUserData = JSON.parse(isRegisteredData);
+    if (isRegisteredEmail) {
+        currentUserData = getUser(emailValue);
         if (passwordValue !== currentUserData.password) {
             setError(password, 'Incorrect email or password');  
         } else {

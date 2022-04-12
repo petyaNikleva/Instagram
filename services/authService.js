@@ -3,9 +3,14 @@ export function checkIsLoggedUser() {
     return loggedUser;
 }
 
-export function checkIsRegistered(email) {
-    let isRegisteredUser = localStorage.getItem(email);
-    return isRegisteredUser;
+export function checkIsRegistered(emailValue) {
+    if (localStorage.getItem('users')) {
+        let users = JSON.parse((localStorage.users));
+        if (users[emailValue].email === emailValue) {
+            return true;
+        }
+    }
+    return false;
 }
 
 export function logIn(email) {
@@ -15,7 +20,6 @@ export function logIn(email) {
 export function registerOld(email, userData) {
     localStorage.setItem(email, JSON.stringify(userData));
 }
-
 
 export function register(email, userData) {
     let users = {};
@@ -27,10 +31,12 @@ export function register(email, userData) {
     localStorage.setItem('users', JSON.stringify(users));
 }
 
-
 export function logOut() {
     localStorage.setItem('loggedUser', 'noUser');
 }
 
+export function getUser(email) {
+    return JSON.parse(localStorage.users)[email];
+}
 
 
