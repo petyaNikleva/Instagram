@@ -14,7 +14,7 @@ const lastName = document.getElementById('lastName');
 const password = document.getElementById('password');
 const repeatPassword = document.getElementById('repeat-password');
 
-let errorOccured;
+let errorOccured = false;;
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -70,16 +70,26 @@ password.addEventListener('blur', () => {
     else {
         setSuccess(password);
     }
-})
+});
 
+
+repeatPassword.addEventListener('blur', () => {
+    const passwordValue = password.value;
+    const repeatPasswordValue = repeatPassword.value;
+    if (repeatPasswordValue === '') {
+        setError(repeatPassword, 'Please confirm your password');
+    } else if (repeatPasswordValue !== passwordValue) {
+        setError(repeatPassword, "Passwords doesn't match");
+    } else {
+        setSuccess(repeatPassword);
+    }
+});
 
 
 
 
 
 function validateInputs() {
-
-    errorOccured = false;
 
     const emailValue = email.value;
     const firstNameValue = firstName.value;
