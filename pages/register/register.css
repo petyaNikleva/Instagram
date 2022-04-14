@@ -103,4 +103,18 @@ a {
   font-size: 12px;
   font-weight: bold;
   height: 13px;
+  display: none;
 }
+
+.input-control.error--required .error.errror-message--required,
+.input-control.error--min-length .error.errror-message--min-length,
+.input-control.error--max-length .error.errror-message--max-length,
+.input-control.error--email-valid .error.errror-message--email-valid,
+.input-control.error--email-exist .error.errror-message--email-exist,
+.input-control.error--digit .error.errror-message--digit,
+.input-control.error--upper-case-letter .error.errror-message--upper-case-letter,
+.input-control.error--lower-case-letter .error.errror-message--lower-case-letter,
+.input-control.error--passwords-dont-match .error.errror-message--passwords-dont-match {
+  display: block;
+}
+
