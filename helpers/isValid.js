@@ -11,17 +11,17 @@ function isEmailAlreadyRegistered(email) {
 
 function isDigitInPassword(password) {
     const regex = /[0-9]/;
-    return regex.test(password);
+    return !regex.test(password);
 }
 
 function isLowerCaseLeterInPassword(password) {
     const regex = /[a-z]/;
-    return regex.test(password);
+    return !regex.test(password);
 }
 
 function isUpperCaseLeterInPassword(password) {
     const regex = /[A-Z]/;
-    return regex.test(password);
+    return !regex.test(password);
 }
 
 
@@ -30,8 +30,8 @@ export const VALIDATOR = {
     'min-length': (value, param) => !!(value.length < Number(param)),
     'max-length': (value, param) => !!(value.length > Number(param)),
     'email-valid': (value, param) => isValidEmail(value),
-    'email-exist': (value, param) => !!(isEmailAlreadyRegistered(value)),
-    'digit': (value, param) => !isDigitInPassword(value),
-    'upper-case-letter': (value, param) => !isUpperCaseLeterInPassword(value),
-    'lower-case-letter': (value, param) => !isLowerCaseLeterInPassword(value),
+    'email-exist': (value, param) => isEmailAlreadyRegistered(value),
+    'digit': (value, param) => isDigitInPassword(value),
+    'upper-case-letter': (value, param) => isUpperCaseLeterInPassword(value),
+    'lower-case-letter': (value, param) => isLowerCaseLeterInPassword(value),
 }
