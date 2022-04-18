@@ -24,7 +24,7 @@ html, body {
 /* ------------ Header ---------------- */
 
 header .header-container {
-    background-color: blueviolet;
+    background-color: rgb(136 78 191);
     display: flex;
     align-items: center;
     padding-top: 1rem;
@@ -102,6 +102,7 @@ nav {
     width: 5rem;
     padding: 0.75rem;
 }
+
 
 /* ------------ Main Content ------------- */
 
