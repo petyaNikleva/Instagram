@@ -1,0 +1,23 @@
+/* ------------ Main Content ------------- */
+
+.news-feed {
+    /* background-color: aquamarine; */
+    height: 100%;
+    }
+    
+    .news-feed .img-container {
+        width: 31%;
+    }
+    
+    .news-feed .img-container img {
+        width: 100%;
+        border-radius: 10px;
+    }
+    
+    section.news-feed {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem; 
+    }
+    
