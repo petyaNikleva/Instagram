@@ -87,7 +87,6 @@ function createInputValidators(element) {
             param
         })
     })
-    console.log(validators)
     return validators
 }
 
