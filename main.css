@@ -19,6 +19,7 @@ html, body {
 
   .three-column-wrapper {
       display: flex;
+      justify-content: space-between;
   }
 
 /* ------------ Header ---------------- */
@@ -72,6 +73,7 @@ nav {
     background-color: lightgrey;
     padding: 0.01rem;
     border-radius: 10px;
+    width: 20wv;
 }
 
 .nav-list {
