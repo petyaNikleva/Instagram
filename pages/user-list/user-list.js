@@ -31,7 +31,7 @@ function createUserCard (userdata) {
     email.textContent = userdata.email;
 
     const dateOfBirth = document.createElement('p');
-    dateOfBirth.textContent = `Date of birth: .....`
+    dateOfBirth.textContent = `Date of birth: ${userdata.dateOfBirth || 'unknown'}`
 
     const divBtnContainer = document.createElement('div');
     const editBtn = document.createElement('button');
