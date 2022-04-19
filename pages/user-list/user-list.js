@@ -12,8 +12,20 @@ import { getAllUsers } from "../../services/authService.js";
 
 function createUserCard (userdata) {
 
-    const userContainer = document.getElementsByClassName('user-container')[0];
+    {/* <article class="user-card">
+    <div class="card-img">
+        <img src="../../images/user-icon.png">
+    </div>
+        <p class="card-name">Petya Nikleva</p>
+        <p class="card-email">petya@mail.com</p>
+        <p class="card-date-of-birth">Date of birth: 06.02</p>
+        <div class="btn-container">
+            <button class="btn edit">Edit</button>
+            <button class="btn delete">Delete</button>
+         </div>
+</article> */}
 
+    const userContainer = document.getElementsByClassName('user-container')[0];
     const article = document.createElement('article');
     article.classList.add('user-card');
 
@@ -52,22 +64,23 @@ function createUserCard (userdata) {
     divBtnContainer.appendChild(editBtn);
     divBtnContainer.appendChild(deleteBtn);
 
-    userContainer.appendChild(article)
+    userContainer.appendChild(article);
+
+    editBtn.addEventListener('click', editHandler)
 
 }
 
-{/* <article class="user-card">
-    <div class="card-img">
-        <img src="../../images/user-icon.png">
-    </div>
-        <p class="card-name">Petya Nikleva</p>
-        <p class="card-email">petya@mail.com</p>
-        <p class="card-date-of-birth">Date of birth: 06.02</p>
-        <div class="btn-container">
-            <button class="btn edit">Edit</button>
-            <button class="btn delete">Delete</button>
-         </div>
-</article> */}
+function editHandler () {
+    location.href = "/pages/edit/edit.html";
+}
+
+
+
+
+  
+
+
+
 
 
 

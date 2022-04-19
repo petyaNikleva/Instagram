@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+  text-align: center;
+}
+
+.logo-container img {
+  width: 15%;
+}
+
+form {
+  width: 40%;
+  max-width: 520px;
+  margin: auto;
+  border: 1px solid grey;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.container {
+  padding-bottom: 16px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 5px 0;
+  display: flex;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 0.5rem;
+}
+
+input:focus {
+  background-color: #ddd;
+  outline: none; 
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.registerbtn {
+  background-color: rgb(136 78 191);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 90%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+a {
+  color: dodgerblue;
+  text-decoration: none;
+}
+
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.input-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-control input {
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  display: block;
+  font-size: 12px;
+  padding: 10px;
+  width: 90%;
+}
+
+.input-control.success input {
+  border-color: #09c372;
+}
+
+.input-control.error input {
+  border-color: #ff3860;
+}
+
+.input-control .error {
+  color: #ff3860;
+  font-size: 12px;
+  font-weight: bold;
+  height: 13px;
+  display: none;
+}
+
+.input-control.error--required .error.errror-message--required,
+.input-control.error--min-length .error.errror-message--min-length,
+.input-control.error--max-length .error.errror-message--max-length,
+.input-control.error--email-valid .error.errror-message--email-valid,
+.input-control.error--email-exist .error.errror-message--email-exist,
+.input-control.error--digit .error.errror-message--digit,
+.input-control.error--upper-case-letter .error.errror-message--upper-case-letter,
+.input-control.error--lower-case-letter .error.errror-message--lower-case-letter,
+.input-control.error--passwords-dont-match .error.errror-message--passwords-dont-match {
+  display: block;
+}
+
