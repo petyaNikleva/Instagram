@@ -49,13 +49,15 @@
         </header>
 
         <section class="three-column-wrapper">
-
             <nav>
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="#">
+                        <a href="../../index.html">
                             <img class="logo-img" src="/images/logo.svg.png" alt="logo_img">
                         </a>
+                    </li>
+                    <li class="nav-item home">
+                        <a href="../../index.html">Home</a>
                     </li>
                     <li class="nav-item register">
                         <a href="./pages/register/register.html">Register</a>
@@ -73,9 +75,6 @@
                         <a href="#">Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Followers</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="#">Following</a>
                     </li>
                     <li class="nav-item logout">
@@ -86,18 +85,22 @@
 
             <main class="main-content">
                 <h2>User List</h2>
-                <article class="user-card">
-                    <div class="card-img">
-                        <img src="../../images/user-icon.png">
-                    </div>
-                    <p class="card-name">Petya Nikleva</p>
-                    <p class="card-email">petya@mail.com</p>
-                    <p class="card-date-of-birth">Date of birth: 06.02</p>
-                    <div class="btn-container">
-                        <button class="btn edit">Edit</button>
-                        <button class="btn delete">Delete</button>
-                    </div>
-                </article>
+                <section class="user-container">
+                    <article class="user-card">
+                        <div class="card-img">
+                            <img src="../../images/user-icon.png">
+                        </div>
+                        <p class="card-name">Petya Nikleva</p>
+                        <p>petya@mail.com</p>
+                        <p>Date of birth: 06.02</p>
+                        <div class="btn-container">
+                            <button class="btn edit">Edit</button>
+                            <button class="btn delete">Delete</button>
+                        </div>
+                    </article>
+                    
+                     
+                </section>
             </main>
 
             <aside class="advertisement">
@@ -124,7 +127,9 @@
     </div>
     <footer> &copy; All rights reserved.</footer>
 
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="../../index.js"></script>
+    <script type="module" src="./user-list.js"></script>
+
 </body>
 
 </html>

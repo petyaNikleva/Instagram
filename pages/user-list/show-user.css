@@ -1,9 +1,10 @@
 h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
 }
 
 .user-card {
-    width: 33%;
+    width: 30%;
     border: 1px solid gray;
     padding: 1.5rem;
     border-radius: 0.5rem;
@@ -11,7 +12,8 @@ h2 {
     flex-direction: column;
     align-items: center;
     background-image: linear-gradient(blueviolet, #f9cea8);
-    box-shadow: 0px 4px 38px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 9px 40px -10px rgba(0,0,0,0.7);
+    margin-top: 1rem;
 }
 
 .user-card img {
@@ -38,10 +40,23 @@ h2 {
     border: 2px solid gray;
     color: #746d5a;
     font-weight: bold;
+    margin-top: 1rem;
 }
 
 .user-card .btn:hover {
     cursor: pointer;
     background-color: #b165cd;
     color: white;
+}
+
+.user-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    height: 40vh;
+}
+
+.btn.delete {
+    margin-left: 0.75rem;
 }
