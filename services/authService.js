@@ -48,3 +48,13 @@ export function getUserforEdit() {
     return user;
 } 
 
+export function deleteUser (email) {
+    let users = getAllUsers();
+    //let currentUser = getUser(email);
+    console.log(users);
+    console.log(users[email]);
+    delete users[email];
+    console.log(users);
+    localStorage.setItem('users', JSON.stringify(users));
+}
+

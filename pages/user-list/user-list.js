@@ -1,16 +1,15 @@
-import { getAllUsers } from "../../services/authService.js";
-//import { setUserforEdit } from "../../services/authService.js";
+import { getAllUsers, deleteUser } from "../../services/authService.js";
 import { setUserforEdit } from "../../services/authService.js";
 (() => {
     const users = Object.values(getAllUsers());
     users.forEach(user => {
         createUserCard(user)
     });
-    
+
 
 })();
 
-function createUserCard (userdata) {
+function createUserCard(userdata) {
 
     {/* <article class="user-card">
     <div class="card-img">
@@ -34,7 +33,7 @@ function createUserCard (userdata) {
 
     const img = document.createElement('img');
     img.src = "../../images/user-icon.png"
-   
+
     const name = document.createElement('p');
     name.classList.add('card-name');
     name.textContent = `${userdata.firstName} ${userdata.lastName}`
@@ -49,7 +48,7 @@ function createUserCard (userdata) {
     const editBtn = document.createElement('button');
     editBtn.classList.add('btn');
     editBtn.classList.add('edit');
-    editBtn.textContent ='Edit';
+    editBtn.textContent = 'Edit';
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('btn');
     deleteBtn.classList.add('delete');
@@ -69,14 +68,23 @@ function createUserCard (userdata) {
     editBtn.addEventListener('click', () => {
         setUserforEdit(userdata.email);
         location.href = "/pages/edit/edit.html";
-    })
+    });
 
+    deleteBtn.addEventListener('click', deleteHandler)
+}
+
+function deleteHandler(e) {
+    const grandparent = e.target.parentElement.parentElement;
+    const children = grandparent.children;
+    const email = children[2].textContent;
+    const confirmDelete = confirm("Are you sure you want to delete this user?");
+    if (confirmDelete) {
+        deleteUser(email);
+        location.href = "/pages/user-list/user-list.html";
+    }
 }
 
 
-
-
-  
 
 
 
