@@ -1,26 +1,37 @@
-import { register } from '../../services/authService.js';
+import { getUserforEdit, register } from '../../services/authService.js';
 import { VALIDATOR } from '../../helpers/isValid.js';
+
+
+(() => {
 
 const form = document.getElementById('form');
 const email = document.getElementById('email');
 const firstName = document.getElementById('firstName');
 const lastName = document.getElementById('lastName');
 const dateOfBirth = document.getElementById('dateOfBirth');
-const password = document.getElementById('password');
-const repeatPassword = document.getElementById('repeat-password');
 
-form.addEventListener('submit', e => {
+const userForEdit = getUserforEdit();
+
+email.value = userForEdit.email;
+firstName.value = userForEdit.firstName;
+lastName.value = userForEdit.lastName;
+dateOfBirth.value = userForEdit.dateOfBirth; 
+
+})();
+
+///
+
+    form.addEventListener('submit', e => {
     e.preventDefault();
     checkInputValid(email);
     checkInputValid(firstName);
     checkInputValid(lastName);
     checkInputValid(dateOfBirth);
-    checkInputValid(password);
-    checkPasswordsMatch(password, repeatPassword);
+  
 
     let hasError = false;
 
-    let inputElements = [email, firstName, lastName, dateOfBirth, password, repeatPassword];
+    let inputElements = [email, firstName, lastName, dateOfBirth];
     inputElements.forEach(element => {
         let isError = element.closest('.input-control').classList.contains('error');
         if(isError) {
@@ -34,15 +45,14 @@ form.addEventListener('submit', e => {
             firstName: firstName.value,
             lastName: lastName.value,
             dateOfBirth: dateOfBirth.value,
-            password: password.value,
             email: email.value
         }
 
         register(email.value, userData);
 
         setTimeout(() => {
-            alert('Successful registration.')
-            location.href = "/pages/login/login.html";
+            alert('Your data has been saved.')
+            location.href = "/pages/user-list/user-list.html";
         }, 500);
     }
 });
@@ -51,8 +61,6 @@ email.addEventListener('blur', () => checkInputValid(email));
 firstName.addEventListener('blur', () => checkInputValid(firstName));
 lastName.addEventListener('blur', () => checkInputValid(lastName));
 dateOfBirth.addEventListener('blur', () => checkInputValid(dateOfBirth));
-password.addEventListener('blur', () => checkInputValid(password));
-repeatPassword.addEventListener('blur', () => checkPasswordsMatch(password, repeatPassword))
 
 function checkInputValid(element) {
     const container = element.closest('.input-control');
@@ -92,20 +100,4 @@ function createInputValidators(element) {
         })
     })
     return validators
-}
-
-function checkPasswordsMatch(password, repeatPassword) {
-    const container = repeatPassword.closest('.input-control');
-    checkInputValid(repeatPassword);
-    container.classList.remove('success');
-    if (repeatPassword.value !== password.value || repeatPassword.value === '') {
-        container.classList.add(`error--passwords-dont-match`);
-        container.classList.remove('success');
-        container.classList.add('error');
-    } else {
-        container.classList.remove(`error--passwords-dont-match`);
-        container.classList.add('success');
-        container.classList.remove('error');
-    }
-    
 }

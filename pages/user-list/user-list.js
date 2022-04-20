@@ -1,8 +1,8 @@
 import { getAllUsers } from "../../services/authService.js";
-
+//import { setUserforEdit } from "../../services/authService.js";
+import { setUserforEdit } from "../../services/authService.js";
 (() => {
     const users = Object.values(getAllUsers());
-    console.log(users);
     users.forEach(user => {
         createUserCard(user)
     });
@@ -23,7 +23,7 @@ function createUserCard (userdata) {
             <button class="btn edit">Edit</button>
             <button class="btn delete">Delete</button>
          </div>
-</article> */}
+    </article> */}
 
     const userContainer = document.getElementsByClassName('user-container')[0];
     const article = document.createElement('article');
@@ -66,12 +66,11 @@ function createUserCard (userdata) {
 
     userContainer.appendChild(article);
 
-    editBtn.addEventListener('click', editHandler)
+    editBtn.addEventListener('click', () => {
+        setUserforEdit(userdata.email);
+        location.href = "/pages/edit/edit.html";
+    })
 
-}
-
-function editHandler () {
-    location.href = "/pages/edit/edit.html";
 }
 
 

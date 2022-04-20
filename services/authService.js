@@ -38,4 +38,13 @@ export function getAllUsers() {
     return users;
 }
 
+export function setUserforEdit(email) {
+    localStorage.setItem('userForEdit', email);
+}
+
+export function getUserforEdit() {
+    const email = localStorage.getItem('userForEdit');
+    const user = getUser(email);
+    return user;
+} 
 
