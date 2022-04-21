@@ -9,6 +9,8 @@ import { VALIDATOR } from '../../helpers/isValid.js';
     const firstName = document.getElementById('firstName');
     const lastName = document.getElementById('lastName');
     const dateOfBirth = document.getElementById('dateOfBirth');
+    const password = document.getElementById('password');
+
 
     const userForEdit = getUserforEdit();
 
@@ -16,6 +18,7 @@ import { VALIDATOR } from '../../helpers/isValid.js';
     firstName.value = userForEdit.firstName;
     lastName.value = userForEdit.lastName;
     dateOfBirth.value = userForEdit.dateOfBirth;
+    password.value = userForEdit.password;
 
 })();
 
@@ -45,7 +48,8 @@ form.addEventListener('submit', e => {
             firstName: firstName.value,
             lastName: lastName.value,
             dateOfBirth: dateOfBirth.value,
-            email: email.value
+            email: email.value,
+            password: password.value
         }
 
         const confirmEdit = confirm("Are you sure you want to update the data?");
