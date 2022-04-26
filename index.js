@@ -23,6 +23,7 @@ function showNavigation () {
     logOutLinkElement.addEventListener("click", function (e) {
         logOut();
         showNavigation();
+        location.href = "/";  
     })
 }
 showNavigation();
