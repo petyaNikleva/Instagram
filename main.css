@@ -11,6 +11,7 @@ html, body {
   body {
     display: flex;
     flex-direction: column;
+    /* background-color: blanchedalmond; */
   }
 
   .wrapper {

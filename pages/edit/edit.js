@@ -1,5 +1,5 @@
 import { getUserforEdit, register } from '../../services/authService.js';
-import { VALIDATOR } from '../../helpers/isValid.js';
+import { VALIDATOR, createInputValidators } from '../../helpers/validations.js';
 
 
 (() => {
@@ -34,7 +34,7 @@ form.addEventListener('submit', e => {
 
     let hasError = false;
 
-    let inputElements = [email, firstName, lastName, dateOfBirth];
+    let inputElements = [email, firstName, lastName, dateOfBirth, password];
     inputElements.forEach(element => {
         let isError = element.closest('.input-control').classList.contains('error');
         if (isError) {
@@ -94,19 +94,4 @@ function checkInputValid(element) {
         }
     }
 
-}
-
-function createInputValidators(element) {
-    const validators = [];
-    element.dataset.validators.split(',').map((validator) => {
-        let validatorStr = validator.trim();
-        const name = validatorStr.split('(')[0];
-        const param = validatorStr.split(/[()]/)[1];
-
-        validators.push({
-            name,
-            param
-        })
-    })
-    return validators
 }

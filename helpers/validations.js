@@ -35,3 +35,18 @@ export const VALIDATOR = {
     'upper-case-letter': (value, param) => isUpperCaseLeterInPassword(value),
     'lower-case-letter': (value, param) => isLowerCaseLeterInPassword(value),
 }
+
+export function createInputValidators(element) {
+    const validators = [];
+    element.dataset.validators.split(',').map((validator) => {
+        let validatorStr = validator.trim();
+        const name = validatorStr.split('(')[0];
+        const param = validatorStr.split(/[()]/)[1];
+
+        validators.push({
+            name,
+            param
+        })
+    })
+    return validators;
+}
