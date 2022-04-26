@@ -1,5 +1,5 @@
 import { getUserforEdit, register } from '../../services/authService.js';
-import { VALIDATOR, createInputValidators } from '../../helpers/validations.js';
+import { checkInputValid } from '../../helpers/validations.js';
 
 
 (() => {
@@ -70,28 +70,3 @@ email.addEventListener('blur', () => checkInputValid(email));
 firstName.addEventListener('blur', () => checkInputValid(firstName));
 lastName.addEventListener('blur', () => checkInputValid(lastName));
 dateOfBirth.addEventListener('blur', () => checkInputValid(dateOfBirth));
-
-function checkInputValid(element) {
-    const container = element.closest('.input-control');
-    if (element.dataset.validators) {
-        const validators = createInputValidators(element);
-        const value = element.value;
-        let isError = false;
-        validators.forEach((validator) => {
-            container.classList.remove(`error--${validator.name}`);
-            console.log(VALIDATOR[validator.name])
-            if (VALIDATOR[validator.name](value, validator.param)) {
-                container.classList.add(`error--${validator.name}`);
-                isError = true;
-            }
-        })
-        if (isError) {
-            container.classList.remove('success');
-            container.classList.add('error');
-        } else {
-            container.classList.add('success');
-            container.classList.remove('error');
-        }
-    }
-
-}
