@@ -1,4 +1,4 @@
 @import "./index.css";
 @import "./main.css";
-@import "./register.css";
-@import "./login.css";
+@import "../pages/register/register.css";
+@import "../pages/login/login.css";

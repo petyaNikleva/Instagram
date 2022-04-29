@@ -27,5 +27,7 @@ const handleLocation = () => {
     render(html, container);
 };
 
+
 window.onpopstate = handleLocation;
 window.route = route;
+

@@ -9,7 +9,6 @@ import { registerTemplate } from './pages/register/registerTemplate.js';
 import { loginTemplate } from './pages/login/loginTemplate.js';
 
 addToRoute('/', newsFeedTemplate);
-addToRoute('/index.html', newsFeedTemplate);
 addToRoute('/register', registerTemplate);
 addToRoute('/login', loginTemplate)
 
