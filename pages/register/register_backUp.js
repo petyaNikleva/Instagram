@@ -1,6 +1,7 @@
 import { register } from '../../services/authService.js';
 import { checkInputValid, checkPasswordsMatch } from '../../helpers/validations.js';
 
+
 const form = document.getElementById('form');
 const email = document.getElementById('email');
 const firstName = document.getElementById('firstName');
@@ -23,7 +24,7 @@ form.addEventListener('submit', e => {
     let inputElements = [email, firstName, lastName, dateOfBirth, password, repeatPassword];
     inputElements.forEach(element => {
         let isError = element.closest('.input-control').classList.contains('error');
-        if(isError) {
+        if (isError) {
             hasError = true;
         }
     });
@@ -47,10 +48,12 @@ form.addEventListener('submit', e => {
     }
 });
 
-email.addEventListener('blur', () => checkInputValid(email));
-firstName.addEventListener('blur', () => checkInputValid(firstName));
-lastName.addEventListener('blur', () => checkInputValid(lastName));
-dateOfBirth.addEventListener('blur', () => checkInputValid(dateOfBirth));
-password.addEventListener('blur', () => checkInputValid(password));
-repeatPassword.addEventListener('blur', () => checkPasswordsMatch(password, repeatPassword))
+// email.addEventListener('blur', () => checkInputValid(email));
+// firstName.addEventListener('blur', () => checkInputValid(firstName));
+// lastName.addEventListener('blur', () => checkInputValid(lastName));
+// dateOfBirth.addEventListener('blur', () => checkInputValid(dateOfBirth));
+// password.addEventListener('blur', () => checkInputValid(password));
+// repeatPassword.addEventListener('blur', () => checkPasswordsMatch(password, repeatPassword))
+
+
 

@@ -98,6 +98,7 @@ nav {
 
 .nav-item a:hover {
     color: lightseagreen;
+    cursor: pointer;
 }
 
 .nav-list .logo-img{

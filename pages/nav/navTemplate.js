@@ -8,16 +8,16 @@ export let navTemplate = () => html`
                         </a>
                     </li>
                     <li class="nav-item home">
-                        <a href="./index.html">Home</a>
+                        <a href="/" onclick="route()">Home</a>
                     </li>
                     <li class="nav-item register">
-                        <a href="./pages/register/register.html">Register</a>
+                        <a href="/register" onclick="route()">Register</a>
                     </li>
                     <li class="nav-item login">
-                        <a href="./pages/login/login.html">Login</a>
+                        <a href="/login" onclick="route()">Login</a>
                     </li>
                     <li class="nav-item user-list">
-                        <a href="./pages/user-list/user-list.html">User List</a>
+                        <a href="/user-list" onclick="route()">User List</a>
                     </li>
                     <li class="nav-item">
                         <a href="#">Profile</a>

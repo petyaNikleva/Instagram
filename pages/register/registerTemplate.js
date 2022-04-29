@@ -1,15 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+import { html } from "./../../node_modules/lit-html/lit-html.js";
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./register.css">
-    <title>Register</title>
-</head>
+import { checkInputValid, checkPasswordsMatch } from "../../helpers/validations.js";
+// TO do chechPasswordMatch
 
-<body>
+import { register } from "../../services/authService.js";
+
+function registerHandler(e) {
+    e.preventDefault();
+    const form = (e.target).parentElement;
+
+    const allChildren = form.querySelectorAll('.input-control input');
+
+    let hasError = false;
+    const arrInputElements = [...allChildren];
+    arrInputElements.forEach(element => { //some?
+        checkInputValid(element);
+        let isError = element.closest('.input-control').classList.contains('error');
+        if (isError) {
+            hasError = true;
+        }
+    });
+
+    if (!hasError) {
+        const formData = new FormData(form);
+
+        const user = {
+            email: formData.get('email'),
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            dateOfBirth: formData.get('dateOfBirth'),
+            password: formData.get('password'),
+            repeatPassword: formData.get('repeat-password')
+        }
+        
+        register(user.email, user);
+
+        setTimeout(() => {
+            alert('Successful registration.')
+            location.href = "/pages/login/login.html";
+        }, 500);
+
+    }
+
+    
+}
+
+
+export let registerTemplate = () => html`
 
     <header>
         <div class="logo-container">
@@ -18,18 +55,18 @@
             </a>
         </div>
     </header>
-
+    
     <div class="container">
         <form id="form" action="/">
-
+    
             <h1>Register</h1>
             <p>Please fill in this form to create an account.</p>
             <hr>
-
+    
             <div class="input-control">
                 <label for="email">Email</label>
-                <input type="email" placeholder="Enter Email" name="email" id="email"
-                data-validators="required, email-valid, email-exist" />
+                <input @blur="${(e) => checkInputValid(e.target)}" type="email" placeholder="Enter Email" name="email"
+                    id="email" data-validators="required, email-valid, email-exist" />
                 <div class="error-container">
                     <span class="error errror-message--required">
                         Email is required.
@@ -42,11 +79,12 @@
                     </span>
                 </div>
             </div>
-
+    
             <div class="input-control">
                 <label for="firstName">First Name</label>
-                <input class="form-input" type="text" placeholder="Enter First Name" name="firstName" id="firstName"
-                data-validators="required, min-length(2), max-length(10)" />
+                <input @blur="${(e) => checkInputValid(e.target)}" class="form-input" type="text"
+                    placeholder="Enter First Name" name="firstName" id="firstName"
+                    data-validators="required, min-length(2), max-length(10)" />
                 <div class="error-container">
                     <span class="error errror-message--required">
                         Firstname is required.
@@ -59,11 +97,11 @@
                     </span>
                 </div>
             </div>
-
+    
             <div class="input-control">
                 <label for="lastName">Last Name</label>
-                <input type="text" placeholder="Enter Last Name" name="lastName" id="lastName"
-                data-validators="required, min-length(2), max-length(10)" />
+                <input @blur="${(e) => checkInputValid(e.target)}" type="text" placeholder="Enter Last Name" name="lastName"
+                    id="lastName" data-validators="required, min-length(2), max-length(10)" />
                 <div class="error-container">
                     <span class="error errror-message--required">
                         Lastname is required.
@@ -78,19 +116,20 @@
             </div>
             <div class="input-control">
                 <label for="dateOfBirth">Date of birth</label>
-                <input type="text" placeholder="Enter date of birth dd mm" name="dateOfBirth" id="dateOfBirth"
-                data-validators="required" />
+                <input @blur="${(e) => checkInputValid(e.target)}" type="text" placeholder="Enter date of birth dd mm"
+                    name="dateOfBirth" id="dateOfBirth" data-validators="required" />
                 <div class="error-container">
                     <span class="error errror-message--required">
                         Date of birth is required.
                     </span>
                 </div>
             </div>
-
+    
             <div class="input-control">
                 <label for="password">Password</label>
-                <input type="password" placeholder="Enter Password" name="password" id="password"
-                data-validators="required, min-length(8), digit, upper-case-letter, lower-case-letter" />
+                <input @blur="${(e) => checkInputValid(e.target)}" type="password" placeholder="Enter Password"
+                    name="password" id="password"
+                    data-validators="required, min-length(8), digit, upper-case-letter, lower-case-letter" />
                 <div class="error-container">
                     <span class="error errror-message--required">
                         Password is required.
@@ -109,11 +148,11 @@
                     </span>
                 </div>
             </div>
-
+    
             <div class="input-control">
                 <label for="repeat-password">Repeat Password</label>
-                <input type="password" placeholder="Repeat Password" name="repeat-password" id="repeat-password"
-                data-validators="required" />
+                <input @blur="${(e) => checkInputValid(e.target)}" type="password" placeholder="Repeat Password"
+                    name="repeat-password" id="repeat-password" data-validators="required" />
                 <div class="error-container">
                     <span class="error errror-message--required">
                         Repeat password.
@@ -124,17 +163,14 @@
                 </div>
             </div>
             <hr>
-
-            <button type="submit" class="registerbtn">Register</button>
-
+    
+            <button @click=${registerHandler} class="registerbtn">Register</button>
+    
             <div class="container signin">
                 <p>Already have an account? <a href="/pages/login/login.html">Sign in</a>.</p>
             </div>
         </form>
     </div>
-
+    
     <script type="module" src="./register.js"></script>
-
-</body>
-
-</html>
+`
