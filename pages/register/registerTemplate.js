@@ -1,63 +1,10 @@
 import { html } from "./../../node_modules/lit-html/lit-html.js";
 
 import { checkInputValid, checkPasswordsMatch } from "../../helpers/validations.js";
-// TO do chechPasswordMatch
-
 import { register } from "../../services/authService.js";
-
-function repeatPasswordHandler(e) {
-    const repeatPasswordElement = e.target;
-    const form = repeatPasswordElement.parentElement.parentElement;
-    const passwordElement = form.querySelector('#password');
-
-    checkInputValid(repeatPasswordElement);
-    checkPasswordsMatch(passwordElement, repeatPasswordElement);
-}
-
-function registerHandler(e) {
-    e.preventDefault();
-    const form = (e.target).parentElement;
-
-    const allChildren = form.querySelectorAll('.input-control input');
-
-    let hasError = false;
-    const arrInputElements = [...allChildren];
-    arrInputElements.forEach(element => { 
-        checkInputValid(element);
-        let isError = element.closest('.input-control').classList.contains('error');
-        if (isError) {
-            hasError = true;
-        }
-    });
-
-    if (!hasError) {
-        const formData = new FormData(form);
-
-        const user = {
-            email: formData.get('email'),
-            firstName: formData.get('firstName'),
-            lastName: formData.get('lastName'),
-            dateOfBirth: formData.get('dateOfBirth'),
-            password: formData.get('password'),
-            repeatPassword: formData.get('repeat-password')
-        }
-
-
-        register(user.email, user);
-
-        setTimeout(() => {
-            alert('Successful registration.')
-            location.href = "/pages/login/login.html";
-        }, 500);
-
-    }
-
-
-}
 
 
 export let registerTemplate = () => html`
-
     <header>
         <div class="logo-container">
             <a href="#">
@@ -177,10 +124,55 @@ export let registerTemplate = () => html`
             <button @click=${registerHandler} class="registerbtn">Register</button>
     
             <div class="container signin">
-                <p>Already have an account? <a href="/pages/login/login.html">Sign in</a>.</p>
+                <p>Already have an account? <a href="/login" onclick="route()">Sign in</a>.</p>
             </div>
         </form>
     </div>
     
-    <script type="module" src="./register.js"></script>
 `
+
+function repeatPasswordHandler(e) {
+    const repeatPasswordElement = e.target;
+    const form = repeatPasswordElement.parentElement.parentElement;
+    const passwordElement = form.querySelector('#password');
+
+    checkInputValid(repeatPasswordElement);
+    checkPasswordsMatch(passwordElement, repeatPasswordElement);
+}
+
+function registerHandler(e) {
+    e.preventDefault();
+    const form = (e.target).parentElement;
+    const inputs = form.querySelectorAll('.input-control input');
+
+    let hasError = false;
+    const arrInputElements = [...inputs];
+    arrInputElements.forEach(element => { 
+        checkInputValid(element);
+        let isError = element.closest('.input-control').classList.contains('error');
+        if (isError) {
+            hasError = true;
+        }
+    });
+
+    if (!hasError) {
+        const formData = new FormData(form);
+
+        const user = {
+            email: formData.get('email'),
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            dateOfBirth: formData.get('dateOfBirth'),
+            password: formData.get('password'),
+            repeatPassword: formData.get('repeat-password')
+        }
+
+        register(user.email, user);
+
+        setTimeout(() => {
+            alert('Successful registration.')
+            location.pathname = "/login";
+        }, 500);
+
+    }
+}

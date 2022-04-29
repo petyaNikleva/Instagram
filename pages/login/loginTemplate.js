@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+import { html } from "./../../node_modules/lit-html/lit-html.js";
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./login.css">
-    <title>Login</title>
-</head>
-
-<body>
-
-    <header>
+export let loginTemplate = () => html`
+     <header>
         <div class="logo-container">
             <a href="#">
                 <img src="../../images/instagram_letters.png" alt="">
@@ -40,14 +30,8 @@
             <button type="submit" class="loginbtn">Log In</button>
 
         <div class="container signin">
-            <p>Don't have an account? <a href="/pages/register/register.html">Sign up</a>.</p>
+            <p>Don't have an account? <a href="/register" onclick="route()">Sign up</a>.</p>
         </div>
         </form>
     </div>
-
-
-    <script type="module" src="./login.js"></script>
-
-</body>
-
-</html>
+`

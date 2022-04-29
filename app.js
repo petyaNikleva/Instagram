@@ -6,9 +6,12 @@ import { getFooterView } from './pages/footer/footer.js';
 import { addToRoute } from './router/router.js';
 import { newsFeedTemplate } from './pages/newsFeed/newsFeedTemplate.js';
 import { registerTemplate } from './pages/register/registerTemplate.js';
+import { loginTemplate } from './pages/login/loginTemplate.js';
 
 addToRoute('/', newsFeedTemplate);
-addToRoute('/register', registerTemplate)
+addToRoute('/index.html', newsFeedTemplate);
+addToRoute('/register', registerTemplate);
+addToRoute('/login', loginTemplate)
 
 
 getHeaderView();
