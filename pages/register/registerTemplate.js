@@ -5,6 +5,15 @@ import { checkInputValid, checkPasswordsMatch } from "../../helpers/validations.
 
 import { register } from "../../services/authService.js";
 
+function repeatPasswordHandler(e) {
+    const repeatPasswordElement = e.target;
+    const form = repeatPasswordElement.parentElement.parentElement;
+    const passwordElement = form.querySelector('#password');
+
+    checkInputValid(repeatPasswordElement);
+    checkPasswordsMatch(passwordElement, repeatPasswordElement);
+}
+
 function registerHandler(e) {
     e.preventDefault();
     const form = (e.target).parentElement;
@@ -13,7 +22,7 @@ function registerHandler(e) {
 
     let hasError = false;
     const arrInputElements = [...allChildren];
-    arrInputElements.forEach(element => { //some?
+    arrInputElements.forEach(element => { 
         checkInputValid(element);
         let isError = element.closest('.input-control').classList.contains('error');
         if (isError) {
@@ -32,7 +41,8 @@ function registerHandler(e) {
             password: formData.get('password'),
             repeatPassword: formData.get('repeat-password')
         }
-        
+
+
         register(user.email, user);
 
         setTimeout(() => {
@@ -42,7 +52,7 @@ function registerHandler(e) {
 
     }
 
-    
+
 }
 
 
@@ -151,8 +161,8 @@ export let registerTemplate = () => html`
     
             <div class="input-control">
                 <label for="repeat-password">Repeat Password</label>
-                <input @blur="${(e) => checkInputValid(e.target)}" type="password" placeholder="Repeat Password"
-                    name="repeat-password" id="repeat-password" data-validators="required" />
+                <input @blur="${repeatPasswordHandler}" type="password" placeholder="Repeat Password" name="repeat-password"
+                    id="repeat-password" data-validators="required" />
                 <div class="error-container">
                     <span class="error errror-message--required">
                         Repeat password.
