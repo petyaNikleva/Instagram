@@ -3,21 +3,21 @@ import { html } from "../../node_modules/lit-html/lit-html.js";
 export let navTemplate = () => html`
     <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="./index.html">
+                        <a href="/#">
                             <img class="logo-img" src="./images/logo.svg.png" alt="logo_img">
                         </a>
                     </li>
                     <li class="nav-item home">
-                        <a href="/" onclick="route()">Home</a>
+                        <a href="/#">Home</a>
                     </li>
                     <li class="nav-item register">
-                        <a href="/register" onclick="route()">Register</a>
+                        <a href="/#register">Register</a>
                     </li>
                     <li class="nav-item login">
-                        <a href="/login" onclick="route()">Login</a>
+                        <a href="/#login">Login</a>
                     </li>
                     <li class="nav-item user-list">
-                        <a href="/user-list" onclick="route()">User List</a>
+                        <a href="/#user-list">User List</a>
                     </li>
                     <li class="nav-item">
                         <a href="#">Profile</a>

@@ -9,8 +9,8 @@ import { registerTemplate } from './pages/register/registerTemplate.js';
 import { loginTemplate } from './pages/login/loginTemplate.js';
 
 addToRoute('/', newsFeedTemplate);
-addToRoute('/register', registerTemplate);
-addToRoute('/login', loginTemplate)
+addToRoute('/#register', registerTemplate);
+addToRoute('/#login', loginTemplate)
 
 
 getHeaderView();
