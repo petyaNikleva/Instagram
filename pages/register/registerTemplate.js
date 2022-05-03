@@ -126,7 +126,6 @@ export let registerTemplate = () => html`
                 <p>Already have an account? <a href="/#login">Sign in</a>.</p>
             </div>
         </form>
-    </div>
-    
+    </div>  
 `
 

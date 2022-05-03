@@ -13,7 +13,7 @@ export const addToRoute = (uri, template) => {
 
 window.addEventListener('hashchange', function(e) {
     const page = `/${e.path[0].location.hash}`;
-    const html = routes[page]();
+    let html = routes[page]();
     const container = document.getElementsByClassName('main-content')[0];
     render(html, container);
 });

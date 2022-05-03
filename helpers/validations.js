@@ -1,4 +1,4 @@
-import { getAllUsers } from "../services/authService.js";
+import { getAllUsers, getUser, logIn } from "../services/authService.js";
 
 export function checkInputValid(element) {
     const container = element.closest('.input-control');
@@ -35,7 +35,29 @@ export function checkPasswordsMatch(password, repeatPassword) {
         container.classList.remove(`error--passwords-dont-match`);
         container.classList.add('success');
         container.classList.remove('error');
-    } 
+    }
+}
+
+export function areValidCredentials(email, password, passwordElement) {
+    const container = passwordElement.closest('.input-control');
+    checkInputValid(passwordElement);
+    container.classList.remove('success');
+
+    let areValid = false;
+    const user = getUser(email);
+    if (user?.password === password) {
+        container.classList.remove(`error--passwords-dont-match`);
+        container.classList.remove('error');
+        areValid = true;
+        setTimeout(() => {
+            alert(`Welcome, ${user.firstName} ${user.lastName}!`)
+            window.location.href = "/#";
+        }, 500);
+    } else {
+        container.classList.add(`error--passwords-dont-match`);
+        container.classList.remove('success');
+    }
+    return areValid;
 }
 
 function createInputValidators(element) {

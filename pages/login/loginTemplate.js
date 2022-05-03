@@ -1,4 +1,7 @@
 import { html } from "./../../node_modules/lit-html/lit-html.js";
+import { checkInputValid } from "../../helpers/validations.js";
+import { loginHandler } from "./login.js";
+
 
 export let loginTemplate = () => html`
      <header>
@@ -16,21 +19,34 @@ export let loginTemplate = () => html`
 
             <div class="input-control">
                 <label for="email">Email</label>
-                <input type="email" placeholder="Enter Email" name="email" id="email">
-                <div class="error"></div>
+                <input type="email" placeholder="Enter Email" name="email" id="email"
+                data-validators="required">
+                <div class="error-container">
+                    <span class="error errror-message--required">
+                        Email is required.
+                    </span>
+                </div>
             </div>
 
             <div class="input-control">
                 <label for="password">Password</label>
-                <input type="password" placeholder="Enter Password" name="password" id="password">
-                <div class="error"></div>
+                <input type="password" placeholder="Enter Password" name="password" id="password"
+                data-validators="required"/>
+                <div class="error-container">
+                    <span class="error errror-message--required">
+                        Password is required.
+                    </span>
+                    <span class="error errror-message--passwords-dont-match">
+                        Incorrect email or password.
+                    </span>
+                </div>
             </div>
             <hr>
 
-            <button type="submit" class="loginbtn">Log In</button>
+            <button @click=${loginHandler} class="loginbtn">Log In</button>
 
         <div class="container signin">
-            <p>Don't have an account? <a href="/#register" onclick="route()">Sign up</a>.</p>
+            <p>Don't have an account? <a href="/#register">Sign up</a>.</p>
         </div>
         </form>
     </div>
