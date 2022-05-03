@@ -30,7 +30,7 @@ export let loginTemplate = () => html`
             <button type="submit" class="loginbtn">Log In</button>
 
         <div class="container signin">
-            <p>Don't have an account? <a href="/register" onclick="route()">Sign up</a>.</p>
+            <p>Don't have an account? <a href="/#register" onclick="route()">Sign up</a>.</p>
         </div>
         </form>
     </div>

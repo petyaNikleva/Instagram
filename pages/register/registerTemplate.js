@@ -123,7 +123,7 @@ export let registerTemplate = () => html`
             <button @click=${registerHandler} class="registerbtn">Register</button>
     
             <div class="container signin">
-                <p>Already have an account? <a href="/login" onclick="route()">Sign in</a>.</p>
+                <p>Already have an account? <a href="/#login">Sign in</a>.</p>
             </div>
         </form>
     </div>

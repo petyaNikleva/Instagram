@@ -42,8 +42,7 @@ export function registerHandler(e) {
 
         setTimeout(() => {
             alert('Successful registration.')
-            // To Do
-            location.pathname = "/login";
+            window.location.href = "/#login";
         }, 500);
 
     }
