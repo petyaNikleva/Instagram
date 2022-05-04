@@ -1,4 +1,5 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
+import { logOutHandler } from "./nav.js";
 
 export let navTemplate = () => html`
     <ul class="nav-list">
@@ -29,7 +30,7 @@ export let navTemplate = () => html`
                         <a href="#">Following</a>
                     </li>
                     <li class="nav-item logout">
-                        <a href="#">Log Out</a>
+                        <a href="#" @click=${logOutHandler}>Log Out</a>
                     </li>
                 </ul>
 `

@@ -1,4 +1,4 @@
-import { getAllUsers, getUser, logIn } from "../services/authService.js";
+import { getAllUsers, getUser} from "../services/authService.js";
 
 export function checkInputValid(element) {
     const container = element.closest('.input-control');

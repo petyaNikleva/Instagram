@@ -3,6 +3,7 @@ import { getHeaderView } from './pages/header/header.js';
 import { getAdvertismentView } from './pages/advertisment/advertisment.js';
 import { getFooterView } from './pages/footer/footer.js';
 
+
 import { addToRoute } from './router/router.js';
 import { newsFeedTemplate } from './pages/newsFeed/newsFeedTemplate.js';
 import { registerTemplate } from './pages/register/registerTemplate.js';
