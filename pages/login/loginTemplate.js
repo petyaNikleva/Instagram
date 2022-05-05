@@ -1,5 +1,4 @@
 import { html } from "./../../node_modules/lit-html/lit-html.js";
-import { checkInputValid } from "../../helpers/validations.js";
 import { loginHandler } from "./login.js";
 
 

@@ -1,5 +1,5 @@
 import { areValidCredentials } from "../../helpers/validations.js";
-import { logIn } from "../../services/authService.js";
+import { logIn, getUser } from "../../services/authService.js";
 
 
 export function loginHandler(e) {
@@ -12,7 +12,12 @@ export function loginHandler(e) {
     const passwordElement = form.querySelector('#password');
     const password = passwordElement.value;
 
-    if (areValidCredentials(email, password, passwordElement) ){
+    if (areValidCredentials(email, password, passwordElement)){
+        const user = getUser(email);
+        setTimeout(() => {
+            alert(`Welcome, ${user.firstName} ${user.lastName}!`)
+            window.location.href = "/#";
+        }, 500);
         logIn(email);
     }
 }

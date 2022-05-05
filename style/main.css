@@ -74,7 +74,8 @@ nav {
     background-color: lightgrey;
     padding: 0.01rem;
     border-radius: 10px;
-    width: 20wv;
+    width: 20vw;
+    max-width: 200px;
 }
 
 .nav-list {
@@ -93,12 +94,21 @@ nav {
 .nav-item a {
     text-decoration: none;
     color: rgb(70, 67, 67);
-    margin-right: 2rem;
+    /* margin-right: 2rem;  */
 }
 
-.nav-item a:hover {
+.nav-item a:hover, 
+a:hover {
     color: lightseagreen;
     cursor: pointer;
+}
+
+.nav-list ul {
+    padding: 3rem;
+}
+
+ul.nav-list {
+    padding-inline-end: 2.5rem;
 }
 
 .nav-list .logo-img{

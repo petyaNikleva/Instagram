@@ -49,10 +49,7 @@ export function areValidCredentials(email, password, passwordElement) {
         container.classList.remove(`error--passwords-dont-match`);
         container.classList.remove('error');
         areValid = true;
-        setTimeout(() => {
-            alert(`Welcome, ${user.firstName} ${user.lastName}!`)
-            window.location.href = "/#";
-        }, 500);
+        
     } else {
         container.classList.add(`error--passwords-dont-match`);
         container.classList.remove('success');
