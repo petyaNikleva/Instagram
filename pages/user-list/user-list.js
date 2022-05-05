@@ -11,6 +11,8 @@ import { setUserforEdit } from "../../services/authService.js";
 
 function createUserCard(userdata) {
 
+    userCardTemplate = () => html`
+
     {/* <article class="user-card">
     <div class="card-img">
         <img src="../../images/user-icon.png">
@@ -23,45 +25,9 @@ function createUserCard(userdata) {
             <button class="btn delete">Delete</button>
          </div>
     </article> */}
+    `
 
     const userContainer = document.getElementsByClassName('user-container')[0];
-    const article = document.createElement('article');
-    article.classList.add('user-card');
-
-    const divImgContainer = document.createElement('div');
-    divImgContainer.classList.add('card-img');
-
-    const img = document.createElement('img');
-    img.src = "../../images/user-icon.png"
-
-    const name = document.createElement('p');
-    name.classList.add('card-name');
-    name.textContent = `${userdata.firstName} ${userdata.lastName}`
-
-    const email = document.createElement('p');
-    email.textContent = userdata.email;
-
-    const dateOfBirth = document.createElement('p');
-    dateOfBirth.textContent = `Date of birth: ${userdata.dateOfBirth || 'unknown'}`
-
-    const divBtnContainer = document.createElement('div');
-    const editBtn = document.createElement('button');
-    editBtn.classList.add('btn');
-    editBtn.classList.add('edit');
-    editBtn.textContent = 'Edit';
-    const deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('btn');
-    deleteBtn.classList.add('delete');
-    deleteBtn.textContent = 'Delete';
-
-    article.appendChild(divImgContainer);
-    divImgContainer.appendChild(img);
-    article.appendChild(name);
-    article.appendChild(email);
-    article.appendChild(dateOfBirth);
-    article.appendChild(divBtnContainer);
-    divBtnContainer.appendChild(editBtn);
-    divBtnContainer.appendChild(deleteBtn);
 
     userContainer.appendChild(article);
 
