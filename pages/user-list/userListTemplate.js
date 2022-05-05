@@ -1,5 +1,5 @@
 import { html } from "./../../node_modules/lit-html/lit-html.js";
-import { allUsers } from "../user-list/user-list.js";
+import { allUsers, deleteHandler } from "../user-list/user-list.js";
 
 
 
@@ -25,7 +25,7 @@ export let userTemplate = (user) => html`
         <p>Date of birth: ${user.dateOfBirth}</p>
         <div class="btn-container">
             <button class="btn edit">Edit</button>
-            <button class="btn delete">Delete</button>
+            <button @click=${deleteHandler} class="btn delete">Delete</button>
         </div>
     </article>
 `
