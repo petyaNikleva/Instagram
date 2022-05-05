@@ -17,7 +17,6 @@ addToRoute('/#user-list', userListTemplate);
 
 addNavHtml(navTemplate); 
 
-
 getHeaderView();
 getAdvertismentView();
 getFooterView();

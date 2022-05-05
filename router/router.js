@@ -22,14 +22,14 @@ window.onhashchange = (e) => {
 
 export const hashChangeHandler = (locationHash) => {
     const page = `/${locationHash}`;
-    let html = routes[page]();
+    let mainHtml = routes[page]();
     let navHtml = navTemplate();
 
     const navContainer = document.getElementsByTagName('nav')[0];
     const mainContainer = document.getElementsByClassName('main-content')[0];
 
     render(navHtml, navContainer);
-    render(html, mainContainer);
+    render(mainHtml, mainContainer);
 }
 
 export const changePage = (page) => {
