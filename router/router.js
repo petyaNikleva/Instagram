@@ -23,32 +23,13 @@ export class Router {
             '/#register': navTemplate,
             '/#user-list': navTemplate
         };
-        // this.addToRoute('/', newsFeedTemplate);
-        // this.addToRoute('/#login', loginTemplate);
-        // this.addToRoute('/#register', registerTemplate);
-        // this.addToRoute('/#user-list', userListTemplate);
-
-        //this.addNavHtml(this.navTemplate);
-        // this.addNavHtml('/',navTemplate);
-        // this.addNavHtml('/#login', navTemplate);
-        // this.addNavHtml('/#register', navTemplate);
-        // this.addNavHtml('/#user-list', navTemplate);
 
         this.hashChangeHandler();
         window.addEventListener('hashchange', this.hashChangeHandler)
     }
 
-    // addToRoute(url, template) {
-    //     this.routes[url] = template;
-    // }
-
-    // addNavHtml(uri, template) {
-    //     this.nav[uri] = template;
-    // }
-
     hashChangeHandler() {
         const locationHash = window.location.hash;
-        //const locationHash = e.path[0].location.hash;
         const routes = {
             '/': newsFeedTemplate,
             '/#login': loginTemplate,

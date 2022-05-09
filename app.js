@@ -23,7 +23,7 @@ const nav = {
     '/#register': navTemplate,
     '/#user-list': navTemplate
 };
-const router = new Router(routes, nav);
+const router = new Router();
 router.routes['/'];
 router.routes['/#register'];
 router.routes['/#login'];
