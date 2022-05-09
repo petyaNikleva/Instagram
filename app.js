@@ -11,18 +11,6 @@ import { loginTemplate } from './pages/login/loginTemplate.js';
 import { userListTemplate } from './pages/user-list/userListTemplate.js';
 
 
-const routes = {
-    '/': newsFeedTemplate,
-    '/#login': loginTemplate,
-    '/#register': registerTemplate,
-    '/#user-list': userListTemplate
-};
-const nav = {
-    '/': navTemplate,
-    '/#login': navTemplate,
-    '/#register': navTemplate,
-    '/#user-list': navTemplate
-};
 const router = new Router();
 router.routes['/'];
 router.routes['/#register'];
