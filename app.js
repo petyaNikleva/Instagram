@@ -34,16 +34,6 @@ router.nav['/#register'];
 router.nav['/#login'];
 router.nav['/#user-list'];
 
-// router.addToRoute('/', newsFeedTemplate);
-// router.addToRoute('/#register', registerTemplate);
-// router.addToRoute('/#login', loginTemplate);
-// router.addToRoute('/#user-list', userListTemplate);
-
-// router.addNavHtml('/', navTemplate);
-// router.addNavHtml('/#login', navTemplate);
-// router.addNavHtml('/#login', navTemplate);
-// router.addNavHtml('/#user-list', navTemplate);
-
 getHeaderView();
 getAdvertismentView();
 getFooterView();

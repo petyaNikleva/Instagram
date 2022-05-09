@@ -5,12 +5,9 @@ import { registerTemplate } from "../pages/register/registerTemplate.js";
 import { userListTemplate } from "../pages/user-list/userListTemplate.js";
 import { navTemplate } from "../pages/nav/navTemplate.js";
 
-//let navTemplate = {};
-
-
 
 export class Router {
-    constructor(routes, nav) {
+    constructor() {
         this.routes = {
             '/': newsFeedTemplate,
             '/#login': loginTemplate,
