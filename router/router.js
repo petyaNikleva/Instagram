@@ -5,6 +5,24 @@ import { registerTemplate } from "../pages/register/registerTemplate.js";
 import { userListTemplate } from "../pages/user-list/userListTemplate.js";
 import { navTemplate } from "../pages/nav/navTemplate.js";
 
+const routes = {
+    '/': { 
+        mainView : newsFeedTemplate,
+        navView : navTemplate
+    },
+    '/#login': {
+        mainView : loginTemplate, 
+        navView : navTemplate
+    },
+    '/#register': {
+        mainView : registerTemplate, 
+        navView : navTemplate
+    },
+    '/#user-list': {
+        mainView : userListTemplate, 
+        navView: navTemplate
+    }
+};
 
 export class Router {
     constructor() {
@@ -14,24 +32,6 @@ export class Router {
 
     hashChangeHandler() {
         const locationHash = window.location.hash;
-        const routes = {
-            '/': { 
-                mainView : newsFeedTemplate,
-                navView : navTemplate
-            },
-            '/#login': {
-                mainView : loginTemplate, 
-                navView : navTemplate
-            },
-            '/#register': {
-                mainView : registerTemplate, 
-                navView : navTemplate
-            },
-            '/#user-list': {
-                mainView : userListTemplate, 
-                navView: navTemplate
-            }
-        };
        
         const page = `/${locationHash}`;
         let mainHtml = routes[page].mainView();
