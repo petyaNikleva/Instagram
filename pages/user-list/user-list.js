@@ -1,9 +1,5 @@
-import { html } from "./../../node_modules/lit-html/lit-html.js";
-
 import { getAllUsers, deleteUser } from "../../services/authService.js";
 import { setUserforEdit } from "../../services/authService.js";
-
-
 
  export function allUsers () {
     let users = Object.values(getAllUsers());
@@ -18,6 +14,7 @@ export function deleteHandler(e) {
     const confirmDelete = confirm("Are you sure you want to delete this user?");
     if (confirmDelete) {
         deleteUser(email);
+        window.location.href = "/#reloadPage";
         window.location.href = "/#user-list";
     }
 }

@@ -7,7 +7,7 @@ import { allUsers, deleteHandler } from "../user-list/user-list.js";
 export let userListTemplate = () => html`
 <h2>User List</h2>
 <section class="user-container">
-    ${allUsers().length > 1
+    ${allUsers().length > 0
          ? allUsers().map(user => userTemplate(user))
          : html`<p>There are no registered users.</p>`
         }

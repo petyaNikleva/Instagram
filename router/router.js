@@ -43,16 +43,7 @@ export class Router {
         render(navHtml, navContainer);
         render(mainHtml, mainContainer);
     }
-}
-
-
-//
-export const changePage = (page) => {
-    if (window.location.hash == page) {
-        hashChangeHandler(window.location.hash);
-    } else {
-        window.location.href = `/#${page}`;;
-    }
+   
 }
 
 

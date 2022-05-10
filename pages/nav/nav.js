@@ -1,16 +1,10 @@
 import { logOut, checkIsLoggedUser } from "../../services/authService.js";
-import { changePage } from "../../router/router.js";
 
 export function logOutHandler (e) {
     e.preventDefault();
     logOut();
-    changePage("");
-    
-    // if (window.location.hash == ""){
-    //     hashChangeHandler(window.location.hash);
-    // } else {
-    //     window.location.href = "/#";
-    // } 
+    window.location.href = "/#reloadPage";
+    window.location.href = "/#"; 
 }
 
 export function isLogged () {
@@ -20,6 +14,8 @@ export function isLogged () {
     }
     return false;
 }
+
+
 
 
 
