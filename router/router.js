@@ -8,19 +8,6 @@ import { navTemplate } from "../pages/nav/navTemplate.js";
 
 export class Router {
     constructor() {
-        this.routes = {
-            '/': newsFeedTemplate,
-            '/#login': loginTemplate,
-            '/#register': registerTemplate,
-            '/#user-list': userListTemplate
-        };
-        this.nav = {
-            '/': navTemplate,
-            '/#login': navTemplate,
-            '/#register': navTemplate,
-            '/#user-list': navTemplate
-        };
-
         this.hashChangeHandler();
         window.addEventListener('hashchange', this.hashChangeHandler)
     }
@@ -28,20 +15,27 @@ export class Router {
     hashChangeHandler() {
         const locationHash = window.location.hash;
         const routes = {
-            '/': newsFeedTemplate,
-            '/#login': loginTemplate,
-            '/#register': registerTemplate,
-            '/#user-list': userListTemplate
+            '/': { 
+                mainView : newsFeedTemplate,
+                navView : navTemplate
+            },
+            '/#login': {
+                mainView : loginTemplate, 
+                navView : navTemplate
+            },
+            '/#register': {
+                mainView : registerTemplate, 
+                navView : navTemplate
+            },
+            '/#user-list': {
+                mainView : userListTemplate, 
+                navView: navTemplate
+            }
         };
-        const nav = {
-            '/': navTemplate,
-            '/#login': navTemplate,
-            '/#register': navTemplate,
-            '/#user-list': navTemplate
-        };
+       
         const page = `/${locationHash}`;
-        let mainHtml = routes[page]();
-        let navHtml = nav[page]();
+        let mainHtml = routes[page].mainView();
+        let navHtml = routes[page].navView();
 
         const navContainer = document.getElementsByTagName('nav')[0];
         const mainContainer = document.getElementsByClassName('main-content')[0];
@@ -52,6 +46,7 @@ export class Router {
 }
 
 
+//
 export const changePage = (page) => {
     if (window.location.hash == page) {
         hashChangeHandler(window.location.hash);
