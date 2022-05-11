@@ -22,7 +22,7 @@ export let editTemplate = () => html`
         <div class="input-control">
             <label for="email">Email</label>
             <input @blur="${(e) => checkInputValid(e.target)}" type="email" placeholder="Email" value="${userForEdit().email}" name="email"
-                id="email" data-validators="required, email-valid" />
+            readonly="readonly" id="email" data-validators="required, email-valid" />
             <div class="error-container">
                 <span class="error errror-message--required">
                     Email is required.
