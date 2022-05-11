@@ -1,5 +1,5 @@
+import authService from "../../services/authenticationService.js";
 import { areValidCredentials } from "../../helpers/validations.js";
-import { logIn, getUser } from "../../services/authService.js";
 
 
 export function loginHandler(e) {
@@ -13,12 +13,12 @@ export function loginHandler(e) {
     const password = passwordElement.value;
 
     if (areValidCredentials(email, password, passwordElement)){
-        const user = getUser(email);
+        const user = authService.getUser(email);
         setTimeout(() => {
             alert(`Welcome, ${user.firstName} ${user.lastName}!`)
             window.location.href = "/#";
         }, 500);
-        logIn(email);
+        authService.logIn(email);
     }
 }
 

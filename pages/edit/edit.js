@@ -1,4 +1,3 @@
-//import { getUserforEdit, register } from '../../services/authService.js';
 import authService from '../../services/authenticationService.js';
 import { checkInputValid } from '../../helpers/validations.js';
 

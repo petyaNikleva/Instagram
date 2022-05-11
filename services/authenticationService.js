@@ -52,7 +52,7 @@ class userService {
     }
 
     deleteUser(email) {
-        let users = getAllUsers();
+        let users = this.getAllUsers();
         delete users[email];
         localStorage.setItem('users', JSON.stringify(users));
     }

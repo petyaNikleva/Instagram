@@ -1,4 +1,4 @@
-import { getAllUsers, getUser} from "../services/authService.js";
+import authService from "../services/authenticationService.js";
 
 export function checkInputValid(element) {
     const container = element.closest('.input-control');
@@ -44,7 +44,7 @@ export function areValidCredentials(email, password, passwordElement) {
     container.classList.remove('success');
 
     let areValid = false;
-    const user = getUser(email);
+    const user = authService.getUser(email);
     if (user?.password === password) {
         container.classList.remove(`error--passwords-dont-match`);
         container.classList.remove('error');
@@ -89,7 +89,7 @@ function isValidEmail(email) {
 }
 
 function isEmailAlreadyRegistered(email) {
-    return getAllUsers().hasOwnProperty(email);
+    return authService.getAllUsers().hasOwnProperty(email);
 }
 
 function isDigitInPassword(password) {

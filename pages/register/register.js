@@ -1,6 +1,5 @@
+import authService from "../../services/authenticationService.js";
 import { checkInputValid, checkPasswordsMatch } from "../../helpers/validations.js";
-import { register } from "../../services/authService.js";
-
 
 export function repeatPasswordHandler(e) {
     const repeatPasswordElement = e.target;
@@ -37,7 +36,7 @@ export function registerHandler(e) {
             password: formData.get('password'),
         }
 
-        register(user.email, user);
+        authService.register(user.email, user);
 
         setTimeout(() => {
             alert('Successful registration.')
