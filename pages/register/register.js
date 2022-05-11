@@ -35,7 +35,6 @@ export function registerHandler(e) {
             lastName: formData.get('lastName'),
             dateOfBirth: formData.get('dateOfBirth'),
             password: formData.get('password'),
-            repeatPassword: formData.get('repeat-password')
         }
 
         register(user.email, user);

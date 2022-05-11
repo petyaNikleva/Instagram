@@ -1,5 +1,6 @@
 import { html } from "./../../node_modules/lit-html/lit-html.js";
-import { userForEdit } from "./edit.js"
+import { checkInputValid } from "../../helpers/validations.js";
+import { userForEdit, updateHandler } from "./edit.js";
 
 
 export let editTemplate = () => html`
@@ -20,8 +21,8 @@ export let editTemplate = () => html`
 
         <div class="input-control">
             <label for="email">Email</label>
-            <input type="email" placeholder="Email" value="${userForEdit().email}" name="email"
-                id="email" data-validators="required, email-valid, email-exist" />
+            <input @blur="${(e) => checkInputValid(e.target)}" type="email" placeholder="Email" value="${userForEdit().email}" name="email"
+                id="email" data-validators="required, email-valid" />
             <div class="error-container">
                 <span class="error errror-message--required">
                     Email is required.
@@ -29,15 +30,12 @@ export let editTemplate = () => html`
                 <span class="error errror-message--email-valid">
                     Provide a valid email address.
                 </span>
-                <span class="error errror-message--email-exist">
-                    This email has already been registered.
-                </span>
             </div>
         </div>
 
         <div class="input-control">
             <label for="firstName">First name</label>
-            <input class="form-input" type="text"
+            <input @blur="${(e) => checkInputValid(e.target)}" class="form-input" type="text"
                 placeholder="Enter First Name" value="${userForEdit().firstName}" name="firstName" id="firstName"
                 data-validators="required, min-length(2), max-length(10)" />
             <div class="error-container">
@@ -55,7 +53,7 @@ export let editTemplate = () => html`
 
         <div class="input-control">
             <label for="lastName">Last name</label>
-            <input type="text" placeholder="Enter Last Name" value="${userForEdit().lastName}" name="lastName"
+            <input @blur="${(e) => checkInputValid(e.target)}" type="text" placeholder="Enter Last Name" value="${userForEdit().lastName}" name="lastName"
                 id="lastName" data-validators="required, min-length(2), max-length(10)" />
             <div class="error-container">
                 <span class="error errror-message--required">
@@ -71,7 +69,7 @@ export let editTemplate = () => html`
         </div>
         <div class="input-control">
             <label for="dateOfBirth">Date of birth</label>
-            <input type="text" placeholder="Enter date of birth dd mm" value="${userForEdit().dateOfBirth}"
+            <input @blur="${(e) => checkInputValid(e.target)}" type="text" placeholder="Enter date of birth dd mm" value="${userForEdit().dateOfBirth}"
                 name="dateOfBirth" id="dateOfBirth" data-validators="required" />
             <div class="error-container">
                 <span class="error errror-message--required">
@@ -82,8 +80,8 @@ export let editTemplate = () => html`
 
         <div class="input-control">
             <label for="password">Password</label>
-            <input type="password" placeholder="Enter Password" value="${userForEdit().password}"
-                name="password" id="password" disabled
+            <input type="password" placeholder="Enter Password" value="${userForEdit().password}" readonly="readonly"
+                name="password" id="password"
                 data-validators="required, min-length(8), digit, upper-case-letter, lower-case-letter" />
             <div class="error-container">
                 <span class="error errror-message--required">
@@ -107,7 +105,7 @@ export let editTemplate = () => html`
        
         <hr>
 
-        <button class="registerbtn">Update</button>
+        <button @click=${updateHandler} class="registerbtn">Update</button>
 
     </form>
 </div>  
