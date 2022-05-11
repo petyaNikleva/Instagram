@@ -4,6 +4,7 @@ import { loginTemplate } from "../pages/login/loginTemplate.js";
 import { registerTemplate } from "../pages/register/registerTemplate.js";
 import { userListTemplate } from "../pages/user-list/userListTemplate.js";
 import { navTemplate } from "../pages/nav/navTemplate.js";
+import { editTemplate } from "../pages/edit/editTemplate.js";
 
 const routes = {
     '/': { 
@@ -20,6 +21,10 @@ const routes = {
     },
     '/#user-list': {
         mainView : userListTemplate, 
+        navView: navTemplate
+    },
+    '/#edit': {
+        mainView : editTemplate, 
         navView: navTemplate
     }
 };

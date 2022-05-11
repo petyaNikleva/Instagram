@@ -19,6 +19,10 @@ export function deleteHandler(e) {
     }
 }
 
+export function editHandler (email) {
+    setUserforEdit(email);
+    window.location.href = "/#edit";
+}
 
 
 
