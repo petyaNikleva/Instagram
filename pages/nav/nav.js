@@ -1,14 +1,15 @@
-import { logOut, checkIsLoggedUser } from "../../services/authService.js";
+//import { logOut, checkIsLoggedUser } from "../../services/authService.js";
+import authService  from "../../services/authenticationService.js";
 
 export function logOutHandler (e) {
     e.preventDefault();
-    logOut();
+    authService.logOut();
     window.location.href = "/#reloadPage";
     window.location.href = "/#"; 
 }
 
 export function isLogged () {
-    const loggedUser = checkIsLoggedUser();
+    const loggedUser = authService.checkIsLoggedUser();
     if (loggedUser !== "noUser" && loggedUser != null) {
         return true;
     }
