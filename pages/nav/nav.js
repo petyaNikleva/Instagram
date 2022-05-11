@@ -1,4 +1,3 @@
-//import { logOut, checkIsLoggedUser } from "../../services/authService.js";
 import authService  from "../../services/authenticationService.js";
 
 export function logOutHandler (e) {

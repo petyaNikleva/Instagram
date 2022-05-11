@@ -8,7 +8,7 @@ class userService {
     }
 
     checkIsRegistered(emailValue) {
-        let users = getAllUsers();
+        let users = this.getAllUsers();
         if (users[emailValue]?.email === emailValue) {
             return true;
         }
@@ -20,7 +20,7 @@ class userService {
     }
 
     register(email, userData) {
-        let users = getAllUsers();
+        let users = this.getAllUsers();
         users[email] = userData;
         localStorage.setItem('users', JSON.stringify(users));
     }
@@ -48,7 +48,7 @@ class userService {
 
     getUserforEdit() {
         const email = localStorage.getItem('userForEdit');
-        return getUser(email);
+        return this.getUser(email);
     }
 
     deleteUser(email) {

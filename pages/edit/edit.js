@@ -1,8 +1,9 @@
-import { getUserforEdit, register } from '../../services/authService.js';
+//import { getUserforEdit, register } from '../../services/authService.js';
+import authService from '../../services/authenticationService.js';
 import { checkInputValid } from '../../helpers/validations.js';
 
 export function userForEdit () {
-    let user = getUserforEdit()
+    let user = authService.getUserforEdit()
     return user;
 }
 
@@ -31,7 +32,7 @@ export function updateHandler (e) {
             dateOfBirth: formData.get('dateOfBirth'),
             password: formData.get('password'),   
         }
-        register(user.email, user);
+        authService.register(user.email, user);
 
         setTimeout(() => {
             alert('Successfully updated.')
