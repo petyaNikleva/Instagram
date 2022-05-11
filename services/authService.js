@@ -44,8 +44,7 @@ export function setUserforEdit(email) {
 
 export function getUserforEdit() {
     const email = localStorage.getItem('userForEdit');
-    const user = getUser(email);
-    return user;
+    return getUser(email);
 } 
 
 export function deleteUser (email) {
