@@ -1,5 +1,6 @@
 import authService from '../../services/authenticationService.js';
 import { checkInputValid } from '../../helpers/validations.js';
+import { User } from '../../models/User.js';
 
 export function userForEdit () {
     let user = authService.getUserforEdit()
@@ -24,14 +25,15 @@ export function updateHandler (e) {
     if (!hasError) {
         const formData = new FormData(form);
 
-        const user = {
-            email: formData.get('email'),
-            firstName: formData.get('firstName'),
-            lastName: formData.get('lastName'),
-            dateOfBirth: formData.get('dateOfBirth'),
-            password: formData.get('password'),   
-        }
-        authService.register(user.email, user);
+        const email =  formData.get('email');
+        const firstName = formData.get('firstName');
+        const lastName = formData.get('lastName');
+        const dateOfBirth = formData.get('dateOfBirth');
+        const password = formData.get('password');
+        
+        const currentUser = new User (email, firstName, lastName, dateOfBirth, password);
+
+        authService.register(email, currentUser);
 
         setTimeout(() => {
             alert('Successfully updated.')
