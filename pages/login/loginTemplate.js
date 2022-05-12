@@ -42,7 +42,7 @@ export let loginTemplate = () => html`
             </div>
             <hr>
 
-            <button @click=${loginHandler} class="loginbtn">Log In</button>
+            <button @click=${loginHandler} class="login-btn">Log In</button>
 
         <div class="container signin">
             <p>Don't have an account? <a href="/#register">Sign up</a>.</p>

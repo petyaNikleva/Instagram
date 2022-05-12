@@ -120,7 +120,7 @@ export let registerTemplate = () => html`
             </div>
             <hr>
     
-            <button @click=${registerHandler} class="registerbtn">Register</button>
+            <button @click=${registerHandler} class="register-btn">Register</button>
     
             <div class="container signin">
                 <p>Already have an account? <a href="/#login">Sign in</a>.</p>

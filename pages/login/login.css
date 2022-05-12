@@ -51,7 +51,7 @@ hr {
   margin-bottom: 25px;
 }
 
-.loginbtn {
+.login-btn {
   background-color:  rgb(136 78 191);
   color: white;
   font-weight: bold;
@@ -65,7 +65,7 @@ hr {
   opacity: 0.9;
 }
 
-.loginbtn:hover {
+.login-btn:hover {
   opacity:1;
 }
 

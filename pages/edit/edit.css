@@ -47,7 +47,7 @@ hr {
   margin-bottom: 25px;
 }
 
-.registerbtn {
+.register-btn {
   background-color: rgb(136 78 191);
   color: white;
   font-weight: bold;
@@ -61,7 +61,7 @@ hr {
   opacity: 0.9;
 }
 
-.registerbtn:hover {
+.register-btn:hover {
   opacity:1;
 }
 

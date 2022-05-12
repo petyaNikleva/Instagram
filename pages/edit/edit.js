@@ -1,6 +1,6 @@
 import authService from '../../services/authenticationService.js';
 import { checkInputValid } from '../../helpers/validations.js';
-import { User } from '../../models/User.js';
+import { User } from '../../model/User.js';
 
 export function userForEdit () {
     let user = authService.getUserforEdit()

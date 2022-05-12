@@ -21,9 +21,9 @@ export let userTemplate = (user) => html`
         <p class="card-name">${user.firstName} ${user.lastName}</p>
         <p>${user.email}</p>
         <p>Date of birth: ${user.dateOfBirth}</p>
-        <div class="btn-container">
-            <button @click="${(e) => editHandler(user.email)}" class="btn edit">Edit</button>
-            <button @click=${deleteHandler} class="btn delete">Delete</button>
+        <div class="container-btn">
+            <button @click="${(e) => editHandler(user.email)}" class="btn edit-btn">Edit</button>
+            <button @click=${deleteHandler} class="btn delete-btn">Delete</button>
         </div>
     </article>
 `
