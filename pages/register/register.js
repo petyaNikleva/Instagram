@@ -21,7 +21,7 @@ export function registerHandler(e) {
     const arrInputElements = [...inputs];
     arrInputElements.forEach(element => { 
         checkInputValid(element);
-        let isError = element.closest('.input-control').classList.contains('error');
+        const isError = element.closest('.input-control').classList.contains('error');
         if (isError) {
             hasError = true;
         }
