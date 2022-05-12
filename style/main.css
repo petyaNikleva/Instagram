@@ -11,7 +11,6 @@ html, body {
   body {
     display: flex;
     flex-direction: column;
-    /* background-color: blanchedalmond; */
   }
 
   .wrapper {
@@ -74,8 +73,7 @@ nav {
     background-color: lightgrey;
     padding: 0.01rem;
     border-radius: 10px;
-    width: 20vw;
-    max-width: 200px;
+    min-width: 185px;
 }
 
 .nav-list {
@@ -94,7 +92,6 @@ nav {
 .nav-item a {
     text-decoration: none;
     color: rgb(70, 67, 67);
-    /* margin-right: 2rem;  */
 }
 
 .nav-item a:hover, 
@@ -117,9 +114,15 @@ ul.nav-list {
 }
 
 /* -------- Advertisement --------- */
+
+.advertisement {
+    width: 100%;
+    min-width: 150px;
+    max-width: 300px;
+}
  
 .advertisement-card {
-    width: 20vw;
+    width: 100%;
     border-radius: 10px;
     border: 1px solid grey;
     margin-bottom: 0.75rem;
@@ -132,7 +135,7 @@ ul.nav-list {
 }
 
 .advertisement-card img {
-    width: calc(20vw - 2px);
+    width: 100%;
 }
 
 /* ------- Footer -------- */

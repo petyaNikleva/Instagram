@@ -1,5 +1,5 @@
-@import "./news-feed.css";
 @import "./main.css";
+@import "../pages/newsFeed/news-feed.css";
 @import "../pages/register/register.css";
 @import "../pages/login/login.css";
 @import "../pages/user-list/user-list.css";
