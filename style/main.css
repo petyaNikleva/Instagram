@@ -19,6 +19,7 @@ html, body {
 
   .three-column-wrapper {
       display: flex;
+      justify-content: space-between;
   }
 
 /* ------------ Header ---------------- */
@@ -59,7 +60,6 @@ header .header-container {
     gap: 3rem;
     align-content: space-around;
     justify-content: center;
-    /* background-color: lightseagreen; */
     padding: 1rem;
 }
 
@@ -73,6 +73,7 @@ nav {
     background-color: lightgrey;
     padding: 0.01rem;
     border-radius: 10px;
+    min-width: 185px;
 }
 
 .nav-list {
@@ -91,11 +92,20 @@ nav {
 .nav-item a {
     text-decoration: none;
     color: rgb(70, 67, 67);
-    margin-right: 2rem;
 }
 
-.nav-item a:hover {
+.nav-item a:hover, 
+a:hover {
     color: lightseagreen;
+    cursor: pointer;
+}
+
+.nav-list ul {
+    padding: 3rem;
+}
+
+ul.nav-list {
+    padding-inline-end: 2.5rem;
 }
 
 .nav-list .logo-img{
@@ -103,38 +113,16 @@ nav {
     padding: 0.75rem;
 }
 
-
-/* ------------ Main Content ------------- */
-
-.news-feed {
-/* background-color: aquamarine; */
-height: 100%;
-}
-
-.news-feed .img-container {
-    width: 31%;
-}
-
-.news-feed .img-container img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-section.news-feed {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem; 
-}
-
 /* -------- Advertisement --------- */
 
-/* .advertisement {
-    background-color: burlywood;
-} */
+.advertisement {
+    width: 100%;
+    min-width: 150px;
+    max-width: 300px;
+}
  
 .advertisement-card {
-    width: 20vw;
+    width: 100%;
     border-radius: 10px;
     border: 1px solid grey;
     margin-bottom: 0.75rem;
@@ -147,7 +135,7 @@ section.news-feed {
 }
 
 .advertisement-card img {
-    width: calc(20vw - 2px);
+    width: 100%;
 }
 
 /* ------- Footer -------- */

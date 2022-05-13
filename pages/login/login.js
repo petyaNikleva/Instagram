@@ -1,68 +1,30 @@
-import { checkIsRegistered, logIn, getUser } from "../../services/authService.js";
+import authService from "../../services/authenticationService.js";
+import { areValidCredentials } from "../../helpers/validations.js";
 
-const form = document.getElementById('form');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
 
-let errorOccured;
-
-form.addEventListener('submit', e => {
+export function loginHandler(e) {
     e.preventDefault();
 
-    validateLoginCredentials();
-});
+    const button = e.target;
+    const form = button.parentElement.parentElement;
+    const emailElement = form.querySelector('#email');
+    const email = emailElement.value;
+    const passwordElement = form.querySelector('#password');
+    const password = passwordElement.value;
 
-function validateLoginCredentials() {
-
-    errorOccured = false;
-    let currentUserData;
-
-    const emailValue = email.value;
-    const passwordValue = password.value;
-
-    const isRegisteredEmail = checkIsRegistered(emailValue);
-
-    if (isRegisteredEmail) {
-        currentUserData = getUser(emailValue);
-        if (passwordValue !== currentUserData.password) {
-            setError(password, 'Incorrect email or password');  
-        } else {
-            setSuccess(email);
-            setSuccess(password);
-        }
-    } else {
-        setError(email, 'Incorrect email or password');
-    }
-
-    if (!errorOccured) {
-        const firstName = currentUserData.firstName;
-        const lastName = currentUserData.lastName;
-        
-        logIn(emailValue);
-
-        setTimeout( () => {
-            alert(`Welcome, ${firstName} ${lastName}!`)
-            location.href='/index.html';
+    if (areValidCredentials(email, password, passwordElement)){
+        const user = authService.getUser(email);
+        setTimeout(() => {
+            alert(`Welcome, ${user.firstName} ${user.lastName}!`)
+            window.location.href = "/#";
         }, 500);
-    } 
+        authService.logIn(email);
+    }
 }
 
-function setError(element, message) {
-    errorOccured = true;
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
 
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success');
-}
 
-function setSuccess(element) {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
 
-    errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
-};
+
+
 

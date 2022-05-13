@@ -1,18 +1,13 @@
-import authService from "../../services/authenticationService.js";
-import { checkInputValid, checkPasswordsMatch } from "../../helpers/validations.js";
+import authService from '../../services/authenticationService.js';
+import { checkInputValid } from '../../helpers/validations.js';
+import { User } from '../../model/User.js';
 
-import { User } from "../../model/User.js";
-
-export function repeatPasswordHandler(e) {
-    const repeatPasswordElement = e.target;
-    const form = repeatPasswordElement.parentElement.parentElement;
-    const passwordElement = form.querySelector('#password');
-
-    checkInputValid(repeatPasswordElement);
-    checkPasswordsMatch(passwordElement, repeatPasswordElement);
+export function userForEdit () {
+    let user = authService.getUserforEdit()
+    return user;
 }
 
-export function registerHandler(e) {
+export function updateHandler (e) {
     e.preventDefault();
     const form = (e.target).parentElement;
     const inputs = form.querySelectorAll('.input-control input');
@@ -30,14 +25,6 @@ export function registerHandler(e) {
     if (!hasError) {
         const formData = new FormData(form);
 
-        // const user = {
-        //     email: formData.get('email'),
-        //     firstName: formData.get('firstName'),
-        //     lastName: formData.get('lastName'),
-        //     dateOfBirth: formData.get('dateOfBirth'),
-        //     password: formData.get('password'),
-        // }
-        
         const email =  formData.get('email');
         const firstName = formData.get('firstName');
         const lastName = formData.get('lastName');
@@ -49,9 +36,10 @@ export function registerHandler(e) {
         authService.register(email, currentUser);
 
         setTimeout(() => {
-            alert('Successful registration.')
-            window.location.href = "/#login";
+            alert('Successfully updated.')
+            window.location.href = "/#user-list";
         }, 500);
 
     }
 }
+
