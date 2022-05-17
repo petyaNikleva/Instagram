@@ -21,6 +21,9 @@ export let navTemplate = () => html`
                     </li>
                     `
                     : html `
+                    <li class="nav-item user-profile">
+                        <a href="/#user-profile">Profile</a>
+                    </li>
                     <li class="nav-item user-list">
                         <a href="/#user-list">User List</a>
                     </li>

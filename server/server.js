@@ -1,6 +1,5 @@
 const express = require('express');
 const multer = require('multer');
-const ejs = require('ejs');
 const path = require('path');
 
 //init app
@@ -19,10 +18,6 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage
 })
-
-//ejs
-app.set('view engine', 'ejs');
-
 
 
 //app.use(express.static('../server/public'));
