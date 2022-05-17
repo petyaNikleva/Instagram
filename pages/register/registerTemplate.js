@@ -118,12 +118,22 @@ export let registerTemplate = () => html`
                     </span>
                 </div>
             </div>
+
+            
+            <div class="input-control upload-img-container">
+                <label for="upload-img">Upload profile image*</label>
+                <input type="button" value="Upload image" name="upload-img"
+                    id="upload-img"/>
+              
+            </div>
+
             <hr>
     
             <button @click=${registerHandler} class="register-btn">Register</button>
     
             <div class="container signin">
                 <p>Already have an account? <a href="/#login">Sign in</a>.</p>
+                <p>*not required field</p>
             </div>
         </form>
     </div>  
