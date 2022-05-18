@@ -22,7 +22,7 @@ export let navTemplate = () => html`
                     `
                     : html `
                     <li class="nav-item user-profile">
-                        <a href="/#user-profile">Profile</a>
+                        <a href="/#user-profile">My Profile</a>
                     </li>
                     <li class="nav-item user-list">
                         <a href="/#user-list">User List</a>
