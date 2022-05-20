@@ -4,8 +4,7 @@
   "description": "Instagram layout",
   "main": "index.js",
   "scripts": {
-    "start": "http-server -c-1 -p 8081",
-    "startold": "node server/server.js"
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",

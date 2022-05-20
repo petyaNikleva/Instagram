@@ -1,8 +1,11 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -18,17 +21,12 @@ const upload = multer({
     storage: fileStorageEngine 
 })
 
-//  ????
-//  app.get("/", (req, res) => {
-//      res.sendFile(path.join(__dirname, "index.html"))
-//  })
-
-
 
 app.post('/upload', upload.single('image'), (req, res) => {
     console.log(req.file);
-    console.log(res);
-    res.status(201);
+
+   // console.log(res);
+    res.json(req.file);
 });
 
 const port = 3000;

@@ -16,18 +16,17 @@ function submitHandler (e) {
          method: "POST",
          body: data
      })
-        .then((result) => {
-            console.log("File sent successful.");
-        })
+        .then(response => response.json())
+        .then(result => console.log(result))
+            // setTimeout(() => {
+            //     alert('Picture uploaded.')
+            //     window.location.href = "/#reloadPage";
+            //     window.location.href = "/#";
+            // }, 500);
+
         .catch((err) => {
             console.log(err.message);
-        });
-        setTimeout(() => {
-            alert('Picture uploaded.')
-            window.location.href = "/#reloadPage";
-            window.location.href = "/#";
-        }, 500);
-            
+        });      
 };
 
 export let userProfileTemplate = () => html`
