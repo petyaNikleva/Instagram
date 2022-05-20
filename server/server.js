@@ -4,7 +4,7 @@ const path = require('path');
 
 const app = express();
 
-const storage = multer.diskStorage({
+const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, '../uploads'); // it save image in filder which is outside the project
         //cb(null, 'uploads'); -> it will save the image in the project directory. But will reload the page due to Live server hot reload
@@ -15,15 +15,19 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({
-    storage: storage
+    storage: fileStorageEngine 
 })
 
+//  ????
+//  app.get("/", (req, res) => {
+//      res.sendFile(path.join(__dirname, "index.html"))
+//  })
 
-// app.get('/upload', (req, res) => {
-//     res.render('upload');
-// });
+
 
 app.post('/upload', upload.single('image'), (req, res) => {
+    console.log(req.file);
+    console.log(res);
     res.status(201);
 });
 
