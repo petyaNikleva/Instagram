@@ -10,7 +10,7 @@ app.use(cors());
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, '../uploads'); // it save image in filder which is outside the project
-        //cb(null, 'uploads'); -> it will save the image in the project directory. But will reload the page due to Live server hot reload
+        //cb(null, 'uploads'); //-> it will save the image in the project directory. But will reload the page due to Live server hot reload
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname))
@@ -18,16 +18,26 @@ const fileStorageEngine = multer.diskStorage({
 })
 
 const upload = multer({
-    storage: fileStorageEngine 
+    storage: fileStorageEngine
 })
 
-app.get('/upload', (req, res) => {
-    console.log(req.params)
-})
+app.get(`/upload/:pictureId`, (req, res) => {
+    const options = {
+        root: path.join(__dirname, '../../uploads')
+    };
+
+    const fileName = req.params.pictureId;
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+});
 
 
 app.post('/upload', upload.single('image'), (req, res) => {
-    console.log(req.file);
     res.json(req.file);
 });
 
