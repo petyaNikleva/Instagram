@@ -119,14 +119,6 @@ export let registerTemplate = () => html`
                 </div>
             </div>
 
-            
-            <div class="input-control upload-img-container">
-                <label for="upload-img">Upload profile image*</label>
-                <input type="button" value="Upload image" name="upload-img"
-                    id="upload-img"/>
-              
-            </div>
-
             <hr>
     
             <button @click=${registerHandler} class="register-btn">Register</button>

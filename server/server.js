@@ -21,11 +21,13 @@ const upload = multer({
     storage: fileStorageEngine 
 })
 
+app.get('/upload', (req, res) => {
+    console.log(req.params)
+})
+
 
 app.post('/upload', upload.single('image'), (req, res) => {
     console.log(req.file);
-
-   // console.log(res);
     res.json(req.file);
 });
 

@@ -57,10 +57,23 @@ class userService {
         localStorage.setItem('users', JSON.stringify(users));
     }
 
+    // checkIsUploadedPicture(email) {
+    //     let user = this.getUser(email);
+    //     console.log(user);
+    // }
+
+    uploadImage(email, imgId) {
+        let user = this.getUser(email);
+        user.image = imgId;
+        this.register(email, user);
+    }
+
 }
 
 const authService = new userService();
 Object.freeze(authService);
 
 export default authService;
+
+
 
