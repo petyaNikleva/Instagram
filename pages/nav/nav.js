@@ -5,7 +5,6 @@ export function logOutHandler (e) {
     authService.logOut();
     window.location.href = "/#reloadPage";
     window.location.href = "/#";
-    alert('Success') 
 }
 
 export function isLogged () {
