@@ -37,12 +37,12 @@ export const getImage = async () => {
     const user = currentUser();
     const imageId = user.image;
     return await fetch(`http://localhost:3000/upload/${imageId}`).then(res => res.blob());
+
 }
 
-
-export function testClickHandler(e) {
-    //const form = e.currentTarget.form;
-    //let imgElement = form.getElementsByTagName('img')[0];
+ 
+// ok
+export function getImageHandler(e) {   
     const user = currentUser();
     const imageId = user.image;
     let imgPath;
@@ -57,15 +57,17 @@ export function testClickHandler(e) {
             .then(blobResponse => {
                     data = blobResponse;
                     const urlCreator = window.URL || window.webkitURL;
-                    let a = urlCreator.createObjectURL(data);
-                
-                    return a;
+                    let imgBlob = urlCreator.createObjectURL(data);
+                    let imgElement = document.getElementById("user-profile-image");
+                    imgElement.setAttribute('src', imgBlob);
                 })
             })
             .catch((err) => {
                 console.log(err)
             });
-        return imageUrl
+        //return imageUrl
     }
 }
+
+
 

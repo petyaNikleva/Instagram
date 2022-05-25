@@ -1,4 +1,4 @@
-class userService {
+class UserService {
     constructor() {
     }
 
@@ -63,14 +63,14 @@ class userService {
     // }
 
     uploadImage(email, imgId) {
-        let user = this.getUser(email);
+        const user = this.getUser(email);
         user.image = imgId;
         this.register(email, user);
     }
 
 }
 
-const authService = new userService();
+const authService = new UserService();
 Object.freeze(authService);
 
 export default authService;
