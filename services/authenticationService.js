@@ -3,8 +3,7 @@ class UserService {
     }
 
     getLoggedUser() {
-        let loggedUser = localStorage.getItem('loggedUser');
-        return loggedUser;
+        return localStorage.getItem('loggedUser');
     }
 
     checkIsRegistered(emailValue) {
