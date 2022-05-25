@@ -1,9 +1,8 @@
 import authService from "../../services/authenticationService.js";
 
 export function currentUser() {
-    const email = authService.getLoggedUser()
-    const user = authService.getUser(email);
-    return user;
+    const email = authService.getLoggedUser();
+    return authService.getUser(email);
 }
 
 export function submitHandler(e) {
@@ -24,8 +23,7 @@ export function submitHandler(e) {
             authService.uploadImage(email, result.filename);
             setTimeout(() => {
                 alert('Picture uploaded.')
-                window.location.href = "/#reloadPage";
-                window.location.href = "/#";
+                getImageHandler();
             }, 500)
         })
         .catch((err) => {
@@ -33,16 +31,7 @@ export function submitHandler(e) {
         });
 };
 
-export const getImage = async () => {
-    const user = currentUser();
-    const imageId = user.image;
-    return await fetch(`http://localhost:3000/upload/${imageId}`).then(res => res.blob());
-
-}
-
- 
-// ok
-export function getImageHandler(e) {   
+export function getImageHandler() {   
     const user = currentUser();
     const imageId = user.image;
     let imgPath;
@@ -51,21 +40,22 @@ export function getImageHandler(e) {
         return imgPath;
     } else {
         let data;
-        let imageUrl = fetch(`http://localhost:3000/upload/${imageId}`)
+        fetch(`http://localhost:3000/upload/${imageId}`)
             .then(response => {
                 response.blob()
             .then(blobResponse => {
                     data = blobResponse;
                     const urlCreator = window.URL || window.webkitURL;
-                    let imgBlob = urlCreator.createObjectURL(data);
-                    let imgElement = document.getElementById("user-profile-image");
+                    const imgBlob = urlCreator.createObjectURL(data);
+                    const imgElement = document.getElementById("user-profile-image");
+                    const inputFileElement = document.getElementsByClassName('input-img')[0];
+                    inputFileElement.value = '';
                     imgElement.setAttribute('src', imgBlob);
                 })
             })
             .catch((err) => {
                 console.log(err)
-            });
-        //return imageUrl
+            }); 
     }
 }
 

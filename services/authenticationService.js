@@ -57,11 +57,6 @@ class UserService {
         localStorage.setItem('users', JSON.stringify(users));
     }
 
-    // checkIsUploadedPicture(email) {
-    //     let user = this.getUser(email);
-    //     console.log(user);
-    // }
-
     uploadImage(email, imgId) {
         const user = this.getUser(email);
         user.image = imgId;

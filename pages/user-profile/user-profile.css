@@ -25,6 +25,7 @@
     text-align: center;
 }
 
-#form input:hover {
+#form input:hover,
+#form input.submit-btn {
     cursor: pointer;
 }
