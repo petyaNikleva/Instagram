@@ -106,6 +106,31 @@ a {
   display: none;
 }
 
+.input-control.upload-img-container {
+  /* background-color: #ff3860; */
+  width: 47%;
+  margin-left: 45%;
+}
+
+.input-control.upload-img-container #upload-img {
+  border: 1px solid grey;
+}
+
+.input-control.upload-img-container #upload-img:hover {
+  cursor: pointer;
+}
+
+.container.signin {
+  padding-top: 0.063rem;
+  padding-bottom: 0.063rem;
+  line-height: 0.25rem;
+}
+
+.container.signin {
+  font-size: smaller;
+}
+
+
 .input-control.error--required .error.errror-message--required,
 .input-control.error--min-length .error.errror-message--min-length,
 .input-control.error--max-length .error.errror-message--max-length,

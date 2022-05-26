@@ -4,11 +4,11 @@ export function logOutHandler (e) {
     e.preventDefault();
     authService.logOut();
     window.location.href = "/#reloadPage";
-    window.location.href = "/#"; 
+    window.location.href = "/#";
 }
 
 export function isLogged () {
-    const loggedUser = authService.checkIsLoggedUser();
+    const loggedUser = authService.getLoggedUser();
     if (loggedUser !== "noUser" && loggedUser != null) {
         return true;
     }

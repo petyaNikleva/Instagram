@@ -118,12 +118,14 @@ export let registerTemplate = () => html`
                     </span>
                 </div>
             </div>
+
             <hr>
     
             <button @click=${registerHandler} class="register-btn">Register</button>
     
             <div class="container signin">
                 <p>Already have an account? <a href="/#login">Sign in</a>.</p>
+                <p>*not required field</p>
             </div>
         </form>
     </div>  

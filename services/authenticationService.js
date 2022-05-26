@@ -1,10 +1,9 @@
-class userService {
+class UserService {
     constructor() {
     }
 
-    checkIsLoggedUser() {
-        let loggedUser = localStorage.getItem('loggedUser');
-        return loggedUser;
+    getLoggedUser() {
+        return localStorage.getItem('loggedUser');
     }
 
     checkIsRegistered(emailValue) {
@@ -57,10 +56,18 @@ class userService {
         localStorage.setItem('users', JSON.stringify(users));
     }
 
+    uploadImage(email, imgId) {
+        const user = this.getUser(email);
+        user.image = imgId;
+        this.register(email, user);
+    }
+
 }
 
-const authService = new userService();
+const authService = new UserService();
 Object.freeze(authService);
 
 export default authService;
+
+
 

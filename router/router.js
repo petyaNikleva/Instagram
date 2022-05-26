@@ -5,6 +5,7 @@ import { registerTemplate } from "../pages/register/registerTemplate.js";
 import { userListTemplate } from "../pages/user-list/userListTemplate.js";
 import { navTemplate } from "../pages/nav/navTemplate.js";
 import { editTemplate } from "../pages/edit/editTemplate.js";
+import { userProfileTemplate } from "../pages/user-profile/userProfileTemplate.js";
 
 const routes = {
     '/': { 
@@ -25,6 +26,10 @@ const routes = {
     },
     '/#edit': {
         mainView : editTemplate, 
+        navView: navTemplate
+    },
+    '/#user-profile': {
+        mainView : userProfileTemplate, 
         navView: navTemplate
     }
 };

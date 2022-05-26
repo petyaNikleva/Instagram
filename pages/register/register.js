@@ -43,8 +43,9 @@ export function registerHandler(e) {
         const lastName = formData.get('lastName');
         const dateOfBirth = formData.get('dateOfBirth');
         const password = formData.get('password');
+        const image = 'noPicture';
         
-        const currentUser = new User (email, firstName, lastName, dateOfBirth, password);
+        const currentUser = new User (email, firstName, lastName, dateOfBirth, password, image);
 
         authService.register(email, currentUser);
 
