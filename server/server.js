@@ -2,10 +2,12 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
+const { initDatbase } = require('../config/dataBaseConfig');
 
 const app = express();
-
 app.use(cors());
+
+
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -42,6 +44,10 @@ app.post('/upload', upload.single('image'), (req, res) => {
     res.json(req.file);
 });
 
-
-const port = 3000;
-app.listen(port, () => console.log(`Server is running on port ${port}.`))
+initDatbase()
+.then(() => {
+    const port = 3000;
+    app.listen(port, () => console.log(`Server is running on port ${port}.`))
+}).catch(err => {
+    console.log('Cannot connect to the database', err);
+});
