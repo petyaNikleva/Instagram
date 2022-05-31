@@ -27,9 +27,9 @@ router.get("/:userId", async (req, res) => {
 });
 
 router.post('/createUser', jsonParser, async (req, res) => {
-    let body = req.body
-    console.log(body);
-    let user = User.create(req.body, function (err, result) {
+    // let body = req.body
+    // console.log(body);
+    const user = User.create(req.body, function (err, result) {
         if (err) {
             res.send(err);
         } else {

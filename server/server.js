@@ -46,7 +46,6 @@ app.post('/upload', upload.single('image'), (req, res) => {
 });
 
 // ---- Multer ends-----///
-//app.use(express.json());
 
 initDatbase()
 .then(() => {
