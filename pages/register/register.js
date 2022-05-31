@@ -28,6 +28,7 @@ export function registerHandler(e) {
     });
 
     if (!hasError) {
+
         const formData = new FormData(form);
 
         // const user = {
@@ -44,6 +45,8 @@ export function registerHandler(e) {
         const dateOfBirth = formData.get('dateOfBirth');
         const password = formData.get('password');
         const image = 'noPicture';
+
+        
         
         const currentUser = new User (email, firstName, lastName, dateOfBirth, password, image);
 
