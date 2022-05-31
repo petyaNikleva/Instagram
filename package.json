@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/petyaNikleva/Instagram#readme",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "lit-html": "^2.2.2",
