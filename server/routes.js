@@ -36,6 +36,7 @@ router.post('/createUser', jsonParser, async (req, res) => {
             res.send(result);
         }
     })
-})
+});
+
 
 module.exports = router;

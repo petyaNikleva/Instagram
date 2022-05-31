@@ -18,11 +18,11 @@ class UserService {
         localStorage.setItem('loggedUser', email);
     }
 
-    register(email, userData) {
-        let users = this.getAllUsers();
-        users[email] = userData;
-        localStorage.setItem('users', JSON.stringify(users));
-    }
+    // register(email, userData) {
+    //     let users = this.getAllUsers();
+    //     users[email] = userData;
+    //     localStorage.setItem('users', JSON.stringify(users));
+    // }
 
     logOut() {
         localStorage.setItem('loggedUser', 'noUser');

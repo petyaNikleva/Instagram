@@ -1,8 +1,5 @@
-//import authService from "../../services/authenticationService.js";
 import { register } from "../../services/userService.js";
 import { checkInputValid, checkPasswordsMatch } from "../../helpers/validations.js";
-
-import { User } from "../../model/User.js";
 
 export function repeatPasswordHandler(e) {
     const repeatPasswordElement = e.target;
@@ -32,14 +29,6 @@ export function registerHandler(e) {
 
         const formData = new FormData(form);
 
-        // const user = {
-        //     email: formData.get('email'),
-        //     firstName: formData.get('firstName'),
-        //     lastName: formData.get('lastName'),
-        //     dateOfBirth: formData.get('dateOfBirth'),
-        //     password: formData.get('password'),
-        // }
-        
         const email =  formData.get('email');
         const firstName = formData.get('firstName');
         const lastName = formData.get('lastName');
@@ -47,7 +36,6 @@ export function registerHandler(e) {
         const password = formData.get('password');
         const image = 'noPicture';
         
-        //const currentUser = new User (email, firstName, lastName, dateOfBirth, password, image);
         register(email, firstName, lastName, dateOfBirth, password, image)
         .then((data) => {
             setTimeout(() => {
@@ -58,8 +46,5 @@ export function registerHandler(e) {
           .catch(err => {
             console.log(err);
           })  
-
-        //authService.register(email, currentUser);
-
     }
 }
