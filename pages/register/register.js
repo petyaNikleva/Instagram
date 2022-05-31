@@ -1,4 +1,5 @@
-import authService from "../../services/authenticationService.js";
+//import authService from "../../services/authenticationService.js";
+import { register } from "../../services/userService.js";
 import { checkInputValid, checkPasswordsMatch } from "../../helpers/validations.js";
 
 import { User } from "../../model/User.js";
@@ -45,17 +46,20 @@ export function registerHandler(e) {
         const dateOfBirth = formData.get('dateOfBirth');
         const password = formData.get('password');
         const image = 'noPicture';
-
         
-        
-        const currentUser = new User (email, firstName, lastName, dateOfBirth, password, image);
+        //const currentUser = new User (email, firstName, lastName, dateOfBirth, password, image);
+        register(email, firstName, lastName, dateOfBirth, password, image)
+        .then((data) => {
+            setTimeout(() => {
+                alert('Successful registration.')
+                window.location.href = "/#login";
+            }, 500);
+          })
+          .catch(err => {
+            console.log(err);
+          })  
 
-        authService.register(email, currentUser);
-
-        setTimeout(() => {
-            alert('Successful registration.')
-            window.location.href = "/#login";
-        }, 500);
+        //authService.register(email, currentUser);
 
     }
 }
