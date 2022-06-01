@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 const { initDatbase } = require('./config/dataBaseConfig');
-const routes = require('./routes');
+const routes = require('./controller');
 
 const app = express();
 app.use(cors());
@@ -49,7 +49,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 initDatbase()
 .then(() => {
-    console.log("MongoDB database connection established successfully");
+    console.log("MongoDB database connection established successfully.");
     const port = 3000;
     app.listen(port, () => console.log(`Server is running on port ${port}.`))
     
