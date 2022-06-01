@@ -1,4 +1,5 @@
-import authService  from "../../services/authenticationService.js";
+//import authService  from "../../services/authenticationService.js";
+import { getLoggedUser } from "../../services/userService.js"
 
 export function logOutHandler (e) {
     e.preventDefault();
@@ -8,11 +9,15 @@ export function logOutHandler (e) {
 }
 
 export function isLogged () {
-    const loggedUser = authService.getLoggedUser();
-    if (loggedUser !== "noUser" && loggedUser != null) {
-        return true;
-    }
-    return false;
+    getLoggedUser()
+    .then(user => {
+            if (user.isLogged === "Yes") {
+            return true;
+        }
+        return false;
+    }).catch(err => {
+        console.log(err);
+    }) 
 }
 
 

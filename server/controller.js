@@ -19,7 +19,7 @@ router.get("/allUsers", async (req, res, next) => {
 
 router.get('/isLogged', async (req, res, next) => {
     try {
-        const user = await User.find({isLogged: "Yes"}).exec();
+        const user = await User.findOne({isLogged: "Yes"}).exec();
         res.send(user)
     } catch (error) {
         next(error);

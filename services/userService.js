@@ -11,3 +11,10 @@ export const register = ( email, firstName, lastName, dateOfBirth, password, ima
         .then(res => res.json());
 }
 
+export const getLoggedUser = () => {
+    return fetch(`${baseUrl}/isLogged`, {
+        
+    })
+        //.then(res => res.json());
+}
+
