@@ -9,8 +9,8 @@ const userSchema = new mongoose.Schema({
     password: String,
     image: String,
     isLogged: {
-        type: Boolean,
-        default: false
+        type: "String",
+        default: "No"
     }
 })
 

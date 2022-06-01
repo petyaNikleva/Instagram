@@ -15,6 +15,19 @@ router.get("/allUsers", async (req, res, next) => {
     }  
 });
 
+//show it when move to the end??????????
+
+router.get('/isLogged', async (req, res, next) => {
+    try {
+        const user = await User.find({isLogged: "Yes"}).exec();
+        res.send(user)
+    } catch (error) {
+        next(error);
+    }
+});
+
+
+
 router.get("/:userId", async (req, res, next) => {
     try {
         const user = await User.findById(req.params.userId);
@@ -34,7 +47,8 @@ router.post('/createUser', jsonParser, async (req, res, next) => {
     }
 });
 
-router.post('/')
+
+
 
 module.exports = router;
 
