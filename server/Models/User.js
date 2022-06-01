@@ -7,7 +7,11 @@ const userSchema = new mongoose.Schema({
     lastName: String,
     dateOfBirth: String,
     password: String,
-    image: String
+    image: String,
+    isLogged: {
+        type: Boolean,
+        default: false
+    }
 })
 
 module.exports = mongoose.model("User", userSchema)
