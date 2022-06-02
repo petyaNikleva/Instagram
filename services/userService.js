@@ -11,10 +11,25 @@ export const register = ( email, firstName, lastName, dateOfBirth, password, ima
         .then(res => res.json());
 }
 
-export const getLoggedUser = () => {
-    return fetch(`${baseUrl}/isLogged`, {
-        
+export const login = (email, password) => {
+    return fetch(`${baseUrl}/loginUser`, {
+        method: "POST",
+        headers: {
+            'content-type': "application/json"
+        },
+        body: JSON.stringify({ email, password })
     })
-        //.then(res => res.json());
+    .then(res => res.json());
 }
+
+
+// TO DO
+export async function getLoggedUser() {
+    const responce = fetch(`${baseUrl}/isLogged`);
+    //const user = await responce.json();
+    console.log(responce)
+    return responce;
+}
+        
+
 

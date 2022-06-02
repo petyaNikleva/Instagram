@@ -27,6 +27,21 @@ router.get('/isLogged', async (req, res, next) => {
 });
 
 
+router.post('/loginUser', jsonParser, async (req, res, next) => {
+    try {
+        const user = await User.findOne({email: req.body.email}).exec();
+        const password = user.password;
+        if (password === req.body.password) {
+            console.log('Correct user and password')
+        }
+        console.log(user)
+        res.send(user)
+    } catch (error) {
+        next(error);
+    }
+});
+
+
 
 router.get("/:userId", async (req, res, next) => {
     try {

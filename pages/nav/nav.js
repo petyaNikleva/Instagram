@@ -8,10 +8,12 @@ export function logOutHandler (e) {
     window.location.href = "/#";
 }
 
+///1 not reg view
+
 export function isLogged () {
     getLoggedUser()
     .then(user => {
-            if (user.isLogged === "Yes") {
+            if (user.isLogged == "Yes") {
             return true;
         }
         return false;
@@ -21,6 +23,26 @@ export function isLogged () {
 }
 
 
+// 2 reg view
+// dont work - TO DO
+// export async function isLogged() {
+//     try {
+//         let responce =await getLoggedUser()
+//         let user = await responce.json();
+//         console.log(user)
+
+//         if (user.isLogged === "Yes") {
+//             return true;
+//         }
+//         return false;
+        
+        
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+// 
 
 
 
