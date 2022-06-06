@@ -11,25 +11,44 @@ export const register = ( email, firstName, lastName, dateOfBirth, password, ima
         .then(res => res.json());
 }
 
-export const login = (email, password) => {
-    return fetch(`${baseUrl}/loginUser`, {
-        method: "POST",
+export const login = async (email, password) => {
+    let res = await fetch(`${baseUrl}/login`, {
+        method: 'POST',
         headers: {
-            'content-type': "application/json"
+            'content-type': 'application/json'
         },
         body: JSON.stringify({ email, password })
-    })
-    .then(res => res.json());
-}
+    });
+
+    let jsonResult = await res.json();
+    
+    if (res.ok) {
+        return jsonResult;
+    } else {
+        throw new Error('Error');
+    }
+};
 
 
-// TO DO
-export async function getLoggedUser() {
-    const responce = fetch(`${baseUrl}/isLogged`);
-    //const user = await responce.json();
-    console.log(responce)
-    return responce;
+
+export const getAll = () => {
+    fetch(`${baseUrl}/users`)
+    .then(res => res.json())      
 }
+
+// export const login = (email, password) => {
+//     return fetch(`${baseUrl}/loginUser`, {
+//         method: "POST",
+//         headers: {
+//             'content-type': "application/json"
+//         },
+//         body: JSON.stringify({ email, password })
+//     })
+//     .then(res => res.json());
+// }
+
+
+
         
 
 

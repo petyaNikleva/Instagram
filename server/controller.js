@@ -6,7 +6,7 @@ const User = require('./Models/User');
 const jsonParser = bodyParser.json()
 //const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-router.get("/allUsers", async (req, res, next) => {
+router.get("/users", async (req, res, next) => {
     try {
         const allUsers = await User.find({});
         res.send(allUsers);
@@ -15,32 +15,31 @@ router.get("/allUsers", async (req, res, next) => {
     }  
 });
 
-//show it when move to the end??????????
-
-router.get('/isLogged', async (req, res, next) => {
-    try {
-        const user = await User.findOne({isLogged: "Yes"}).exec();
-        res.send(user)
-    } catch (error) {
-        next(error);
-    }
-});
-
-
-router.post('/loginUser', jsonParser, async (req, res, next) => {
+router.post('/login', jsonParser, async (req, res, next) => {
+    const { username, password } = req.body;
+    //console.log(req.body)
     try {
         const user = await User.findOne({email: req.body.email}).exec();
-        const password = user.password;
-        if (password === req.body.password) {
-            console.log('Correct user and password')
+        if(!user) {
+            throw new Error(`${username} Invalid username or password.`)
         }
-        console.log(user)
+        //console.log(user);
         res.send(user)
     } catch (error) {
-        next(error);
+        next(error)
     }
 });
 
+
+// router.get('/getByEmail', jsonParser, async (req, res, next) => {
+//     try {
+//         const user = await User.findOne({email: req.body.email}).exec();
+//         console.log(user);
+//         res.send(user)
+//     } catch (error) {
+//         next(error);
+//     }
+// });
 
 
 router.get("/:userId", async (req, res, next) => {
@@ -61,8 +60,6 @@ router.post('/createUser', jsonParser, async (req, res, next) => {
         next(error)
     }
 });
-
-
 
 
 module.exports = router;

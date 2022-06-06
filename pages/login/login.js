@@ -1,3 +1,4 @@
+import { login } from "../../services/userService.js"
 import authService from "../../services/authenticationService.js";
 import { areValidCredentials } from "../../helpers/validations.js";
 
@@ -12,13 +13,27 @@ export function loginHandler(e) {
     const passwordElement = form.querySelector('#password');
     const password = passwordElement.value;
 
-    if (areValidCredentials(email, password, passwordElement)){
-        const user = authService.getUser(email);
-        setTimeout(() => {
-            alert(`Welcome, ${user.firstName} ${user.lastName}!`)
-            window.location.href = "/#";
-        }, 500);
-        authService.logIn(email);
+    if (areValidCredentials(email, password, passwordElement)) {
+
+        login(email,password)
+        .then((user) => {
+            console.log(user)
+            if (user && user.password === password) {
+                authService.logIn(user._id);
+                setTimeout(() => {
+                    alert(`Welcome, ${user.firstName} ${user.lastName}!`)
+                    window.location.href = "/#";
+                }, 500);
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        
+       
+        
+
+        //authService.logIn(email);
     }
 }
 
