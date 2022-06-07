@@ -15,7 +15,6 @@ export function loginHandler(e) {
 
     login(email, password)
         .then((user) => {
-            console.log(user)
             if (user && user.password === password) {
                 authService.logIn(user);
                 setTimeout(() => {
