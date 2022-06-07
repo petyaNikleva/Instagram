@@ -9,9 +9,9 @@ export let userProfileTemplate = () => html`
         <div class="card-img">
             <img id="user-profile-image" src="${getImageHandler()}">
         </div>
-        <p class="card-name">${currentUser().firstName} ${currentUser().lastName}</p>
+        <!-- <p class="card-name">${currentUser().firstName} ${currentUser().lastName}</p>
         <p>${currentUser().email}</p>
-        <p>Date of birth: ${currentUser().dateOfBirth}</p>
+        <p>Date of birth: ${currentUser().dateOfBirth}</p> -->
         <div class="container-btn">
         </div>
     </article>

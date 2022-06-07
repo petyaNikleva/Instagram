@@ -3,7 +3,7 @@ class UserService {
     }
 
     getLoggedUser() {
-        return localStorage.getItem('loggedUser');
+        return JSON.parse(localStorage.loggedUser);
     }
 
     checkIsRegistered(emailValue) {
@@ -14,27 +14,28 @@ class UserService {
         return false;
     }
 
-    logIn(id) {
-        localStorage.setItem('loggedUser', id);
+    // to stay
+    logIn(user) {
+        localStorage.setItem('loggedUser', JSON.stringify(user));
     }
 
-   
+   // to stay
     logOut() {
-        localStorage.setItem('loggedUser', 'noUser');
+        localStorage.setItem('loggedUser', JSON.stringify({user: 'noUser'}));
     }
 
     getUser(email) {
         return JSON.parse(localStorage.users)[email];
     }
 
-    getAllUsers() {
-        let users = {};
-        let areRegisteredUsers = !!(localStorage.getItem('users'));
-        if (areRegisteredUsers) {
-            users = JSON.parse(localStorage.users);
-        }
-        return users;
-    }
+    // getAllUsers() {
+    //     let users = {};
+    //     let areRegisteredUsers = !!(localStorage.getItem('users'));
+    //     if (areRegisteredUsers) {
+    //         users = JSON.parse(localStorage.users);
+    //     }
+    //     return users;
+    // }
 
     setUserforEdit(email) {
         localStorage.setItem('userForEdit', email);

@@ -17,7 +17,7 @@ export function loginHandler(e) {
         .then((user) => {
             console.log(user)
             if (user && user.password === password) {
-                authService.logIn(user._id);
+                authService.logIn(user);
                 setTimeout(() => {
                     alert(`Welcome, ${user.firstName} ${user.lastName}!`)
                     window.location.href = "/#";
