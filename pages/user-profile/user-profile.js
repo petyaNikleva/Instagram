@@ -1,8 +1,13 @@
 import authService from "../../services/authenticationService.js";
+import { getById } from "../../services/userService.js";
 
 export function currentUser() {
-    const email = authService.getLoggedUser();
-    return authService.getUser(email);
+    const id = authService.getLoggedUser();
+    // get by mail
+    getById(id)
+    .then(user => console.log(user))
+    console.log(user)
+    //return authService.getUser(email);
 }
 
 export function submitHandler(e) {

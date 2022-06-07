@@ -1,16 +1,5 @@
 const baseUrl = 'http://localhost:3000';
 
-export const register = ( email, firstName, lastName, dateOfBirth, password, image ) => {
-    return fetch(`${baseUrl}/createUser`, {
-        method: "POST",
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({ email, firstName, lastName, dateOfBirth, password, image })
-    })
-        .then(res => res.json());
-}
-
 export const login = async (email, password) => {
     let res = await fetch(`${baseUrl}/login`, {
         method: 'POST',
@@ -29,12 +18,38 @@ export const login = async (email, password) => {
     }
 };
 
-
-
-export const getAll = () => {
-    fetch(`${baseUrl}/users`)
-    .then(res => res.json())      
+export const register = ( email, firstName, lastName, dateOfBirth, password, image ) => {
+    return fetch(`${baseUrl}/createUser`, {
+        method: "POST",
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ email, firstName, lastName, dateOfBirth, password, image })
+    })
+        .then(res => res.json());
 }
+
+
+export const getAll = async () => {
+    let res = await fetch(`${baseUrl}/users`)
+    let jsonResult = await res.json();
+    if (res.ok) {
+        return jsonResult;
+    } else {
+        throw new Error('Error');
+    }      
+}
+
+export const getById = async (userId) => {
+    let res = await fetch(`${baseUrl}/:${userId}`)
+    let jsonResult = await res.json();
+    if (res.ok) {
+        return jsonResult;
+    } else {
+        throw new Error('Error');
+    }      
+}
+
 
 // export const login = (email, password) => {
 //     return fetch(`${baseUrl}/loginUser`, {

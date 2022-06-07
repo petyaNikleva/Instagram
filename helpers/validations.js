@@ -1,4 +1,5 @@
-import authService from "../services/authenticationService.js";
+//import authService from "../services/authenticationService.js";
+import { getAll } from "../services/userService.js";
 
 export function checkInputValid(element) {
     const container = element.closest('.input-control');
@@ -77,7 +78,7 @@ const VALIDATOR = {
     'min-length': (value, param) => !!(value.length < Number(param)),
     'max-length': (value, param) => !!(value.length > Number(param)),
     'email-valid': (value, param) => isValidEmail(value),
-    'email-exist': (value, param) => isEmailAlreadyRegistered(value),
+    'email-exist': (value, param) => !!isEmailAlreadyRegistered(value),
     'digit': (value, param) => isDigitInPassword(value),
     'upper-case-letter': (value, param) => isUpperCaseLeterInPassword(value),
     'lower-case-letter': (value, param) => isLowerCaseLeterInPassword(value),
@@ -89,7 +90,21 @@ function isValidEmail(email) {
 }
 
 function isEmailAlreadyRegistered(email) {
-    return authService.getAllUsers().hasOwnProperty(email);
+    try {
+        getAll()
+        .then(users => {
+            let user = users.find(u => u.email === email)
+            console.log(!!user)
+            return (user)  
+        })
+    }
+    catch (error) {
+        console.log(error)
+    } 
+    // let result = authService.getAllUsers().hasOwnProperty(email);
+    // console.log(result);
+    // return  result;
+  
 }
 
 function isDigitInPassword(password) {

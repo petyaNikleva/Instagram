@@ -1,6 +1,6 @@
 import { login } from "../../services/userService.js"
 import authService from "../../services/authenticationService.js";
-import { areValidCredentials } from "../../helpers/validations.js";
+
 
 
 export function loginHandler(e) {
@@ -13,9 +13,7 @@ export function loginHandler(e) {
     const passwordElement = form.querySelector('#password');
     const password = passwordElement.value;
 
-    if (areValidCredentials(email, password, passwordElement)) {
-
-        login(email,password)
+    login(email, password)
         .then((user) => {
             console.log(user)
             if (user && user.password === password) {
@@ -29,12 +27,7 @@ export function loginHandler(e) {
         .catch((error) => {
             console.log(error)
         })
-        
-       
-        
 
-        //authService.logIn(email);
-    }
 }
 
 
