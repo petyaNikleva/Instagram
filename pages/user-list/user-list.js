@@ -1,9 +1,12 @@
-import authService from "../../services/authenticationService.js";
+//import authService from "../../services/authenticationService.js";
+import { getAll } from "../../services/userService.js"
 
  export function allUsers () {
-    let users = Object.values(authService.getAllUsers());
-    return users;
-   
+    getAll()
+    .then (result => {
+        console.log(result)
+        return result;
+    })
 }
 
 export function deleteHandler(e) {

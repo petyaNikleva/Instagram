@@ -50,6 +50,13 @@ export function getImageHandler() {
                     const inputFileElement = document.getElementsByClassName('input-img')[0];
                     inputFileElement.value = '';
                     imgElement.setAttribute('src', imgBlob);
+
+                    const nameElement = document.getElementsByClassName("card-name")[0];
+                    nameElement.textContent = `${user.firstName} ${user.lastName}`;
+                    const emailElement = document.getElementsByClassName("email")[0];
+                    emailElement.textContent = user.email;
+                    const dateOfBirthElement = document.getElementsByClassName("date-of-birth")[0];
+                    dateOfBirthElement.taxtConent = `Date of birth: ${user.dateOfBirth}`;
                 })
             })
             .catch((err) => {

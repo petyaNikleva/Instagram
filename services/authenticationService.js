@@ -14,12 +14,12 @@ class UserService {
         return false;
     }
 
-    // to stay
+    // ok
     logIn(user) {
         localStorage.setItem('loggedUser', JSON.stringify(user));
     }
 
-   // to stay
+   // ok
     logOut() {
         localStorage.setItem('loggedUser', JSON.stringify({user: 'noUser'}));
     }

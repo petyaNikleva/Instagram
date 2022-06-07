@@ -17,29 +17,17 @@ router.get("/users", async (req, res, next) => {
 
 router.post('/login', jsonParser, async (req, res, next) => {
     const { username, password } = req.body;
-    //console.log(req.body)
     try {
         const user = await User.findOne({email: req.body.email}).exec();
         if(!user) {
             throw new Error(`${username} Invalid username or password.`)
         }
-        //console.log(user);
         res.send(user)
     } catch (error) {
         next(error)
     }
 });
 
-
-// router.get('/getByEmail', jsonParser, async (req, res, next) => {
-//     try {
-//         const user = await User.findOne({email: req.body.email}).exec();
-//         console.log(user);
-//         res.send(user)
-//     } catch (error) {
-//         next(error);
-//     }
-// });
 
 
 router.get("/:userId", async (req, res, next) => {
@@ -52,7 +40,6 @@ router.get("/:userId", async (req, res, next) => {
 });
 
 router.post('/createUser', jsonParser, async (req, res, next) => {
-    // console.log(req.body);
     try {
         const user = await User.create(req.body);
         res.send(user);
