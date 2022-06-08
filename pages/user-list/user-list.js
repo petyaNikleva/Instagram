@@ -1,13 +1,15 @@
-//import authService from "../../services/authenticationService.js";
+import authService from "../../services/authenticationService.js";
 import { getAll } from "../../services/userService.js"
 
- export function allUsers () {
-    getAll()
-    .then (result => {
-        console.log(result)
-        return result;
-    })
-}
+//  export function allUsers () {
+//     return getAll()
+//     .then (result => {
+//         console.log(result);
+//         let userContainerElement = document.getElementsByClassName("user-container")[0];
+
+//         return result;
+//     })
+// }
 
 export function deleteHandler(e) {
     const grandparent = e.target.parentElement.parentElement;
