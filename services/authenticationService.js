@@ -46,11 +46,11 @@ class UserService {
         return this.getUser(email);
     }
 
-    deleteUser(email) {
-        let users = this.getAllUsers();
-        delete users[email];
-        localStorage.setItem('users', JSON.stringify(users));
-    }
+    // deleteUser(email) {
+    //     let users = this.getAllUsers();
+    //     delete users[email];
+    //     localStorage.setItem('users', JSON.stringify(users));
+    // }
 
     uploadImage(email, imgId) {
         const user = this.getUser(email);

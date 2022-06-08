@@ -10,7 +10,6 @@ export const login = async (email, password) => {
     });
 
     let jsonResult = await res.json();
-    
     if (res.ok) {
         return jsonResult;
     } else {
@@ -41,7 +40,7 @@ export const getAll = async () => {
 }
 
 export const getById = async (userId) => {
-    let res = await fetch(`${baseUrl}/:${userId}`)
+    let res = await fetch(`${baseUrl}/:${userId}`);
     let jsonResult = await res.json();
     if (res.ok) {
         return jsonResult;
@@ -50,18 +49,26 @@ export const getById = async (userId) => {
     }      
 }
 
-
-// export const login = (email, password) => {
-//     return fetch(`${baseUrl}/loginUser`, {
-//         method: "POST",
-//         headers: {
-//             'content-type': "application/json"
-//         },
-//         body: JSON.stringify({ email, password })
-//     })
-//     .then(res => res.json());
+// export const deleteById = async (userId) => {
+//     ret fetch(`${baseUrl}/:${userId}`);
+//     let jsonResult = await res.json();
+//     if (res.ok) {
+//         return jsonResult;
+//     } else {
+//         throw new Error('Error');
+//     }      
 // }
 
+export const deleteById = async (userId) => {
+    return fetch(`${baseUrl}/${userId}`, {
+        method: "DELETE",
+        // headers: {
+        //     'content-type': 'application/json'
+        // },
+        //body: JSON.stringify({ email, firstName, lastName, dateOfBirth, password, image })
+    })
+        .then(res => res.json());
+}
 
 
         

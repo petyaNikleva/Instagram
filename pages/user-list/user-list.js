@@ -1,4 +1,5 @@
 import authService from "../../services/authenticationService.js";
+import { deleteById } from "../../services/userService.js";
 import { getAll } from "../../services/userService.js"
 
 //  export function allUsers () {
@@ -11,13 +12,13 @@ import { getAll } from "../../services/userService.js"
 //     })
 // }
 
-export function deleteHandler(e) {
-    const grandparent = e.target.parentElement.parentElement;
-    const children = grandparent.children;
-    const email = children[2].textContent;
+export function deleteHandler(userId) {
     const confirmDelete = confirm("Are you sure you want to delete this user?");
     if (confirmDelete) {
-        authService.deleteUser(email);
+        deleteById(userId)
+        .then (result => {
+             console.log(result);})
+        //authService.deleteUser(email);
         window.location.href = "/#reloadPage";
         window.location.href = "/#user-list";
     }

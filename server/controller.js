@@ -49,7 +49,6 @@ router.post('/createUser', jsonParser, async (req, res, next) => {
 router.delete('/:userId', jsonParser, async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.userId);
-        //res.json({ok: true});
         res.send('User deleted.')
     } catch(error) {
         next(error);
