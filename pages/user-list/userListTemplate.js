@@ -23,7 +23,7 @@ export let userListTemplate = () => html`
 <h2>User List</h2>
 <section class="user-container">
     ${allUsers()?.length > 0
-         ? users.map(user => userTemplate(user)) // it worked proprertly when allUsers() wasn't async func
+         ? users.map(user => userTemplate(user)) // it worked propertly when allUsers() wasn't async func
          : html`<p class="no-reg-user">There are no registered users.</p>`
         }
 </section>

@@ -24,18 +24,16 @@ router.post('/login', jsonParser, async (req, res, next) => {
         }
         res.send(user)
     } catch (error) {
-        next(error)
+        next(error);
     }
 });
-
-
 
 router.get("/:userId", async (req, res, next) => {
     try {
         const user = await User.findById(req.params.userId);
         res.send(user);
     } catch(error) {
-        next(error)
+        next(error);
     }
 });
 
@@ -44,10 +42,19 @@ router.post('/createUser', jsonParser, async (req, res, next) => {
         const user = await User.create(req.body);
         res.send(user);
     } catch (error) {
-        next(error)
+        next(error);
     }
 });
 
+router.delete('/:userId', jsonParser, async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.userId);
+        //res.json({ok: true});
+        res.send('User deleted.')
+    } catch(error) {
+        next(error);
+    }
+});
 
 module.exports = router;
 
