@@ -46,6 +46,17 @@ router.post('/createUser', jsonParser, async (req, res, next) => {
     }
 });
 
+router.put('/:userId', jsonParser, async (req, res) => {
+    try {
+        await User.findByIdAndUpdate(req.params.userId, req.body);
+        const updatedUser = await User.findById(req.params.userId);
+        res.send(updatedUser)
+    } catch(error) {
+        next(error);
+    }
+})
+
+
 router.delete('/:userId', jsonParser, async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.userId);

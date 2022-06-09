@@ -16,9 +16,7 @@ export let editTemplate = () => html`
     <form id="form" action="/">
 
         <h1>Edit</h1>
-
         <hr>
-
         <div class="input-control">
             <label for="email">Email</label>
             <input @blur="${(e) => checkInputValid(e.target)}" type="email" placeholder="Email" value="${userForEdit().email}" name="email"
