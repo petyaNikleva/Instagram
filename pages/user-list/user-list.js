@@ -24,8 +24,8 @@ export function deleteHandler(userId) {
     }
 }
 
-export function editHandler (email) {
-    authService.setUserforEdit(email);
+export function editHandler (user) {
+    authService.setUserforEdit(user);
     window.location.href = "/#edit";
 }
 

@@ -38,9 +38,8 @@ export let userTemplate = (user) => html`
         <p class="card-name">${user.firstName} ${user.lastName}</p>
         <p>${user.email}</p>
         <p>Date of birth: ${user.dateOfBirth}</p>
-        <p style="display: none" id="user-id">${user._id}</p>
         <div class="container-btn">
-            <button @click="${(e) => editHandler(user.email)}" class="btn edit-btn">Edit</button>
+            <button @click="${(e) => editHandler(user)}" class="btn edit-btn">Edit</button>
             <button @click="${(e) => deleteHandler(user._id)}" class="btn delete-btn">Delete</button>
         </div>
     </article>

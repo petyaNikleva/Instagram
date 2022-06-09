@@ -2,6 +2,7 @@ class UserService {
     constructor() {
     }
 
+
     getLoggedUser() {
         return JSON.parse(localStorage.loggedUser);
     }
@@ -24,33 +25,16 @@ class UserService {
         localStorage.setItem('loggedUser', JSON.stringify({user: 'noUser'}));
     }
 
-    getUser(email) {
-        return JSON.parse(localStorage.users)[email];
+    //ok
+    setUserforEdit(user) {
+        localStorage.setItem('userForEdit', JSON.stringify(user));
     }
 
-    // getAllUsers() {
-    //     let users = {};
-    //     let areRegisteredUsers = !!(localStorage.getItem('users'));
-    //     if (areRegisteredUsers) {
-    //         users = JSON.parse(localStorage.users);
-    //     }
-    //     return users;
-    // }
-
-    setUserforEdit(email) {
-        localStorage.setItem('userForEdit', email);
-    }
-
+    //ok
     getUserforEdit() {
-        const email = localStorage.getItem('userForEdit');
-        return this.getUser(email);
+        return JSON.parse(localStorage.userForEdit);
     }
 
-    // deleteUser(email) {
-    //     let users = this.getAllUsers();
-    //     delete users[email];
-    //     localStorage.setItem('users', JSON.stringify(users));
-    // }
 
     uploadImage(email, imgId) {
         const user = this.getUser(email);

@@ -94,7 +94,7 @@ function isEmailAlreadyRegistered(email) {
         getAll()
         .then(users => {
             let user = users.find(u => u.email === email)
-            console.log(!!user)
+            //console.log(!!user)
             return (user)  
         })
     }
