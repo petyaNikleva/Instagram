@@ -1,6 +1,6 @@
 import authService from "../../services/authenticationService.js";
 import { deleteById } from "../../services/userService.js";
-import { getAll } from "../../services/userService.js"
+//import { getAll } from "../../services/userService.js"
 
 //  export function allUsers () {
 //     return getAll()

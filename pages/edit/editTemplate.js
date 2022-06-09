@@ -102,7 +102,7 @@ export let editTemplate = () => html`
 
         <hr>
 
-        <button @click=${updateHandler} class="register-btn">Update</button>
+        <button @click=${(e) => updateHandler(e, userForEdit()._id)} class="register-btn">Update</button>
 
     </form>
 </div>  

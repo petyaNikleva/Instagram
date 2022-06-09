@@ -55,7 +55,6 @@ router.put('/:userId', jsonParser, async (req, res, next) => {
     }
 })
 
-
 router.delete('/:userId', jsonParser, async (req, res, next) => {
     try {
         const user = await User.findByIdAndDelete(req.params.userId);

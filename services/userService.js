@@ -28,6 +28,17 @@ export const register = ( email, firstName, lastName, dateOfBirth, password, ima
         .then(res => res.json());
 }
 
+export const update = (userId, currentUserData ) => {
+    return fetch(`${baseUrl}/${userId}`, {
+        method: "PUT",
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ ...currentUserData })
+    })
+        .then(res => res.json());
+}
+
 
 export const getAll = async () => {
     let res = await fetch(`${baseUrl}/users`)
