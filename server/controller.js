@@ -3,7 +3,8 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const User = require('./Models/User');
 
-const jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json();
+router.use(jsonParser);
 
 router.get("/users", async (req, res, next) => {
     try {
@@ -14,7 +15,9 @@ router.get("/users", async (req, res, next) => {
     }  
 });
 
-router.post('/login', jsonParser, async (req, res, next) => {
+
+
+router.post('/login', async (req, res, next) => {
     const { username, password } = req.body;
     try {
         const user = await User.findOne({email: req.body.email}).exec();
@@ -36,7 +39,9 @@ router.get("/:userId", async (req, res, next) => {
     }
 });
 
-router.post('/createUser', jsonParser, async (req, res, next) => {
+//router.post('/createUser', jsonParser, async (req, res, next) => {
+router.post('/createUser', async (req, res, next) => {
+
     try {
         const user = await User.create(req.body);
         res.send(user);
@@ -45,7 +50,7 @@ router.post('/createUser', jsonParser, async (req, res, next) => {
     }
 });
 
-router.put('/:userId', jsonParser, async (req, res, next) => {
+router.put('/:userId', async (req, res, next) => {
     try {
         await User.findByIdAndUpdate(req.params.userId, req.body);
         const updatedUser = await User.findById(req.params.userId);
@@ -55,7 +60,7 @@ router.put('/:userId', jsonParser, async (req, res, next) => {
     }
 })
 
-router.delete('/:userId', jsonParser, async (req, res, next) => {
+router.delete('/:userId', async (req, res, next) => {
     try {
         const user = await User.findByIdAndDelete(req.params.userId);
         res.send('User deleted.')
@@ -63,6 +68,12 @@ router.delete('/:userId', jsonParser, async (req, res, next) => {
         next(error);
     }
 });
+
+
+
+
+
+
 
 module.exports = router;
 
