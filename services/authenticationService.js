@@ -2,11 +2,27 @@ class UserService {
     constructor() {
     }
 
-
     getLoggedUser() {
         return JSON.parse(localStorage.loggedUser);
     }
 
+    setLoggedUser(user) {
+        localStorage.setItem('loggedUser', JSON.stringify(user));
+    }
+
+    logOut() {
+        localStorage.setItem('loggedUser', JSON.stringify({ user: 'noUser' }));
+    }
+
+    setUserforEdit(user) {
+        localStorage.setItem('userForEdit', JSON.stringify(user));
+    }
+
+    getUserforEdit() {
+        return JSON.parse(localStorage.userForEdit);
+    }
+
+    // ???
     checkIsRegistered(emailValue) {
         let users = this.getAllUsers();
         if (users[emailValue]?.email === emailValue) {
@@ -14,34 +30,6 @@ class UserService {
         }
         return false;
     }
-
-    // ok
-    logIn(user) {
-        localStorage.setItem('loggedUser', JSON.stringify(user));
-    }
-
-   // ok
-    logOut() {
-        localStorage.setItem('loggedUser', JSON.stringify({user: 'noUser'}));
-    }
-
-    //ok
-    setUserforEdit(user) {
-        localStorage.setItem('userForEdit', JSON.stringify(user));
-    }
-
-    //ok
-    getUserforEdit() {
-        return JSON.parse(localStorage.userForEdit);
-    }
-
-
-    // uploadImage(userId, imgId) {
-    //     // TO DO from here
-    //     const user = this.getUser(email);
-    //     user.image = imgId;
-    //     this.register(email, user);
-    // }
 
 }
 

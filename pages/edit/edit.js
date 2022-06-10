@@ -42,9 +42,7 @@ export function updateHandler(e, userId) {
             image
         };
 
-        // edit(userId)
         update(userId, currentUser)
-            //authService.register(email, currentUser);
             .then((data) => {
                 setTimeout(() => {
                     alert('User data has been updated successfully.')
