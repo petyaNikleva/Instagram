@@ -11,6 +11,7 @@ export let userProfileTemplate = () => html`
         <p class="card-name">${currentUser().firstName} ${currentUser().lastName}</p>
         <p class="email">${currentUser().email}</p>
         <p class="date-of-birth">Date of birth: ${currentUser().dateOfBirth}</p>
+        <p class="img-name">Image name: ${currentUser().image}</p>
         <div class="container-btn">
         </div>
     </article>

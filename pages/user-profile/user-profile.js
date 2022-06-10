@@ -1,4 +1,5 @@
 import authService from "../../services/authenticationService.js";
+import { uploadImage, getById } from "../../services/userService.js";
 
 export function currentUser() {
     return authService.getLoggedUser();  
@@ -18,8 +19,9 @@ export function submitHandler(e) {
     })
         .then(response => response.json())
         .then(result => {
-            const email = currentUser().email;
-            authService.uploadImage(email, result.filename);
+            let userData = currentUser();
+            const userId = currentUser()._id;
+            uploadImage(userId, result.filename, userData);
             setTimeout(() => {
                 alert('Picture uploaded.')
                 getImageHandler();
@@ -56,7 +58,10 @@ export function getImageHandler() {
                     const emailElement = document.getElementsByClassName("email")[0];
                     emailElement.textContent = user.email;
                     const dateOfBirthElement = document.getElementsByClassName("date-of-birth")[0];
-                    dateOfBirthElement.taxtConent = `Date of birth: ${user.dateOfBirth}`;
+                    dateOfBirthElement.textConent = `Date of birth: ${user.dateOfBirth}`;
+                    const imageNameElement = document.getElementsByClassName("img-name")[0];
+                    imageNameElement.textConent = `${user.image}`;
+                    imageNameElement.style.display = 'none';
                 })
             })
             .catch((err) => {

@@ -100,6 +100,13 @@ export let editTemplate = () => html`
             </div>
         </div>
 
+        <div style="display:none" class="input-control">
+            <label for="img-name">Image name</label>
+            <input type="text" value="${userForEdit().image}"
+                name="img-name" id="img-name" />
+        </div>
+
+
         <hr>
 
         <button @click=${(e) => updateHandler(e, userForEdit()._id)} class="register-btn">Update</button>

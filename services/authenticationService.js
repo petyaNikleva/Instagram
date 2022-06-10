@@ -36,11 +36,12 @@ class UserService {
     }
 
 
-    uploadImage(email, imgId) {
-        const user = this.getUser(email);
-        user.image = imgId;
-        this.register(email, user);
-    }
+    // uploadImage(userId, imgId) {
+    //     // TO DO from here
+    //     const user = this.getUser(email);
+    //     user.image = imgId;
+    //     this.register(email, user);
+    // }
 
 }
 

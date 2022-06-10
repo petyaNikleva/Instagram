@@ -31,7 +31,7 @@ export function updateHandler(e, userId) {
         const lastName = formData.get('lastName');
         const dateOfBirth = formData.get('dateOfBirth');
         const password = formData.get('password');
-        const image = formData.get('image') || 'noPicture';
+        const image = formData.get('img-name') || 'noPicture';
 
         const currentUser = {
             email,
