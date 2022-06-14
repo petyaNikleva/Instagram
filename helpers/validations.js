@@ -32,6 +32,7 @@ export function checkPasswordsMatch(password, repeatPassword) {
         container.classList.add(`error--passwords-dont-match`);
         container.classList.remove('success');
         container.classList.add('error');
+
     } else {
         container.classList.remove(`error--passwords-dont-match`);
         container.classList.add('success');
@@ -50,7 +51,7 @@ export function areValidCredentials(email, password, passwordElement) {
         container.classList.remove(`error--passwords-dont-match`);
         container.classList.remove('error');
         areValid = true;
-        
+
     } else {
         container.classList.add(`error--passwords-dont-match`);
         container.classList.remove('success');
@@ -84,6 +85,16 @@ const VALIDATOR = {
     'lower-case-letter': (value, param) => isLowerCaseLeterInPassword(value),
 }
 
+export function incorrectEmailAndPass(emailElement, passwordElement) {
+    const containerEmail = emailElement.closest('.input-control');
+    containerEmail.classList.add('error');
+    containerEmail.classList.add(`error--passwords-dont-match`);
+    const containerPassword = passwordElement.closest('.input-control');
+    containerPassword.classList.add('error');
+    containerPassword.classList.add(`error--passwords-dont-match`); 
+}
+
+
 function isValidEmail(email) {
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return !regex.test(String(email).toLowerCase());
@@ -92,19 +103,19 @@ function isValidEmail(email) {
 function isEmailAlreadyRegistered(email) {
     try {
         getAll()
-        .then(users => {
-            let user = users.find(u => u.email === email)
-            //console.log(!!user)
-            return (user)  
-        })
+            .then(users => {
+                let user = users.find(u => u.email === email)
+                //console.log(!!user)
+                return (user)
+            })
     }
     catch (error) {
         console.log(error)
-    } 
+    }
     // let result = authService.getAllUsers().hasOwnProperty(email);
     // console.log(result);
     // return  result;
-  
+
 }
 
 function isDigitInPassword(password) {
@@ -121,4 +132,6 @@ function isUpperCaseLeterInPassword(password) {
     const regex = /[A-Z]/;
     return !regex.test(password);
 }
+
+
 

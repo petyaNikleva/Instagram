@@ -28,7 +28,7 @@ export function submitHandler(e) {
                 })
         })
         .catch((err) => {
-            console.log(err.message);
+            console.log(err);
         })
 };
 

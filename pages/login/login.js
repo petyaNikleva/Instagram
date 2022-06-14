@@ -1,5 +1,6 @@
 import { login } from "../../services/userService.js"
 import authService from "../../services/authenticationService.js";
+import { incorrectEmailAndPass } from "../../helpers/validations.js"
 
 
 
@@ -21,10 +22,13 @@ export function loginHandler(e) {
                     alert(`Welcome, ${user.firstName} ${user.lastName}!`)
                     window.location.href = "/#";
                 }, 500);
+            } else {
+                throw new Error('Invalid email ot pass!!!')
             }
         })
         .catch((error) => {
-            console.log(error)
+            incorrectEmailAndPass(emailElement, passwordElement);
+            console.log(error);
         })
 
 }
