@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 const { initDatbase } = require('./config/dataBaseConfig');
-const routes = require('./controller');
+const routes = require('./controllers/userController');
 
 const app = express();
 app.use(cors());
