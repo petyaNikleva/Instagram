@@ -104,18 +104,19 @@ function isEmailAlreadyRegistered(email) {
     try {
         getAll()
             .then(users => {
-                let user = users.find(u => u.email === email)
-                //console.log(!!user)
-                return (user)
+                let element = document.getElementById('reg-span');
+                if(users.some(u => u.email === email)) {
+                    element.style.display = "block";
+                    const containerEmail = element.closest('.input-control');
+                    containerEmail.classList.add('error');
+                } else {
+                    element.style.display = "none";
+                }
             })
     }
     catch (error) {
         console.log(error)
     }
-    // let result = authService.getAllUsers().hasOwnProperty(email);
-    // console.log(result);
-    // return  result;
-
 }
 
 function isDigitInPassword(password) {

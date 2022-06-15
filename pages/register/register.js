@@ -36,7 +36,7 @@ export function registerHandler(e) {
         const password = formData.get('password');
         const image = 'noPicture';
         
-        register(email, firstName, lastName, dateOfBirth, password, image)
+      register(email, firstName, lastName, dateOfBirth, password, image)
         .then((data) => {
             setTimeout(() => {
                 alert('Successful registration.')
@@ -45,6 +45,7 @@ export function registerHandler(e) {
           })
           .catch(err => {
             console.log(err);
+            console.log(err.keyValue);
           })  
     }
 }

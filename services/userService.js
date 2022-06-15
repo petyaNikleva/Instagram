@@ -17,16 +17,35 @@ export const login = async (email, password) => {
     }
 };
 
-export const register = ( email, firstName, lastName, dateOfBirth, password, image ) => {
-    return fetch(`${baseUrl}/createUser`, {
+export const register = async ( email, firstName, lastName, dateOfBirth, password, image ) => {
+    let res = await fetch(`${baseUrl}/createUser`, {
         method: "POST",
         headers: {
             'content-type': 'application/json'
         },
         body: JSON.stringify({ email, firstName, lastName, dateOfBirth, password, image })
     })
-        .then(res => res.json());
+    let jsonResult = await res.json();
+    if (res.ok) {
+        return jsonResult;
+    } else {
+        throw new Error('Error');
+    }
+        
 }
+
+// export const register = ( email, firstName, lastName, dateOfBirth, password, image ) => {
+//     return fetch(`${baseUrl}/createUser`, {
+//         method: "POST",
+//         headers: {
+//             'content-type': 'application/json'
+//         },
+//         body: JSON.stringify({ email, firstName, lastName, dateOfBirth, password, image })
+//     })
+//         .then(res => {
+//             console.log(res)
+//             res.json()});
+// }
 
 export const update = (userId, currentUserData ) => {
     return fetch(`${baseUrl}/${userId}`, {
@@ -64,7 +83,6 @@ export const deleteById = async (userId) => {
     })
         .then(res => res.json());
 }
-
 
 export const getAll = async () => {
     let res = await fetch(`${baseUrl}/users`)
