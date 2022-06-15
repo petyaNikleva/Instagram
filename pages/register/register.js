@@ -3,11 +3,7 @@ import { checkInputValid, checkPasswordsMatch } from "../../helpers/validations.
 
 export function repeatPasswordHandler(e) {
     const repeatPasswordElement = e.target;
-    const form = repeatPasswordElement.parentElement.parentElement;
-    const passwordElement = form.querySelector('#password');
-
     checkInputValid(repeatPasswordElement);
-    checkPasswordsMatch(passwordElement, repeatPasswordElement);
 }
 
 export function registerHandler(e) {
@@ -24,11 +20,13 @@ export function registerHandler(e) {
             hasError = true;
         }
     });
-
+    const passwordElement = form.querySelector('#password');
+    const repeatPasswordElement = form.querySelector('#repeat-password');
+    if (!checkPasswordsMatch(passwordElement, repeatPasswordElement)) {
+        hasError = true;
+    } 
     if (!hasError) {
-
         const formData = new FormData(form);
-
         const email =  formData.get('email');
         const firstName = formData.get('firstName');
         const lastName = formData.get('lastName');

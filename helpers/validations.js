@@ -32,11 +32,12 @@ export function checkPasswordsMatch(password, repeatPassword) {
         container.classList.add(`error--passwords-dont-match`);
         container.classList.remove('success');
         container.classList.add('error');
-
+        return false;
     } else {
         container.classList.remove(`error--passwords-dont-match`);
         container.classList.add('success');
         container.classList.remove('error');
+        return true;
     }
 }
 
