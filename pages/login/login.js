@@ -1,5 +1,7 @@
+import { login } from "../../services/userService.js"
 import authService from "../../services/authenticationService.js";
-import { areValidCredentials } from "../../helpers/validations.js";
+import { incorrectEmailAndPass } from "../../helpers/validations.js"
+
 
 
 export function loginHandler(e) {
@@ -12,14 +14,23 @@ export function loginHandler(e) {
     const passwordElement = form.querySelector('#password');
     const password = passwordElement.value;
 
-    if (areValidCredentials(email, password, passwordElement)){
-        const user = authService.getUser(email);
-        setTimeout(() => {
-            alert(`Welcome, ${user.firstName} ${user.lastName}!`)
-            window.location.href = "/#";
-        }, 500);
-        authService.logIn(email);
-    }
+    login(email, password)
+        .then((user) => {
+            if (user && user.password === password) {
+                authService.setLoggedUser(user);
+                setTimeout(() => {
+                    alert(`Welcome, ${user.firstName} ${user.lastName}!`)
+                    window.location.href = "/#";
+                }, 500);
+            } else {
+                throw new Error('Invalid email ot pass!!!')
+            }
+        })
+        .catch((error) => {
+            incorrectEmailAndPass(emailElement, passwordElement);
+            console.log(error);
+        })
+
 }
 
 

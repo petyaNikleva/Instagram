@@ -16,9 +16,7 @@ export let editTemplate = () => html`
     <form id="form" action="/">
 
         <h1>Edit</h1>
-
         <hr>
-
         <div class="input-control">
             <label for="email">Email</label>
             <input @blur="${(e) => checkInputValid(e.target)}" type="email" placeholder="Email" value="${userForEdit().email}" name="email"
@@ -102,9 +100,16 @@ export let editTemplate = () => html`
             </div>
         </div>
 
+        <div style="display:none" class="input-control">
+            <label for="img-name">Image name</label>
+            <input type="text" value="${userForEdit().image}"
+                name="img-name" id="img-name" />
+        </div>
+
+
         <hr>
 
-        <button @click=${updateHandler} class="register-btn">Update</button>
+        <button @click=${(e) => updateHandler(e, userForEdit()._id)} class="register-btn">Update</button>
 
     </form>
 </div>  

@@ -22,7 +22,6 @@ export let loginTemplate = () => html`
                 data-validators="required">
                 <div class="error-container">
                     <span class="error errror-message--required">
-                        Email is required.
                     </span>
                 </div>
             </div>
@@ -32,9 +31,6 @@ export let loginTemplate = () => html`
                 <input type="password" placeholder="Enter Password" name="password" id="password"
                 data-validators="required"/>
                 <div class="error-container">
-                    <span class="error errror-message--required">
-                        Password is required.
-                    </span>
                     <span class="error errror-message--passwords-dont-match">
                         Incorrect email or password.
                     </span>

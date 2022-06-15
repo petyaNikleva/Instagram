@@ -30,7 +30,7 @@ export let registerTemplate = () => html`
                     <span class="error errror-message--email-valid">
                         Provide a valid email address.
                     </span>
-                    <span class="error errror-message--email-exist">
+                    <span id="reg-span" class="error errror-message--email-exist">
                         This email has already been registered.
                     </span>
                 </div>

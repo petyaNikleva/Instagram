@@ -9,11 +9,12 @@ export function logOutHandler (e) {
 
 export function isLogged () {
     const loggedUser = authService.getLoggedUser();
-    if (loggedUser !== "noUser" && loggedUser != null) {
+    if (loggedUser.user !== "noUser" && loggedUser != null) {
         return true;
     }
     return false;
 }
+
 
 
 

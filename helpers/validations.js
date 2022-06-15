@@ -1,4 +1,5 @@
-import authService from "../services/authenticationService.js";
+//import authService from "../services/authenticationService.js";
+import { getAll } from "../services/userService.js";
 
 export function checkInputValid(element) {
     const container = element.closest('.input-control');
@@ -31,10 +32,12 @@ export function checkPasswordsMatch(password, repeatPassword) {
         container.classList.add(`error--passwords-dont-match`);
         container.classList.remove('success');
         container.classList.add('error');
+        return false;
     } else {
         container.classList.remove(`error--passwords-dont-match`);
         container.classList.add('success');
         container.classList.remove('error');
+        return true;
     }
 }
 
@@ -49,7 +52,7 @@ export function areValidCredentials(email, password, passwordElement) {
         container.classList.remove(`error--passwords-dont-match`);
         container.classList.remove('error');
         areValid = true;
-        
+
     } else {
         container.classList.add(`error--passwords-dont-match`);
         container.classList.remove('success');
@@ -77,11 +80,21 @@ const VALIDATOR = {
     'min-length': (value, param) => !!(value.length < Number(param)),
     'max-length': (value, param) => !!(value.length > Number(param)),
     'email-valid': (value, param) => isValidEmail(value),
-    'email-exist': (value, param) => isEmailAlreadyRegistered(value),
+    'email-exist': (value, param) => !!isEmailAlreadyRegistered(value),
     'digit': (value, param) => isDigitInPassword(value),
     'upper-case-letter': (value, param) => isUpperCaseLeterInPassword(value),
     'lower-case-letter': (value, param) => isLowerCaseLeterInPassword(value),
 }
+
+export function incorrectEmailAndPass(emailElement, passwordElement) {
+    const containerEmail = emailElement.closest('.input-control');
+    containerEmail.classList.add('error');
+    containerEmail.classList.add(`error--passwords-dont-match`);
+    const containerPassword = passwordElement.closest('.input-control');
+    containerPassword.classList.add('error');
+    containerPassword.classList.add(`error--passwords-dont-match`); 
+}
+
 
 function isValidEmail(email) {
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -89,7 +102,22 @@ function isValidEmail(email) {
 }
 
 function isEmailAlreadyRegistered(email) {
-    return authService.getAllUsers().hasOwnProperty(email);
+    try {
+        getAll()
+            .then(users => {
+                const element = document.getElementById('reg-span');
+                if(users.some(u => u.email === email)) {
+                    element.style.display = "block";
+                    const containerEmail = element.closest('.input-control');
+                    containerEmail.classList.add('error');
+                } else {
+                    element.style.display = "none";
+                }
+            })
+    }
+    catch (error) {
+        console.log(error)
+    }
 }
 
 function isDigitInPassword(password) {
@@ -106,4 +134,6 @@ function isUpperCaseLeterInPassword(password) {
     const regex = /[A-Z]/;
     return !regex.test(password);
 }
+
+
 

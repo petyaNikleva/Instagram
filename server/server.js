@@ -2,15 +2,19 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
+const { initDatbase } = require('./config/dataBaseConfig');
+const routes = require('./controller');
 
 const app = express();
-
 app.use(cors());
+app.use(routes);
+app.use(express.urlencoded({extended: false}));
+
+//--------- Multer starts -------/
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, '../uploads'); // it save image in folder which is outside the project
-        //cb(null, 'uploads'); //-> it will save the image in the project directory. But will reload the page due to Live server hot reload
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname))
@@ -37,11 +41,19 @@ app.get(`/upload/:pictureId`, (req, res) => {
     });
 });
 
-
 app.post('/upload', upload.single('image'), (req, res) => {
     res.json(req.file);
 });
 
+// ---- Multer ends-----///
 
-const port = 3000;
-app.listen(port, () => console.log(`Server is running on port ${port}.`))
+initDatbase()
+.then(() => {
+    console.log("MongoDB database connection established successfully.");
+    const port = 3000;
+    app.listen(port, () => console.log(`Server is running on port ${port}.`))
+    
+}).catch(err => {
+    console.log('Cannot connect to the database', err);
+});
+

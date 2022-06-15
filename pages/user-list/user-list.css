@@ -3,7 +3,7 @@ h2 {
     text-align: center;
 }
 
-.user-card {
+.user-card.users {
     width: 30%;
     border: 1px solid gray;
     padding: 1.5rem;
