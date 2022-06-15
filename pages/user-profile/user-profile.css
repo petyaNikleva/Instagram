@@ -7,6 +7,8 @@
     border-radius: unset;
     box-shadow: none;
     margin-top: 0;
+    background-image: linear-gradient(blueviolet, #f9cea8);
+    min-height: 22rem;
 }
 
 .upload-text {
@@ -14,6 +16,10 @@
     padding-left: 1rem;
     font-weight: 800;
     font-size: larger;
+}
+
+#user-profile-image {
+    width: 35%;
 }
 
 .submit-btn {

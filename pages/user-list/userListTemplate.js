@@ -29,11 +29,38 @@ export let userListTemplate = () => html`
 </section>
 `
 
+function imageHandler(user) {
+    const imageId = user.image;
+    let imgPath;
+    if (imageId === "noPicture") {
+        imgPath = "../../images/user-icon.png";
+        return imgPath;
+    } else {
+        let data;
+        fetch(`http://localhost:3000/upload/${imageId}`)
+            .then(response => {
+                response.blob()
+                    .then(blobResponse => {
+                        data = blobResponse;
+                        const urlCreator = window.URL || window.webkitURL;
+                        const imgBlob = urlCreator.createObjectURL(data);
+                        const imgElement = document.getElementsByClassName(user._id)[0];
+                        imgElement.setAttribute('src', imgBlob);
+                        const nameElement = document.getElementsByClassName("card-name")[0];
+                        nameElement.textContent = `${user.firstName} ${user.lastName}`;
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }
+}
+
 
 export let userTemplate = (user) => html`
-    <article class="user-card">
+    <article class="user-card users">
         <div class="card-img">
-            <img src="../../images/user-icon.png">
+            <img class="${user._id}" src="${imageHandler(user)}">
         </div>
         <p class="card-name">${user.firstName} ${user.lastName}</p>
         <p>${user.email}</p>
