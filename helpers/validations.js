@@ -104,7 +104,7 @@ function isEmailAlreadyRegistered(email) {
     try {
         getAll()
             .then(users => {
-                let element = document.getElementById('reg-span');
+                const element = document.getElementById('reg-span');
                 if(users.some(u => u.email === email)) {
                     element.style.display = "block";
                     const containerEmail = element.closest('.input-control');

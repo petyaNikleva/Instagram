@@ -22,15 +22,6 @@ class UserService {
         return JSON.parse(localStorage.userForEdit);
     }
 
-    // ???
-    checkIsRegistered(emailValue) {
-        let users = this.getAllUsers();
-        if (users[emailValue]?.email === emailValue) {
-            return true;
-        }
-        return false;
-    }
-
 }
 
 const authService = new UserService();

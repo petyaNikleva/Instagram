@@ -22,7 +22,7 @@ async function requestCallback(req, res, next, command) {
     }
 }
 
-let crudHandlers = {
+const crudHandlers = {
     "allUsers": async (req, res) => {
         const users = await User.find({});
         res.send(users);
