@@ -6,6 +6,7 @@ import { userListTemplate } from "../pages/user-list/userListTemplate.js";
 import { navTemplate } from "../pages/nav/navTemplate.js";
 import { editTemplate } from "../pages/edit/editTemplate.js";
 import { userProfileTemplate } from "../pages/user-profile/userProfileTemplate.js";
+import { createPostTemplate } from "../pages/create-post/createPostTemplate.js";
 
 const routes = {
     '/': { 
@@ -30,6 +31,10 @@ const routes = {
     },
     '/#user-profile': {
         mainView : userProfileTemplate, 
+        navView: navTemplate
+    },
+    '/#create-post': {
+        mainView : createPostTemplate, 
         navView: navTemplate
     }
 };

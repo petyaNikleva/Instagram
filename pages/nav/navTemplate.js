@@ -22,6 +22,9 @@ export let navTemplate = () => html`
                     `
                     : html `
                     <li class="nav-item user-profile">
+                        <a href="/#create-post">Create Post</a>
+                    </li>
+                    <li class="nav-item user-profile">
                         <a href="/#user-profile">My Profile</a>
                     </li>
                     <li class="nav-item user-list">

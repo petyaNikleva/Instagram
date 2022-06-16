@@ -14,7 +14,6 @@ export let registerTemplate = () => html`
     
     <div class="container">
         <form id="form" action="/">
-    
             <h1>Register</h1>
             <p>Please fill in this form to create an account.</p>
             <hr>
