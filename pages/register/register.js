@@ -43,7 +43,7 @@ export function registerHandler(e) {
           })
           .catch(err => {
             console.log(err);
-            console.log(err.keyValue);
+            //console.log(err.keyValue);
           })  
     }
 }
