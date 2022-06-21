@@ -19,10 +19,10 @@ export function createNewPost(e) {
     })
         .then(response => response.json())
         .then(imageData => {
-            const fileName = imageData.filename
+            const image = imageData.filename
             const description = document.getElementById('post-description').value;
             const _authorId = currentUser()._id;
-            create(_authorId, description, fileName)
+            create(description, image, _authorId)
              .then((data) => {
                     console.log(data)
                     setTimeout(() => {

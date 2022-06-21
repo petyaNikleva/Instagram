@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     description: String,
     image: String,
-    _author: {
+    _authorId: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
     },
@@ -11,5 +11,5 @@ const postSchema = new mongoose.Schema({
     comments: []
 })
 
-module.exports = mongoose.model("Post", postSchema)
-
+const Post = mongoose.model("Post", postSchema)
+module.exports = Post;

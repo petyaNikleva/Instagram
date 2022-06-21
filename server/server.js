@@ -8,8 +8,8 @@ const postRoutes = require('./controllers/postController');
 
 const app = express();
 app.use(cors());
-app.use(userRoutes);
-app.use(postRoutes);
+app.use(postRoutes); //1
+app.use(userRoutes); //2
 app.use(express.urlencoded({extended: false}));
 
 //--------- Multer starts -------/
