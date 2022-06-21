@@ -1,39 +1,39 @@
 import { html, render } from "./../../node_modules/lit-html/lit-html.js";
-//import {  deleteHandler, editHandler } from "../user-list/user-list.js";
-import { getAll } from "../../services/userService.js"
+//import {  getAuthor } from "../news-feed/news-feed.js";
+import { getAll } from "../../services/postService.js"
 
 
-function allUsers () {
+
+function allposts () {
     getAll()
-    .then (users => {
-        //console.log(users);
-        let userContainerElement = document.getElementsByClassName("user-container")[0];
-        let divContainerElement = divContainerTemplate(users);
-        let noRegUserelement = document.getElementsByClassName('no-reg-user')[0];
-        noRegUserelement.style.display = "none";
-        render(divContainerElement, userContainerElement);
+    .then (posts => {
+        let postContainerElement = document.getElementsByClassName("post-container")[0];
+        let divContainerElement = divContainerTemplate(posts);
+        let noRegpostelement = document.getElementsByClassName('no-posts')[0];
+        noRegpostelement.style.display = "none";
+        render(divContainerElement, postContainerElement);
     })
 }
 
-let divContainerTemplate = (users) => html`
-    ${users.map(user => userTemplate(user))}
+let divContainerTemplate = (posts) => html`
+    ${posts.map(post => postTemplate(post))}
 `
 
-export let userListTemplate = () => html`
-<h2>User List</h2>
-<section class="user-container">
-    ${allUsers()?.length > 0
-         ? users.map(user => userTemplate(user)) // it worked propertly when allUsers() wasn't async func
-         : html`<p class="no-reg-user">There are no registered users.</p>`
+export let newsFeedTemplate = () => html`
+<h2>Posts</h2>
+<section class="post-container">
+    ${allposts()?.length > 0
+         ? posts.map(post => postTemplate(post)) 
+         : html`<p class="no-posts">There are no posts.</p>`
         }
 </section>
 `
 
-function imageHandler(user) {
-    const imageId = user.image;
+function imageHandler(post) {
+    const imageId = post.image;
     let imgPath;
     if (imageId === "noPicture") {
-        imgPath = "../../images/user-icon.png";
+        imgPath = "../../images/post-icon.png";
         return imgPath;
     } else {
         let data;
@@ -44,10 +44,11 @@ function imageHandler(user) {
                         data = blobResponse;
                         const urlCreator = window.URL || window.webkitURL;
                         const imgBlob = urlCreator.createObjectURL(data);
-                        const imgElement = document.getElementsByClassName(user._id)[0];
+                        const imgElement = document.getElementsByClassName(post._id)[0];
                         imgElement.setAttribute('src', imgBlob);
                         const nameElement = document.getElementsByClassName("card-name")[0];
-                        nameElement.textContent = `${user.firstName} ${user.lastName}`;
+                        // here author !!!!
+                        //nameElement.textContent = `${post.firstName} ${post.lastName}`;
                     })
             })
             .catch((err) => {
@@ -57,13 +58,21 @@ function imageHandler(user) {
 }
 
 
-export let userTemplate = (user) => html`
-    <article class="user-card users">
+export let postTemplate = (post) => html`
+    <article class="post-card posts">
         <div class="card-img">
-            <img class="${user._id}" src="${imageHandler(user)}">
+            <img class="${post._id}" src="${imageHandler(post)}">
         </div>
-        <p class="card-name">${user.firstName} ${user.lastName}</p>
-        <p>${user.email}</p>
-        <p>Date of birth: ${user.dateOfBirth}</p>
+        <div>
+            <p id="likes-and-comment-icon-conatiner">
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-comment"></i>
+            </p> 
+             <div>Liked by: ....</div>
+        </div>
+        
+        <!-- <p class="card-name">${post.firstName} ${post.lastName}</p>
+        <p>${post.email}</p>
+        <p>Date of birth: ${post.dateOfBirth}</p> -->
     </article>
 `

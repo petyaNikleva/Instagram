@@ -1,5 +1,5 @@
 import { render } from "../../node_modules/lit-html/lit-html.js";
-import { newsFeedTemplate} from "../pages/newsFeed/newsFeedTemplate.js"
+import { newsFeedTemplate} from "../pages/news-feed/newsFeedTemplate.js"
 import { loginTemplate } from "../pages/login/loginTemplate.js";
 import { registerTemplate } from "../pages/register/registerTemplate.js";
 import { userListTemplate } from "../pages/user-list/userListTemplate.js";

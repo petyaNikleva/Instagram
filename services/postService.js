@@ -1,5 +1,15 @@
 const baseUrl = 'http://localhost:3000';
 
+export const getAll = async () => {
+    let res = await fetch(`${baseUrl}/posts`)
+    let jsonResult = await res.json();
+    if (res.ok) {
+        return jsonResult;
+    } else {
+        throw new Error('Error');
+    }      
+}
+
 export const create = async ( description, image, _authorId ) => {
     let res = await fetch(`${baseUrl}/createPost`, {
         method: "POST",
@@ -17,6 +27,6 @@ export const create = async ( description, image, _authorId ) => {
         return jsonResult;
     } else {
         throw new Error('Error');
-    }
-        
+    }      
 }
+
