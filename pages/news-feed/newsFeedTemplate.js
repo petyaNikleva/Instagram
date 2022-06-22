@@ -1,7 +1,5 @@
 import { html, render } from "./../../node_modules/lit-html/lit-html.js";
-//import {  getAuthor } from "../news-feed/news-feed.js";
 import { getAll } from "../../services/postService.js"
-
 
 
 function allposts () {
@@ -20,7 +18,7 @@ let divContainerTemplate = (posts) => html`
 `
 
 export let newsFeedTemplate = () => html`
-<h2>Posts</h2>
+<h2>News Feed</h2>
 <section class="post-container">
     ${allposts()?.length > 0
          ? posts.map(post => postTemplate(post)) 
@@ -29,40 +27,52 @@ export let newsFeedTemplate = () => html`
 </section>
 `
 
-function imageHandler(post) {
+function postViewHandler(post) {
     const imageId = post.image;
-    let imgPath;
-    if (imageId === "noPicture") {
-        imgPath = "../../images/post-icon.png";
-        return imgPath;
-    } else {
-        let data;
-        fetch(`http://localhost:3000/upload/${imageId}`)
-            .then(response => {
-                response.blob()
-                    .then(blobResponse => {
-                        data = blobResponse;
-                        const urlCreator = window.URL || window.webkitURL;
-                        const imgBlob = urlCreator.createObjectURL(data);
-                        const imgElement = document.getElementsByClassName(post._id)[0];
-                        imgElement.setAttribute('src', imgBlob);
-                        const nameElement = document.getElementsByClassName("card-name")[0];
-                        // here author !!!!
-                        //nameElement.textContent = `${post.firstName} ${post.lastName}`;
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            });
-    }
+    let data;
+    fetch(`http://localhost:3000/upload/${imageId}`)
+        .then(response => {
+            response.blob()
+                .then(blobResponse => {
+                    data = blobResponse;
+                    const urlCreator = window.URL || window.webkitURL;
+                    const imgBlob = urlCreator.createObjectURL(data);
+                    const imgElement = document.getElementsByClassName(post._id)[0];
+                    imgElement.setAttribute('src', imgBlob);
+                    authorHandler(post._authorId);
+                })
+         })
+        .catch((err) => {
+            console.log(err)
+        });
+    
 }
+
+
+function authorHandler(_authorId) {
+     fetch(`http://localhost:3000/${_authorId}`)
+     .then( res => res.json())
+     .then(user => {
+        const authorHTMLCollection = document.getElementsByClassName(_authorId);
+        let authorElements = [...authorHTMLCollection];
+        authorElements.forEach(element => {
+            element.textContent = `Author: ${user.firstName} ${user.lastName}`
+        } )
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+    
+}   
 
 
 export let postTemplate = (post) => html`
     <article class="post-card posts">
         <div class="card-img">
-            <img class="${post._id}" src="${imageHandler(post)}">
+            <img class="${post._id}" src="${postViewHandler(post)}">
         </div>
+        <div class="description">Description: ${post.description}</div>
+        <div class="div-author ${post._authorId}">Author:...</div> 
         <div>
             <p id="likes-and-comment-icon-conatiner">
                 <i class="fa-solid fa-heart"></i>
@@ -70,9 +80,9 @@ export let postTemplate = (post) => html`
             </p> 
              <div>Liked by: ....</div>
         </div>
-        
-        <!-- <p class="card-name">${post.firstName} ${post.lastName}</p>
-        <p>${post.email}</p>
-        <p>Date of birth: ${post.dateOfBirth}</p> -->
     </article>
 `
+
+
+
+          

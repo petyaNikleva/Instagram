@@ -36,10 +36,11 @@ app.get(`/upload/:pictureId`, (req, res) => {
     res.sendFile(fileName, options, function (err) {
         if (err) {
             console.log(err);
-        } else {
-            console.log('Sent:', fileName);
+        } 
+        //else {
+            //console.log('Sent:', fileName);
             //res.json(req.file);
-        }
+        //}
     });
 });
 
