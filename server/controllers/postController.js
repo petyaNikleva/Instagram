@@ -8,7 +8,7 @@ router.use(jsonParser);
 
 router.get("/posts", async (req, res, next) => requestCallback(req, res, next, "allPosts"));
 router.post("/createPost", async (req, res, next) => requestCallback (req, res, next, "newPost"));
-
+router.put("/:postId", async(req, res, next) => requestCallback(req, res, next, "updatePost")) 
 
 async function requestCallback(req, res, next, command) {
     try {
@@ -30,6 +30,12 @@ const crudHandlers = {
         const newPost = await Post.create(req.body);
         res.send(newPost);
     },
+
+    "updatePost": async (req, res) => {
+        await Post.findByIdAndUpdate(req.params.postId, req.body);
+        const updatedPost = await Post.findById(req.params.postId);
+        res.send(updatedPost);
+    }
 
 }
 

@@ -75,13 +75,17 @@ export let postTemplate = (post) => html`
         <div class="div-author ${post._authorId}">Author:...</div> 
         <div>
             <p id="likes-and-comment-icon-conatiner">
-                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-heart" click=${(e) => likeClickHandler(e)}></i>
                 <i class="fa-solid fa-comment"></i>
             </p> 
              <div>Liked by: ....</div>
         </div>
     </article>
 `
+
+function likeClickHandler(e) {
+    e.preventDefault();
+}
 
 
 
