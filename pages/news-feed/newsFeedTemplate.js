@@ -1,5 +1,6 @@
 import { html, render } from "./../../node_modules/lit-html/lit-html.js";
-import { getAll } from "../../services/postService.js"
+import { getAll, update } from "../../services/postService.js"
+
 
 
 function allposts () {
@@ -61,8 +62,7 @@ function authorHandler(_authorId) {
     })
     .catch((err) => {
         console.log(err)
-    })
-    
+    }) 
 }   
 
 
@@ -75,7 +75,7 @@ export let postTemplate = (post) => html`
         <div class="div-author ${post._authorId}">Author:...</div> 
         <div>
             <p id="likes-and-comment-icon-conatiner">
-                <i class="fa-solid fa-heart" click=${(e) => likeClickHandler(e)}></i>
+                <i class="fa-solid fa-heart" @click=${(e) => likeClickHandler(e, post._id)}></i>
                 <i class="fa-solid fa-comment"></i>
             </p> 
              <div>Liked by: ....</div>
@@ -83,8 +83,24 @@ export let postTemplate = (post) => html`
     </article>
 `
 
-function likeClickHandler(e) {
+function likeClickHandler(e, postId) {
     e.preventDefault();
+    fetch(`http://localhost:3000/:${postId}`)
+     .then( res => res.json())
+     .then(post => {
+        console.log(post)
+        // const authorHTMLCollection = document.getElementsByClassName(_authorId);
+        // let authorElements = [...authorHTMLCollection];
+        // authorElements.forEach(element => {
+        //     element.textContent = `Author: ${user.firstName} ${user.lastName}`
+        // } )
+    })
+    .catch((err) => {
+        console.log(err)
+    }) 
+    // const articleElement = (e.target).parentElement.parentElement.parentElement;
+    // const 
+    // update(postId, postData)
 }
 
 

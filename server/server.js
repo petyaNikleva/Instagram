@@ -5,11 +5,13 @@ const cors = require('cors');
 const { initDatbase } = require('./config/dataBaseConfig');
 const userRoutes = require('./controllers/userController');
 const postRoutes = require('./controllers/postController');
+const postIdRoutes = require('./controllers/postIdController');
 
 const app = express();
 app.use(cors());
 app.use(postRoutes); //1
 app.use(userRoutes); //2
+app.use('/postId', postIdRoutes);
 app.use(express.urlencoded({extended: false}));
 
 //--------- Multer starts -------/
