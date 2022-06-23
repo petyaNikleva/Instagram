@@ -80,7 +80,7 @@ export let postTemplate = (post) => html`
                 <i class="fa-solid fa-heart" @click=${(e) => likeClickHandler(e, post._id)}></i>
                 <i class="fa-solid fa-comment"></i>
             </p> 
-             <div>Liked by: ....</div>
+            <div class="likes-${post._id}">Liked by: ${post.likes.length} people.</div>
         </div>
     </article>
 `
@@ -90,7 +90,6 @@ function likeClickHandler(e, postId) {
     fetch(`${baseUrl}/postId/${postId}`)
      .then( res => res.json())
      .then(post => {
-        //console.log(post)
         const likers = post.likes;
         const currentUser = authService.getLoggedUser();
         if (currentUser.user === 'noUser') {
@@ -105,31 +104,20 @@ function likeClickHandler(e, postId) {
             console.log(post);
             update(postId, post)
             .then((updatedPost) => {
-                setTimeout(() => {
-                    alert('You\'ve just liked the post.');
-                    console.log(updatedPost);
-                }, 500);
+                const likeDiv = document.getElementsByClassName(`likes-${post._id}`)[0];
+                (post.likes.length) - 1 == 0
+                ?  likeDiv.textContent = `Liked by You`   
+                :  likeDiv.textContent = `Liked by You and ${(post.likes.length)-1} people.`
               })
               .catch(err => {
                 console.log(err);
               })  
-        }
-
-        
-
-
-        // const authorHTMLCollection = document.getElementsByClassName(_authorId);
-        // let authorElements = [...authorHTMLCollection];
-        // authorElements.forEach(element => {
-        //     element.textContent = `Author: ${user.firstName} ${user.lastName}`
-        // } )
+        }  
     })
     .catch((err) => {
         console.log(err)
     }) 
-    // const articleElement = (e.target).parentElement.parentElement.parentElement;
-    // const 
-    // update(postId, postData)
+   
 }
 
 
