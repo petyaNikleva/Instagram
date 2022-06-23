@@ -31,7 +31,7 @@ export const create = async ( description, image, _authorId ) => {
 }
 
 export const update = (postId, postData ) => {
-    return fetch(`${baseUrl}/${postId}`, {
+    return fetch(`${baseUrl}/postId/${postId}`, {
         method: "PUT",
         headers: {
             'content-type': 'application/json'

@@ -1,6 +1,8 @@
 import { html, render } from "./../../node_modules/lit-html/lit-html.js";
 import { getAll, update } from "../../services/postService.js"
+import authService from "../../services/authenticationService.js";
 
+const baseUrl = 'http://localhost:3000'
 
 
 function allposts () {
@@ -31,7 +33,7 @@ export let newsFeedTemplate = () => html`
 function postViewHandler(post) {
     const imageId = post.image;
     let data;
-    fetch(`http://localhost:3000/upload/${imageId}`)
+    fetch(`${baseUrl}/upload/${imageId}`)
         .then(response => {
             response.blob()
                 .then(blobResponse => {
@@ -51,7 +53,7 @@ function postViewHandler(post) {
 
 
 function authorHandler(_authorId) {
-     fetch(`http://localhost:3000/${_authorId}`)
+     fetch(`${baseUrl}/${_authorId}`)
      .then( res => res.json())
      .then(user => {
         const authorHTMLCollection = document.getElementsByClassName(_authorId);
@@ -85,10 +87,37 @@ export let postTemplate = (post) => html`
 
 function likeClickHandler(e, postId) {
     e.preventDefault();
-    fetch(`http://localhost:3000/:${postId}`)
+    fetch(`${baseUrl}/postId/${postId}`)
      .then( res => res.json())
      .then(post => {
-        console.log(post)
+        //console.log(post)
+        const likers = post.likes;
+        const currentUser = authService.getLoggedUser();
+        if (currentUser.user === 'noUser') {
+            alert('Only logged users can like posts.');
+            return;
+        } else if (likers.includes(currentUser._id)) {
+            alert('You have already liked this post.')
+            return;
+        } else {
+            likers.push(currentUser._id);
+            post.likes = likers;
+            console.log(post);
+            update(postId, post)
+            .then((updatedPost) => {
+                setTimeout(() => {
+                    alert('You\'ve just liked the post.');
+                    console.log(updatedPost);
+                }, 500);
+              })
+              .catch(err => {
+                console.log(err);
+              })  
+        }
+
+        
+
+
         // const authorHTMLCollection = document.getElementsByClassName(_authorId);
         // let authorElements = [...authorHTMLCollection];
         // authorElements.forEach(element => {

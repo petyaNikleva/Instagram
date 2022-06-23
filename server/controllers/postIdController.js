@@ -26,7 +26,6 @@ const crudHandlers = {
         res.send(updatedPost);
     },
     "getPost": async (req, res) => {
-        console.log('hello from get one post')
         const post = await Post.findById(req.params.postId);
         res.send(post);
     },
