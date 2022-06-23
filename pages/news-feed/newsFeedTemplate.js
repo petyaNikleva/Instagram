@@ -67,6 +67,25 @@ function authorHandler(_authorId) {
     }) 
 }   
 
+function likersCountHandler (postId) {
+    fetch(`${baseUrl}/postId/${postId}`)
+    .then( res => res.json())
+    .then(post => {
+       const likers = post.likes;
+       const currentUser = authService.getLoggedUser();
+       const likeDiv = document.getElementsByClassName(`likes-${post._id}`)[0];
+       if (likers.includes(currentUser._id) && (post.likes.length) > 0) {
+            likeDiv.textContent = `Liked by You and ${(post.likes.length)-1} people.`     
+       }  else if (likers.includes(currentUser._id)) {
+        likeDiv.textContent = `Liked by You.`
+        } else {
+            likeDiv.textContent = `Liked by ${(post.likes.length)} people.`
+        } 
+    })
+    .catch(err => {
+        console.log(err);
+    }) 
+}
 
 export let postTemplate = (post) => html`
     <article class="post-card posts">
@@ -80,7 +99,7 @@ export let postTemplate = (post) => html`
                 <i class="fa-solid fa-heart" @click=${(e) => likeClickHandler(e, post._id)}></i>
                 <i class="fa-solid fa-comment"></i>
             </p> 
-            <div class="likes-${post._id}">Liked by: ${post.likes.length} people.</div>
+            <div class="likes-${post._id}">${likersCountHandler(post._id)}</div>
         </div>
     </article>
 `
@@ -109,9 +128,6 @@ function likeClickHandler(e, postId) {
                 ?  likeDiv.textContent = `Liked by You`   
                 :  likeDiv.textContent = `Liked by You and ${(post.likes.length)-1} people.`
               })
-              .catch(err => {
-                console.log(err);
-              })  
         }  
     })
     .catch((err) => {
