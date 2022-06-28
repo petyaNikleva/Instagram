@@ -80,7 +80,7 @@ export function likeClickHandler (e, postId) {
             .then((updatedPost) => {
                 const likeDiv = document.getElementsByClassName(`likes-${post._id}`)[0];
                 (post.likes.length) - 1 == 0
-                ?  likeDiv.textContent = `Liked by You`   
+                ?  likeDiv.textContent = `Liked by You.`   
                 :  likeDiv.textContent = `Liked by You and ${(post.likes.length)-1} people.`
               })
         }  
