@@ -3,6 +3,10 @@ h2 {
     text-align: center;
 }
 
+/* hr {
+    border: 1px solid #f1f1f1;
+} */
+
 .post-card.posts {
     width: 32%;
     border: 1px solid gray;
@@ -77,5 +81,38 @@ h2 {
 .description {
     font-weight: 900;
     font-style: bold;
+}
+
+.like-container,
+.show-comment-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.show-comment-container{
+    cursor: pointer;
+}
+
+
+.input-add-comment {
+    display: flex;
+    align-items: center;
+}
+
+.btn-post {
+    width: 3.125rem;
+    height: 1.563rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+
+
+.comments-container {
+    margin-top: 1rem;
+    display: none;
 }
 

@@ -35,16 +35,48 @@ export let postTemplate = (post) => html`
         </div>
         <div class="description">Description: ${post.description}</div>
         <div class="div-author ${post._authorId}">Author:...</div> 
+        <hr>
         <div>
-            <p id="likes-and-comment-icon-conatiner">
+            <div class="like-container">
                 <i class="fa-solid fa-heart" @click=${(e) => likeClickHandler(e, post._id)}></i>
+                <div class="likes-${post._id}">${likersCountHandler(post._id)}</div>
+            </div>
+            
+            <div class="show-comment-container"  @click=${(e) => commentClickHandler(e, post._id)} >
                 <i class="fa-solid fa-comment"></i>
-            </p> 
-            <div class="likes-${post._id}">${likersCountHandler(post._id)}</div>
+                <div class="show-${post._id}">Show comments</div>
+            </div>
+
+
+            <div class="comments-container comments-container-${post._id}">
+                <div class="show-comments-${post._id}">....comments. here</div>
+                <div class="input-add-comment">
+                    <input  type="text" id="addComment-${post._id}" name="addComment-${post._id}" placeholder="Your comment">
+                    <button class="btn-post">Add comment</button>
+                </div>
+               
+            </div>
         </div>
     </article>
 `
 
+function commentClickHandler (e, postId) {
+    e.preventDefault();
+    const commentElement = document.getElementsByClassName(`comments-container-${postId}`)[0];
+    const showCommentTextEleement = document.getElementsByClassName(`show-${postId}`)[0];
+    
+    if (showCommentTextEleement.textContent === 'Show comments') {
+        commentElement.style.display = "block"
+        showCommentTextEleement.textContent = 'Hide comments'
+    } else if (showCommentTextEleement.textContent === 'Hide comments') {
+        commentElement.style.display = "none";
+        showCommentTextEleement.textContent = 'Show comments'
+    }
+
+    
+    
+    
+}
 
 
           
