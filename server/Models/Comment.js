@@ -7,8 +7,9 @@ const commentSchema = new mongoose.Schema({
         ref: 'User'
     },
     date: {
-        type: Date
-    },
+        type: Date,
+        default: Date.now
+      },
     reply:  {
         type: mongoose.Types.ObjectId,
         ref: 'Comment'
