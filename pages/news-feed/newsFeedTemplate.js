@@ -1,7 +1,9 @@
 import { html, render } from "./../../node_modules/lit-html/lit-html.js";
 import { getAll } from "../../services/postService.js"
 import { postViewHandler, likersCountHandler, likeClickHandler } from "./news-feed.js";
-
+import authService from "../../services/authenticationService.js";
+import { create } from "../../services/commentService.js";
+import { update } from "../../services/postService.js"
 
 function allposts () {
     getAll()
@@ -42,7 +44,7 @@ export let postTemplate = (post) => html`
                 <div class="likes-${post._id}">${likersCountHandler(post._id)}</div>
             </div>
             
-            <div class="show-comment-container"  @click=${(e) => commentClickHandler(e, post._id)} >
+            <div class="show-comment-container"  @click=${(e) => commentClickToggle(e, post._id)} >
                 <i class="fa-solid fa-comment"></i>
                 <div class="show-${post._id}">Show comments</div>
             </div>
@@ -52,7 +54,7 @@ export let postTemplate = (post) => html`
                 <div class="show-comments-${post._id}">....comments. here</div>
                 <div class="input-add-comment">
                     <input  type="text" id="addComment-${post._id}" name="addComment-${post._id}" placeholder="Your comment">
-                    <button class="btn-post">Add comment</button>
+                    <button class="btn-post" @click=${(e) => addCommentHandler(e, post)}>Add comment</button>
                 </div>
                
             </div>
@@ -60,7 +62,7 @@ export let postTemplate = (post) => html`
     </article>
 `
 
-function commentClickHandler (e, postId) {
+function commentClickToggle (e, postId) {
     e.preventDefault();
     const commentElement = document.getElementsByClassName(`comments-container-${postId}`)[0];
     const showCommentTextEleement = document.getElementsByClassName(`show-${postId}`)[0];
@@ -71,11 +73,34 @@ function commentClickHandler (e, postId) {
     } else if (showCommentTextEleement.textContent === 'Hide comments') {
         commentElement.style.display = "none";
         showCommentTextEleement.textContent = 'Show comments'
-    }
+    }    
+}
 
-    
-    
-    
+function addCommentHandler(e, post) {
+    e.preventDefault();
+    const text = document.getElementById(`addComment-${post._id}`).value;
+    const currentUser = authService.getLoggedUser();
+    const userId = currentUser._id;
+    if (currentUser === 'noUser') {
+        alert ('Only logged users can add comments.');
+        return;
+    }
+    create(text, userId)
+        .then((comment) => {
+            const commentId = comment._id;
+            post.comments.push(commentId);
+            update(post._id, post)
+                .then(data => {
+                    console.log(data);
+            })
+            setTimeout(() => {
+                alert('Your comment has been added.')
+                window.location.href = "/#";
+            }, 500);
+        })
+        .catch((err) => {
+        console.log(err);
+    })
 }
 
 

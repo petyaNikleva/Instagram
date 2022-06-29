@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000';
+import { baseUrl } from "../helpers/constants.js";
 
 export const getAll = async () => {
     let res = await fetch(`${baseUrl}/posts`)
