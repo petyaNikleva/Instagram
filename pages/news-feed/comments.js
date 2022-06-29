@@ -19,7 +19,8 @@ export function commentClickToggle (e, postId) {
 
 export function addCommentHandler(e, post) {
     e.preventDefault();
-    const text = document.getElementById(`addComment-${post._id}`).value;
+    const textElement = document.getElementById(`addComment-${post._id}`);
+    const text = textElement.value;
     const currentUser = authService.getLoggedUser();
     const userId = currentUser._id;
     if (currentUser.user === 'noUser') {
@@ -31,8 +32,8 @@ export function addCommentHandler(e, post) {
             const commentId = comment._id;
             post.comments.push(commentId);
             update(post._id, post)
-                .then(data => {
-                    console.log(data);
+                .then(updatedPost => {
+                    textElement.value = '';
             })
             setTimeout(() => {
                 alert('Your comment has been added.')
