@@ -81,7 +81,7 @@ function addCommentHandler(e, post) {
     const text = document.getElementById(`addComment-${post._id}`).value;
     const currentUser = authService.getLoggedUser();
     const userId = currentUser._id;
-    if (currentUser === 'noUser') {
+    if (currentUser.user === 'noUser') {
         alert ('Only logged users can add comments.');
         return;
     }
