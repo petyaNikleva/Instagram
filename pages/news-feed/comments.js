@@ -1,11 +1,14 @@
+import { html, render } from "../../node_modules/lit-html/lit-html.js";
+import { baseUrl } from "../../helpers/constants.js";
+import { dateModifier } from "../../helpers/dateModifier.js";
+
 import authService from "../../services/authenticationService.js";
 import { create } from "../../services/commentService.js";
 import { update } from "../../services/postService.js"
 
-import { baseUrl } from "../../helpers/constants.js";
-import { dateModifier } from "../../helpers/dateModifier.js";
 
-import { html, render } from "./../../node_modules/lit-html/lit-html.js";
+
+
 
 
 export function addCommentHandler(e, post) {
@@ -80,7 +83,19 @@ let commentTemplate = (comment, user) => html`
     <div class="single-comment">
         <div><b>${user.firstName} ${user.lastName}:</b> ${comment.text}</div>
     </div>
-    <div class="date">${dateModifier(comment.date)} <span class="reply" @click=${(e) => replyHandler(e)}> Reply </span> </div>
+    <div class="date">${dateModifier(comment.date)} <span class="reply" @click=${(e) => replyClickHandler(e)}> Reply </span> </div>
+    <div class="input-add-reply reply-${comment._id}">
+                <input  type="text" id="addReply-${comment._id}" name="addReply-${comment._id}" placeholder="Reply">
+                <button class="btn-post" @click=${(e) => addReplayHandler(e)}>Reply</button>
+    </div>
 `
+function replyClickHandler (e) {
+    
+}
 
+
+
+function addReplayHandler (e) {
+    
+}
 

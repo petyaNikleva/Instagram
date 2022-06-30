@@ -95,7 +95,8 @@ h2 {
 }
 
 
-.input-add-comment {
+.input-add-comment,
+.input-add-reply {
     display: flex;
     align-items: center;
 }
@@ -135,4 +136,8 @@ h2 {
     border: 1px solid grey;
     border-radius: 0.75rem;
     padding: 0.02rem 0.2rem;
+}
+
+.input-add-reply {
+    display: none;;
 }
