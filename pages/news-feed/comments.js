@@ -3,6 +3,7 @@ import { create } from "../../services/commentService.js";
 import { update } from "../../services/postService.js"
 
 import { baseUrl } from "../../helpers/constants.js";
+import { dateModifier } from "../../helpers/dateModifier.js";
 
 import { html, render } from "./../../node_modules/lit-html/lit-html.js";
 
@@ -66,8 +67,6 @@ function getComments(postId, post) {
                         let testElement = commentTemplate(comment, user);
                         renderArr.push(testElement);
                         render(renderArr, commentsElement)
-                        //commentsElement.append(testElement); //???? or here render ?????
-
                     })
             })
 
@@ -81,16 +80,7 @@ let commentTemplate = (comment, user) => html`
     <div class="single-comment">
         <div><b>${user.firstName} ${user.lastName}:</b> ${comment.text}</div>
     </div>
-    <div class="date">${dateModifier(comment.date)} <span class="reply"> Reply </span> </div>
+    <div class="date">${dateModifier(comment.date)} <span class="reply" @click=${(e) => replyHandler(e)}> Reply </span> </div>
 `
 
-function dateModifier(param) {
-    const arr = param.split('T')
-    const rawDate = arr[0];
-    const splitedDate = rawDate.split('-');
-    const date = splitedDate.reverse().join('-');
-    const second = arr[1];
-    const time = second.slice(0, 5);
-    const result = `${time} ${date}`
-    return result;
-}
+
