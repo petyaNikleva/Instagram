@@ -90,8 +90,9 @@ function replyClickHandler (e, comment) {
     replyContainerElement.style.display === "flex"
     ? replyContainerElement.style.display = "none"
     : replyContainerElement.style.display = "flex"
-
 }
+
+// TO DO when add comment to hide it when reload???
 
 
 

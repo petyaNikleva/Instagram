@@ -15,6 +15,13 @@
     cursor: pointer;
     border: 1px solid grey;
     border-radius: 0.75rem;
-    padding: 0.02rem 0.2rem;
+    padding: 0.03rem 0.2rem;
 }
 
+.single-comment {
+    margin-bottom: 0.15rem;
+}
+
+.single-comment div {
+    text-align: left;
+}
