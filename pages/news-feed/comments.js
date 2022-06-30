@@ -87,8 +87,10 @@ let commentTemplate = (comment, user) => html`
 `
 function replyClickHandler (e, comment) {
     const replyContainerElement = document.getElementsByClassName(`reply-${comment._id}`)[0];
-    
-    replyContainerElement.style.display = "block";
+    replyContainerElement.style.display === "flex"
+    ? replyContainerElement.style.display = "none"
+    : replyContainerElement.style.display = "flex"
+
 }
 
 
