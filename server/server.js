@@ -7,6 +7,7 @@ const userRoutes = require('./controllers/userController');
 const postRoutes = require('./controllers/postController');
 const postIdRoutes = require('./controllers/postIdController');
 const commentRoutes = require('./controllers/commentController');
+const commentIdRoutes = require('./controllers/commentIdController');
 
 const app = express();
 app.use(cors());
@@ -14,6 +15,7 @@ app.use(commentRoutes);
 app.use(postRoutes); //1
 app.use(userRoutes); //2
 app.use('/postId', postIdRoutes);
+app.use('/commentId', commentIdRoutes);
 app.use(express.urlencoded({extended: false}));
 
 //--------- Multer starts -------/

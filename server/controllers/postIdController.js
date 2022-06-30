@@ -29,6 +29,7 @@ const crudHandlers = {
         const post = await Post.findById(req.params.postId);
         res.send(post);
     },
+   
 
 }
 

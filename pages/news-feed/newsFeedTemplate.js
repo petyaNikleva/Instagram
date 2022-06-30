@@ -4,6 +4,8 @@ import { postViewHandler, likersCountHandler, likeClickHandler } from "./news-fe
 import { commentClickToggle, addCommentHandler } from "./comments.js"
 
 
+
+
 function allposts () {
     getAll()
     .then (posts => {
@@ -43,14 +45,16 @@ export let postTemplate = (post) => html`
                 <div class="likes-${post._id}">${likersCountHandler(post._id)}</div>
             </div>
             
-            <div class="show-comment-container"  @click=${(e) => commentClickToggle(e, post._id)} >
+            <div class="show-comment-container"  @click=${(e) => commentClickToggle(e, post._id, post)} >
                 <i class="fa-solid fa-comment"></i>
                 <div class="show-${post._id}">Show comments</div>
             </div>
 
 
             <div class="comments-container comments-container-${post._id}">
-                <div class="show-comments-${post._id}">....comments. here</div>
+                <div class="show-comments-${post._id}">
+                </div>
+
                 <div class="input-add-comment">
                     <input  type="text" id="addComment-${post._id}" name="addComment-${post._id}" placeholder="Your comment">
                     <button class="btn-post" @click=${(e) => addCommentHandler(e, post)}>Add comment</button>
@@ -60,6 +64,8 @@ export let postTemplate = (post) => html`
         </div>
     </article>
 `
+
+
 
 
 
