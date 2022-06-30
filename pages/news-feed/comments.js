@@ -7,10 +7,6 @@ import { create } from "../../services/commentService.js";
 import { update } from "../../services/postService.js"
 
 
-
-
-
-
 export function addCommentHandler(e, post) {
     e.preventDefault();
     const textElement = document.getElementById(`addComment-${post._id}`);
@@ -83,14 +79,16 @@ let commentTemplate = (comment, user) => html`
     <div class="single-comment">
         <div><b>${user.firstName} ${user.lastName}:</b> ${comment.text}</div>
     </div>
-    <div class="date">${dateModifier(comment.date)} <span class="reply" @click=${(e) => replyClickHandler(e)}> Reply </span> </div>
-    <div class="input-add-reply reply-${comment._id}">
+    <div class="date">${dateModifier(comment.date)} <span class="reply" @click=${(e) => replyClickHandler(e, comment, comment._id)}> Reply </span> </div>
+    <div style="display:none" class="input-add-reply reply-${comment._id}">
                 <input  type="text" id="addReply-${comment._id}" name="addReply-${comment._id}" placeholder="Reply">
-                <button class="btn-post" @click=${(e) => addReplayHandler(e)}>Reply</button>
+                <button class="btn-post" @click=${(e) => addReplayHandler(e)}>Add reply</button>
     </div>
 `
-function replyClickHandler (e) {
+function replyClickHandler (e, comment) {
+    const replyContainerElement = document.getElementsByClassName(`reply-${comment._id}`)[0];
     
+    replyContainerElement.style.display = "block";
 }
 
 

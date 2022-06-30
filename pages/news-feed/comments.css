@@ -1,0 +1,20 @@
+.input-add-reply {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    margin-bottom: 0.5rem;
+    font-size: smaller;
+}
+
+.reply {
+    color: black;
+    font-weight: bold;
+    margin-left: 8rem;
+    cursor: pointer;
+    border: 1px solid grey;
+    border-radius: 0.75rem;
+    padding: 0.02rem 0.2rem;
+}
+
