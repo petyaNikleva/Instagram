@@ -102,17 +102,20 @@ function addReplayHandler ( userId, comment) {
     if (!text) {
         return;
     }
-    create(text, userId)
-        .then((comment) => {
-            const commentId = comment._id;
-            post.comments.push(commentId);
-            update(post._id, post)
-                .then(updatedPost => {
-                    textElement.value = '';
-                })
-                commentClickToggle(e, post._id, post);
-                commentClickToggle(e, post._id, post);
-                window.location.href = "/#";
+    const commId = comment._id;
+    create(text, userId, commId)
+        .then((reply) => {
+            // TO DO: from here; first may be clear the comments from DB ???
+            //console.log(reply)
+            //const commentId = comment._id;
+            //post.comments.push(commentId);
+            //update(post._id, post)
+                //.then(updatedPost => {
+                   // textElement.value = '';
+                //})
+               // commentClickToggle(e, post._id, post);
+               // commentClickToggle(e, post._id, post);
+               // window.location.href = "/#";
          
         })
         .catch((err) => {
@@ -120,6 +123,13 @@ function addReplayHandler ( userId, comment) {
         })
 
 }
+
+
+
+
+
+
+
 
 
 
