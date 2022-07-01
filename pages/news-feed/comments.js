@@ -11,12 +11,8 @@ export function addCommentHandler(e, post) {
     e.preventDefault();
     const textElement = document.getElementById(`addComment-${post._id}`);
     const text = textElement.value;
-    const currentUser = authService.getLoggedUser();
-    const userId = currentUser._id;
-    if (currentUser.user === 'noUser') {
-        alert('Only logged users can add comments.');
-        return;
-    }
+    const userId = (authService.getLoggedUser())._id;
+    alertIfNotLoggedUser();
     if (text === '') {
         return;
     }
@@ -71,7 +67,6 @@ function getComments(postId, post) {
                         render(renderArr, commentsElement)
                     })
             })
-
             .catch((err) => {
                 console.log(err)
             })
@@ -88,6 +83,8 @@ let commentTemplate = (comment, user) => html`
                 <button class="btn-post" @click=${(e) => addReplayHandler(e)}>Add reply</button>
     </div>
 `
+
+
 function replyClickHandler (e, comment) {
     const replyContainerElement = document.getElementsByClassName(`reply-${comment._id}`)[0];
     replyContainerElement.style.display === "flex"
@@ -95,11 +92,21 @@ function replyClickHandler (e, comment) {
     : replyContainerElement.style.display = "flex"
 }
 
-// TO DO when add comment to hide it when reload???
 
 
 
 function addReplayHandler (e) {
+alertIfNotLoggedUser (); 
     
+}
+
+
+
+function alertIfNotLoggedUser () {
+    const currentUser = authService.getLoggedUser();
+    if (currentUser.user === 'noUser') {
+        alert('Only logged users can add comments.');
+        return;
+    }
 }
 
