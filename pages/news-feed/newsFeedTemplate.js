@@ -1,7 +1,7 @@
 import { html, render } from "./../../node_modules/lit-html/lit-html.js";
 import { getAll } from "../../services/postService.js"
 import { postViewHandler, likersCountHandler, likeClickHandler } from "./news-feed.js";
-import { commentClickToggle, addCommentHandler } from "./comments.js"
+import { commentClickToggle, addCommentHandler } from "./commentsAndReply.js"
 
 
 
