@@ -24,7 +24,6 @@ export function createNewPost(e) {
             const _authorId = currentUser()._id;
             create(description, image, _authorId)
              .then((data) => {
-                    console.log(data)
                     setTimeout(() => {
                         alert('Post created.')
                         window.location.href = "/#";

@@ -80,7 +80,7 @@ let commentTemplate = (comment, user) => html`
     <div class="date">${dateModifier(comment.date)} <span class="reply" @click=${(e) => replyClickHandler(e, comment, comment._id)}> Reply </span> </div>
     <div style="display:none" class="input-add-reply reply-${comment._id}">
                 <input  type="text" id="addReply-${comment._id}" name="addReply-${comment._id}" placeholder="Reply">
-                <button class="btn-post" @click=${(e) => addReplayHandler(e)}>Add reply</button>
+                <button class="btn-post" @click=${(e) => addReplayHandler(user._id, comment )}>Add reply</button>
     </div>
 `
 
@@ -95,9 +95,30 @@ function replyClickHandler (e, comment) {
 
 
 
-function addReplayHandler (e) {
-alertIfNotLoggedUser (); 
-    
+function addReplayHandler ( userId, comment) {
+    alertIfNotLoggedUser (); 
+    const replyInputElement = document.getElementById(`addReply-${comment._id}`);
+    const text = replyInputElement.value;
+    if (!text) {
+        return;
+    }
+    create(text, userId)
+        .then((comment) => {
+            const commentId = comment._id;
+            post.comments.push(commentId);
+            update(post._id, post)
+                .then(updatedPost => {
+                    textElement.value = '';
+                })
+                commentClickToggle(e, post._id, post);
+                commentClickToggle(e, post._id, post);
+                window.location.href = "/#";
+         
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
 }
 
 
@@ -108,5 +129,6 @@ function alertIfNotLoggedUser () {
         alert('Only logged users can add comments.');
         return;
     }
+    
 }
 
