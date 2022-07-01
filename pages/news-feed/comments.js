@@ -17,6 +17,9 @@ export function addCommentHandler(e, post) {
         alert('Only logged users can add comments.');
         return;
     }
+    if (text === '') {
+        return;
+    }
     create(text, userId)
         .then((comment) => {
             const commentId = comment._id;
@@ -25,10 +28,10 @@ export function addCommentHandler(e, post) {
                 .then(updatedPost => {
                     textElement.value = '';
                 })
-            setTimeout(() => {
-                alert('Your comment has been added.')
+                commentClickToggle(e, post._id, post);
+                commentClickToggle(e, post._id, post);
                 window.location.href = "/#";
-            }, 500);
+         
         })
         .catch((err) => {
             console.log(err);
