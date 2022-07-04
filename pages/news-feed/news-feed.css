@@ -122,3 +122,9 @@ h2 {
     padding: 0.5rem;
 }
 
+.grey {
+    color: grey;
+    border-color: grey;
+    border-style: dashed;
+}
+

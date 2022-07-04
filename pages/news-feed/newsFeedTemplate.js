@@ -57,6 +57,7 @@ export let postTemplate = (post) => html`
                     <input  type="text" id="addComment-${post._id}" name="addComment-${post._id}" placeholder="Your comment">
                     <button class="btn-post" @click=${(e) => addCommentHandler(e, post)}>Add comment</button>
                 </div>
+                <hr class="grey">
 
                 <div class="show-comments-${post._id}">
                 </div> 
