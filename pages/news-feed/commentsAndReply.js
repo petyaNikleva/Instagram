@@ -3,7 +3,7 @@ import { baseUrl } from "../../helpers/constants.js";
 import { dateModifier } from "../../helpers/dateModifier.js";
 
 import authService from "../../services/authenticationService.js";
-import { create } from "../../services/commentService.js";
+import { createComment, updateComment } from "../../services/commentService.js";
 import { update } from "../../services/postService.js"
 
 
@@ -12,11 +12,11 @@ export function addCommentHandler(e, post) {
     const textElement = document.getElementById(`addComment-${post._id}`);
     const text = textElement.value;
     const userId = (authService.getLoggedUser())._id;
-    alertIfNotLoggedUser();
-    if (text === '') {
+    if (alertIfNotLoggedUser() || text === '') {
         return;
     }
-    create(text, userId)
+   
+    createComment(text, userId)
         .then((comment) => {
             const commentId = comment._id;
             post.comments.push(commentId);
@@ -80,21 +80,18 @@ let commentTemplate = (comment, user) => html`
     <div class="date-reply">
         <span>${dateModifier(comment.date)} </span>
         <span>${checkReplyExist(comment)}<span>
-        <span class="reply reply-span-${comment._id}" @click=${(e)=> replyClickHandler(e, comment, comment._id)}> Reply </span> 
+                <span class="reply reply-span-${comment._id}" @click=${(e) => replyClickHandler(e, comment, comment._id)}>
+                    Reply </span>
     </div>
-            
+    
     <div style="display:none" class="input-add-reply reply-${comment._id} ">
         <input type="text" id="addReply-${comment._id}" name="addReply-c" placeholder="Reply">
         <div style="display:inline" class="arrow-up"></div>
-        <button class="btn-post" @click=${(e)=> addReplayHandler(user._id, comment)}>Add reply</button>
+        <button class="btn-post" @click=${(e) => addReplayHandler(comment)}>Add reply</button>
     </div>
-
-    <div class="reply-show" > 
-            <div style="display:inline" class="arrow-up"></div>
-            <input  type="text"  placeholder="test">
-        
-        
-    </div>
+        <div style="display:none" class="reply-show replay-${comment._id}" > 
+                <div style="display:none" class="arrow-up reply-${comment._id}"></div>
+        </div>
 `
 
 
@@ -108,36 +105,24 @@ function replyClickHandler(e, comment) {
 
 
 
-function addReplayHandler(userId, comment) {
-    alertIfNotLoggedUser();
+function addReplayHandler(comment) {
     const replyInputElement = document.getElementById(`addReply-${comment._id}`);
     const text = replyInputElement.value;
-    if (!text) {
+    if (alertIfNotLoggedUser() || (!text) ) {
         return;
     }
-    const commId = comment._id;
-    create(text, userId, commId)
-        .then((reply) => {
+    const userId = (authService.getLoggedUser())._id;
+    createComment(text, userId)
+        .then((createdReply) => {
             const replyContainerElement = document.getElementsByClassName(`reply-span-${comment._id}`)[0];
             replyContainerElement.style.display = "none";
-            comment.replyTo = 
-            update(commId, comment)
-            .then(updatedPost => {
-                textElement.value = '';
-            })
-       
-            //replyContainerElement.classList.add("arrow-up");
-            // TO DO: from here; first may be clear the comments from DB ??? Also to extract some logic maybe in reply.js ???
-            //console.log(reply)
-            //const commentId = comment._id;
-            //post.comments.push(commentId);
-            //update(post._id, post)
-            //.then(updatedPost => {
-            // textElement.value = '';
-            //})
-            // commentClickToggle(e, post._id, post);
-            // commentClickToggle(e, post._id, post);
-            // window.location.href = "/#";
+            const newId = createdReply._id;
+            comment.reply = newId;  
+            const commId = comment._id;
+            updateComment(commId, comment)
+                .then(updatedComm => {
+                    
+                })
 
         })
         .catch((err) => {
@@ -147,22 +132,24 @@ function addReplayHandler(userId, comment) {
 }
 
 function checkReplyExist(comment) {
-    if (comment.replyTo) {
-        const replyContainerElement = document.getElementsByClassName(`reply-span-${comment._id}`)[0];
-        replyContainerElement.style.display = "none";
-        fetch(`${baseUrl}/commentId/${comment._id}`)
+    if (comment.reply) {
+        fetch(`${baseUrl}/commentId/${comment.reply}`)
             .then(res => res.json())
-            .then(comment => {
-                const _authorId = comment._authorId;
+            .then(reply => {
+                const _authorId = reply._authorId;
                 fetch(`${baseUrl}/${_authorId}`)
                     .then(res => res.json())
                     .then(user => {
-                        console.log(test);
-                        // let testElement = commentTemplate(comment, user);
-                        // renderArr.push(testElement);
-                        // render(renderArr, commentsElement)
-                    })
-            })
+                        console.log(user);
+                        const elementReply = document.getElementsByClassName(`reply-${comment._id}`)[0];
+                        elementReply.style.display = "block";
+                        // const arrowReply = document.getElementsByClassName(`reply-${comment._id}`)[1];
+                        // arrowReply.style.display = "block";
+                        elementReply.textContent = `${user.firstName} ${user.lastName} replys: ${reply.text}`;
+                        const replyContainerElement = document.getElementsByClassName(`reply-span-${comment._id}`)[0];
+                        replyContainerElement.style.display = "none";
+         })
+        })
     }
 }
 
@@ -178,7 +165,7 @@ function alertIfNotLoggedUser() {
     const currentUser = authService.getLoggedUser();
     if (currentUser.user === 'noUser') {
         alert('Only logged users can add comments.');
-        return;
+        return false;
     }
 
 }

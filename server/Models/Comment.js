@@ -10,7 +10,7 @@ const commentSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
       },
-    replyTo:  {
+    reply:  {
         type: mongoose.Types.ObjectId,
         ref: 'Comment'
     },

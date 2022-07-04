@@ -35,3 +35,16 @@
     border-bottom: 0.33rem solid black;
     margin-top: 0.1rem;
   }
+
+  /* .reply-show {
+    font-size: small;
+    border: 1px solid grey;
+    border-radius: 12px;
+  } */
+
+  .input-add-reply {
+    font-size: small;
+    border: 1px solid grey;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }

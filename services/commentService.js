@@ -1,6 +1,6 @@
 import { baseUrl } from "../helpers/constants.js";
 
-export const create = async (text, _authorId, commentId) => {
+    export const createComment = async (text, _authorId) => {
         let res = await fetch(`${baseUrl}/createComment`, {
             method: "POST",
             headers: {
@@ -9,7 +9,6 @@ export const create = async (text, _authorId, commentId) => {
             body: JSON.stringify({
                 "text": text,
                 "_authorId": _authorId,
-                "replyTo": commentId
             })
         })
         let jsonResult = await res.json();
@@ -21,6 +20,15 @@ export const create = async (text, _authorId, commentId) => {
 
 }
 
-
+export const updateComment = (commId, commentData ) => {
+    return fetch(`${baseUrl}/commentId/${commId}`, {
+        method: "PUT",
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ ...commentData })
+    })
+        .then(res => res.json());
+}
 
 
