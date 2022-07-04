@@ -84,8 +84,8 @@ let commentTemplate = (comment, user) => html`
                     Reply </span>
     </div>
     
-    <div style="display:none" class="input-add-reply reply-${comment._id} ">
-        <input type="text" id="addReply-${comment._id}" name="addReply-c" placeholder="Reply">
+    <div style="display:none" class="input-add-reply reply-${comment._id}">
+    <input type="text" id="addReply-${comment._id}" name="addReply-c" placeholder="Reply">
         <div style="display:inline" class="arrow-up"></div>
         <button class="btn-post" @click=${(e) => addReplayHandler(comment)}>Add reply</button>
     </div>
@@ -143,9 +143,7 @@ function checkReplyExist(comment) {
                         console.log(user);
                         const elementReply = document.getElementsByClassName(`reply-${comment._id}`)[0];
                         elementReply.style.display = "block";
-                        // const arrowReply = document.getElementsByClassName(`reply-${comment._id}`)[1];
-                        // arrowReply.style.display = "block";
-                        elementReply.textContent = `${user.firstName} ${user.lastName} replys: ${reply.text}`;
+                        elementReply.textContent = ` ${user.firstName} ${user.lastName} replies: ${reply.text}   ⮝`;
                         const replyContainerElement = document.getElementsByClassName(`reply-span-${comment._id}`)[0];
                         replyContainerElement.style.display = "none";
          })
