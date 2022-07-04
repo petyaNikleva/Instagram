@@ -3,7 +3,7 @@
     align-items: center;
 }
 
-.date {
+.date-reply {
     margin-bottom: 0.5rem;
     font-size: smaller;
 }
@@ -29,8 +29,9 @@
 .arrow-up {
     width: 0; 
     height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
+    border-left: 0.33rem solid transparent;
+    border-right: 0.33rem solid transparent;
     
-    border-bottom: 5px solid black;
+    border-bottom: 0.33rem solid black;
+    margin-top: 0.1rem;
   }

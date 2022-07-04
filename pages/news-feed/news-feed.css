@@ -3,10 +3,6 @@ h2 {
     text-align: center;
 }
 
-/* hr {
-    border: 1px solid #f1f1f1;
-} */
-
 .post-card.posts {
     width: 32%;
     border: 1px solid gray;
@@ -57,7 +53,6 @@ h2 {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    /* gap: 0.01rem; */
 }
 
 .fa-solid {

@@ -77,14 +77,23 @@ let commentTemplate = (comment, user) => html`
     <div class="single-comment">
         <div><b>${user.firstName} ${user.lastName}:</b> ${comment.text}</div>
     </div>
-    <div class="date">${dateModifier(comment.date)} <span class="reply reply-span-${comment._id}" @click=${(e)=>
-            replyClickHandler(e, comment, comment._id)}> Reply </span> </div>
+    <div class="date-reply">
+        <span>${dateModifier(comment.date)} </span>
+        <span>${checkReplyExist(comment)}<span>
+        <span class="reply reply-span-${comment._id}" @click=${(e)=> replyClickHandler(e, comment, comment._id)}> Reply </span> 
+    </div>
             
     <div style="display:none" class="input-add-reply reply-${comment._id} ">
-        
         <input type="text" id="addReply-${comment._id}" name="addReply-c" placeholder="Reply">
         <div style="display:inline" class="arrow-up"></div>
         <button class="btn-post" @click=${(e)=> addReplayHandler(user._id, comment)}>Add reply</button>
+    </div>
+
+    <div class="reply-show" > 
+            <div style="display:inline" class="arrow-up"></div>
+            <input  type="text"  placeholder="test">
+        
+        
     </div>
 `
 
@@ -111,6 +120,12 @@ function addReplayHandler(userId, comment) {
         .then((reply) => {
             const replyContainerElement = document.getElementsByClassName(`reply-span-${comment._id}`)[0];
             replyContainerElement.style.display = "none";
+            comment.replyTo = 
+            update(commId, comment)
+            .then(updatedPost => {
+                textElement.value = '';
+            })
+       
             //replyContainerElement.classList.add("arrow-up");
             // TO DO: from here; first may be clear the comments from DB ??? Also to extract some logic maybe in reply.js ???
             //console.log(reply)
@@ -131,6 +146,25 @@ function addReplayHandler(userId, comment) {
 
 }
 
+function checkReplyExist(comment) {
+    if (comment.replyTo) {
+        const replyContainerElement = document.getElementsByClassName(`reply-span-${comment._id}`)[0];
+        replyContainerElement.style.display = "none";
+        fetch(`${baseUrl}/commentId/${comment._id}`)
+            .then(res => res.json())
+            .then(comment => {
+                const _authorId = comment._authorId;
+                fetch(`${baseUrl}/${_authorId}`)
+                    .then(res => res.json())
+                    .then(user => {
+                        console.log(test);
+                        // let testElement = commentTemplate(comment, user);
+                        // renderArr.push(testElement);
+                        // render(renderArr, commentsElement)
+                    })
+            })
+    }
+}
 
 
 

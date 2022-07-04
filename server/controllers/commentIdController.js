@@ -7,7 +7,7 @@ const jsonParser = bodyParser.json();
 router.use(jsonParser);
 
 
-//router.put("/:postId", async(req, res, next) => requestCallback(req, res, next, "updatePost"));
+router.put("/:commentId", async(req, res, next) => requestCallback(req, res, next, "updateComment"));
 router.get("/:commentId", async(req, res, next) => requestCallback (req, res, next, "getComment")); 
 
 async function requestCallback(req, res, next, command) {
@@ -20,11 +20,11 @@ async function requestCallback(req, res, next, command) {
 
 const crudHandlers = {
 
-    // "updatePost": async (req, res) => {
-    //     await Post.findByIdAndUpdate(req.params.postId, req.body);
-    //     const updatedPost = await Post.findById(req.params.postId);
-    //     res.send(updatedPost);
-    // },
+    "updateComment": async (req, res) => {
+        await Comment.findByIdAndUpdate(req.params.commentId, req.body);
+        const updatedComment = await Comment.findById(req.params.commentId);
+        res.send(updatedComment);
+    },
     "getComment": async (req, res) => {
         const comment = await Comment.findById(req.params.commentId);
         res.send(comment);
