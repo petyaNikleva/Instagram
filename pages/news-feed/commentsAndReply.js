@@ -12,7 +12,11 @@ export function addCommentHandler(e, post) {
     const textElement = document.getElementById(`addComment-${post._id}`);
     const text = textElement.value;
     const userId = (authService.getLoggedUser())._id;
-    if (alertIfNotLoggedUser() || text === '') {
+    if (authService.getLoggedUser().user === 'noUser') {
+        alert('Only logged users can add comments.');
+        return;
+    }
+    if (text === '') {
         return;
     }
    
@@ -62,9 +66,12 @@ function getComments(postId, post) {
                 fetch(`${baseUrl}/${_authorId}`)
                     .then(res => res.json())
                     .then(user => {
-                        let testElement = commentTemplate(comment, user);
-                        renderArr.push(testElement);
-                        render(renderArr, commentsElement)
+                        let commentlement = commentTemplate(comment, user);
+                        renderArr.push(commentlement);
+                        let sortedComments = renderArr.sort((a,b) => {
+                            return new Date(a.values[3]) - new Date(b.values[3]);
+                        })
+                        render(sortedComments, commentsElement)
                     })
             })
             .catch((err) => {
@@ -108,7 +115,11 @@ function replyClickHandler(e, comment) {
 function addReplayHandler(comment) {
     const replyInputElement = document.getElementById(`addReply-${comment._id}`);
     const text = replyInputElement.value;
-    if (alertIfNotLoggedUser() || (!text) ) {
+    if (authService.getLoggedUser().user === 'noUser') {
+        alert('Only logged users can add comments.');
+        return;
+    }
+    if (text === '') {
         return;
     }
     const userId = (authService.getLoggedUser())._id;
@@ -120,8 +131,7 @@ function addReplayHandler(comment) {
             comment.reply = newId;  
             const commId = comment._id;
             updateComment(commId, comment)
-                .then(updatedComm => {
-                    
+                .then(updatedComm => { 
                 })
 
         })
@@ -140,7 +150,6 @@ function checkReplyExist(comment) {
                 fetch(`${baseUrl}/${_authorId}`)
                     .then(res => res.json())
                     .then(user => {
-                        console.log(user);
                         const elementReply = document.getElementsByClassName(`reply-${comment._id}`)[0];
                         elementReply.style.display = "block";
                         elementReply.textContent = ` ${user.firstName} ${user.lastName} replies: ${reply.text}   ⮝`;
@@ -159,12 +168,4 @@ function checkReplyExist(comment) {
 
 
 
-function alertIfNotLoggedUser() {
-    const currentUser = authService.getLoggedUser();
-    if (currentUser.user === 'noUser') {
-        alert('Only logged users can add comments.');
-        return false;
-    }
-
-}
 
