@@ -13,7 +13,6 @@ export function addCommentHandler(e, post) {
     const text = textElement.value;
     const userId = (authService.getLoggedUser())._id;
     if (alertIfNotLoggedUser() || text === '') {
-        alert('Only logged users can add comments.');
         return;
     }
    
@@ -25,8 +24,8 @@ export function addCommentHandler(e, post) {
                 .then(updatedPost => {
                     textElement.value = '';
                 })
-            commentClickToggle(post._id, post);
-            commentClickToggle(post._id, post);
+            commentClickToggle(e, post._id, post);
+            commentClickToggle(e, post._id, post);
             window.location.href = "/#";
 
         })
@@ -35,7 +34,8 @@ export function addCommentHandler(e, post) {
         })
 }
 
-export function commentClickToggle(postId, post) {
+export function commentClickToggle(e, postId, post) {
+    e.preventDefault();
     const commentElement = document.getElementsByClassName(`comments-container-${postId}`)[0];
     const showCommentTextEleement = document.getElementsByClassName(`show-${postId}`)[0];
 
@@ -84,20 +84,19 @@ let commentTemplate = (comment, user) => html`
                     Reply </span>
     </div>
     
-    <div style="display:none" class="input-add-reply" id="reply-${comment._id}">
+    <div style="display:none" class="input-add-reply reply-${comment._id}">
     <input type="text" id="addReply-${comment._id}" name="addReply-c" placeholder="Reply">
         <div style="display:inline" class="arrow-up"></div>
         <button class="btn-post" @click=${(e) => addReplayHandler(comment)}>Add reply</button>
     </div>
         <div style="display:none" class="reply-show replay-${comment._id}" > 
                 <div style="display:none" class="arrow-up reply-${comment._id}"></div>
-                <!-- // -->
         </div>
 `
 
 
 function replyClickHandler(e, comment) {
-    const replyContainerElement = document.getElementById(`reply-${comment._id}`);
+    const replyContainerElement = document.getElementsByClassName(`reply-${comment._id}`)[0];
     replyContainerElement.style.display === "flex"
         ? replyContainerElement.style.display = "none"
         : replyContainerElement.style.display = "flex"
@@ -110,7 +109,6 @@ function addReplayHandler(comment) {
     const replyInputElement = document.getElementById(`addReply-${comment._id}`);
     const text = replyInputElement.value;
     if (alertIfNotLoggedUser() || (!text) ) {
-        alert('Only logged users can add comments.');
         return;
     }
     const userId = (authService.getLoggedUser())._id;
@@ -142,8 +140,8 @@ function checkReplyExist(comment) {
                 fetch(`${baseUrl}/${_authorId}`)
                     .then(res => res.json())
                     .then(user => {
-                        //console.log(user);
-                        const elementReply = document.getElementById(`reply-${comment._id}`);
+                        console.log(user);
+                        const elementReply = document.getElementsByClassName(`reply-${comment._id}`)[0];
                         elementReply.style.display = "block";
                         elementReply.textContent = ` ${user.firstName} ${user.lastName} replies: ${reply.text}   ⮝`;
                         const replyContainerElement = document.getElementsByClassName(`reply-span-${comment._id}`)[0];
@@ -164,6 +162,7 @@ function checkReplyExist(comment) {
 function alertIfNotLoggedUser() {
     const currentUser = authService.getLoggedUser();
     if (currentUser.user === 'noUser') {
+        alert('Only logged users can add comments.');
         return false;
     }
 

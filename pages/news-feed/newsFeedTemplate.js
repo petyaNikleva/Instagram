@@ -45,7 +45,7 @@ export let postTemplate = (post) => html`
                 <div class="likes-${post._id}">${likersCountHandler(post._id)}</div>
             </div>
             
-            <div class="show-comment-container"  @click=${() => commentClickToggle(post._id, post)} >
+            <div class="show-comment-container"  @click=${(e) => commentClickToggle(e, post._id, post)} >
                 <i class="fa-solid fa-comment"></i>
                 <div class="show-${post._id}">Show comments</div>
             </div>
