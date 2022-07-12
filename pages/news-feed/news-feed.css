@@ -1,0 +1,125 @@
+h2 {
+    font-size: 2.25rem;
+    text-align: center;
+}
+
+.post-card.posts {
+    width: 32%;
+    border: 1px solid gray;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(rgb(187, 177, 197), #f9cea8);
+    box-shadow: 3px 9px 40px -10px rgba(0,0,0,0.7);
+    margin-top: 1rem;
+}
+
+.post-card img {
+    width: 100%;
+    display: flex;
+    margin: auto;
+}
+
+.post-card p {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 0.2rem;
+}
+
+.post-card .card-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.post-card .btn {
+    padding: 0.25rem 1.25rem;
+    transition-duration: 0.4s;
+    border-radius: 0.4rem;
+    border: 2px solid gray;
+    color: #746d5a;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.post-card .btn:hover {
+    cursor: pointer;
+    background-color: #b165cd;
+    color: white;
+}
+
+.post-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.fa-solid {
+    padding-top: 0.5rem;
+    padding-left: 1.25rem;
+    font-size: xx-large;
+    color: #b165cd;  
+    text-align: left;
+}
+
+.fa-solid:hover {
+    color:#884ebf;
+    cursor: pointer;
+}
+
+.div-author, 
+.description {
+    padding-top: 1rem;
+}
+
+.description {
+    font-weight: 900;
+    font-style: bold;
+}
+
+.like-container,
+.show-comment-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.show-comment-container{
+    cursor: pointer;
+}
+
+
+.input-add-comment {
+    display: flex;
+    align-items: center;
+}
+
+.btn-post {
+    width: 3.125rem;
+    height: 1.563rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+
+
+.comments-container {
+    margin-top: 1rem;
+    display: none;
+}
+
+.single-comment {
+    border-radius: 0.75rem;
+    border: 1px solid grey;
+    padding: 0.5rem;
+}
+
+.grey {
+    color: grey;
+    border-color: grey;
+    border-style: dashed;
+}
+

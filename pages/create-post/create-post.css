@@ -1,0 +1,21 @@
+main {
+    width: 90%;
+}
+
+#post-description {
+    width: 90%;
+    margin-top: 2rem;
+}
+
+#author {
+    font-size: 1.25rem;
+}
+
+
+
+
+.create-btn.register-btn.submit-btn {
+    padding: 1rem 1.5rem;
+    font-size: medium;
+}
+

@@ -3,11 +3,19 @@ const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 const { initDatbase } = require('./config/dataBaseConfig');
-const routes = require('./controller');
+const userRoutes = require('./controllers/userController');
+const postRoutes = require('./controllers/postController');
+const postIdRoutes = require('./controllers/postIdController');
+const commentRoutes = require('./controllers/commentController');
+const commentIdRoutes = require('./controllers/commentIdController');
 
 const app = express();
 app.use(cors());
-app.use(routes);
+app.use(commentRoutes);
+app.use(postRoutes); //1
+app.use(userRoutes); //2
+app.use('/postId', postIdRoutes);
+app.use('/commentId', commentIdRoutes);
 app.use(express.urlencoded({extended: false}));
 
 //--------- Multer starts -------/
@@ -34,10 +42,11 @@ app.get(`/upload/:pictureId`, (req, res) => {
     res.sendFile(fileName, options, function (err) {
         if (err) {
             console.log(err);
-        } else {
-            console.log('Sent:', fileName);
+        } 
+        //else {
+            //console.log('Sent:', fileName);
             //res.json(req.file);
-        }
+        //}
     });
 });
 

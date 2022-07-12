@@ -1,0 +1,44 @@
+.input-add-reply {
+    display: flex;
+    align-items: center;
+}
+
+.date-reply {
+    margin-bottom: 0.5rem;
+    font-size: smaller;
+}
+
+.reply {
+    color: black;
+    font-weight: bold;
+    margin-left: 8rem;
+    cursor: pointer;
+    border: 1px solid grey;
+    border-radius: 0.75rem;
+    padding: 0.03rem 0.2rem;
+}
+
+.single-comment {
+    margin-bottom: 0.15rem;
+}
+
+.single-comment div {
+    text-align: left;
+}
+
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 0.33rem solid transparent;
+    border-right: 0.33rem solid transparent;
+    
+    border-bottom: 0.33rem solid black;
+    margin-top: 0.1rem;
+  }
+
+  .input-add-reply {
+    font-size: small;
+    border: 1px solid grey;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }

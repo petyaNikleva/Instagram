@@ -1,5 +1,5 @@
 import authService from "../../services/authenticationService.js";
-import { uploadImage} from "../../services/userService.js";
+import { updateUserImage} from "../../services/userService.js";
 
 export function currentUser() {
     return authService.getLoggedUser();
@@ -21,7 +21,7 @@ export function submitHandler(e) {
         .then(imageData => {
             let userData = currentUser();
             const userId = currentUser()._id;
-            uploadImage(userId, imageData.filename, userData)
+            updateUserImage(userId, imageData.filename, userData)
                 .then((updatedUserData) => {
                     authService.setLoggedUser(updatedUserData);
                     getImageHandler();

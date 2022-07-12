@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000';
+import { baseUrl } from "../helpers/constants.js";
 
 export const login = async (email, password) => {
     let res = await fetch(`${baseUrl}/login`, {
@@ -34,18 +34,6 @@ export const register = async ( email, firstName, lastName, dateOfBirth, passwor
         
 }
 
-// export const register = ( email, firstName, lastName, dateOfBirth, password, image ) => {
-//     return fetch(`${baseUrl}/createUser`, {
-//         method: "POST",
-//         headers: {
-//             'content-type': 'application/json'
-//         },
-//         body: JSON.stringify({ email, firstName, lastName, dateOfBirth, password, image })
-//     })
-//         .then(res => {
-//             console.log(res)
-//             res.json()});
-// }
 
 export const update = (userId, currentUserData ) => {
     return fetch(`${baseUrl}/${userId}`, {
@@ -58,12 +46,8 @@ export const update = (userId, currentUserData ) => {
         .then(res => res.json());
 }
 
-// TO DO from here
-export const uploadImage = async (userId, imgId, userData) => {
+export const updateUserImage = async (userId, imgId, userData) => {
     userData.image = imgId;
-    //let userData = await fetch(`${baseUrl}/${userId}`);
-    //let jsonRes = userData.json();
-    //jsonRes.image = imgId;
    
     return fetch(`${baseUrl}/${userId}`, {
         method: "PUT",

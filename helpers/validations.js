@@ -1,4 +1,3 @@
-//import authService from "../services/authenticationService.js";
 import { getAll } from "../services/userService.js";
 
 export function checkInputValid(element) {
